@@ -19,9 +19,6 @@
 ###Our Email
 15.minutes.org@gmail.com
 
-###Our Facebook Page
-[Facebook page](https://www.facebook.com/15.minutes.org/)
-
 
 ## [Issue Board](https://huboard.com/robi-y/seproject-team-template#/) (soon...)
 
