@@ -37,7 +37,7 @@ Please visit our wiki for furthur project info:
 [![osyed]()](https://github.com/osyejda)
 
 ### Project Documents
-- [Project Idea](docs/idea.pdf) ([Presentation](docs/Presentation))
+- [Project Idea](../../wiki/idea)
 - [Project Inception](../../wiki/Project-Inception-and-Planing)
 - [Software Requirements Specification](../../wiki/srs)
 - [Software Design Specification](../../wiki/sds)
