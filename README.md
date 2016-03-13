@@ -27,7 +27,7 @@ This project is developed as part of the requirements for a [Software Engineerin
 
 Please visit our wiki for furthur project info: 
 
-### [User Manual](../../wiki/user-manual) (empty)
+### [User Manual](../../wiki/user-manual) (Coming Soon)
 
 ### [Team Page](../../wiki/team)
 [![Hadiab](https://avatars2.githubusercontent.com/u/8047742?v=3&u=cb3649ac4510b5df3fbec80caef9f32f992263c6&s=140)](https://github.com/hadiab)
