@@ -9,10 +9,13 @@
 
 ![alt text](https://github.com/mohamadir/15-minutes/blob/master/logo.jpg "Logo Title Text 1")
 
-## Please visit our [live application](https://demo.reactstarterkit.com/)
+## Please visit our [live application](https://15min.azurewebsites.net/)
 - Alright, currently only a landing page...
 
 ## Contact Info
+###Our Chat
+[![Join the chat at https://gitter.im/mohamadir/15-minutes](https://badges.gitter.im/robi-y/seproject-team-template.svg)](https://gitter.im/moria0525/MadeinJLM-students?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+<br />
 ###Our Email
 15.minutes.org@gmail.com
 
