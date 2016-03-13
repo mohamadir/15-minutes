@@ -1,6 +1,9 @@
 # 15 Minutes
-####Report...
-####Report...
+####To short the complain cycle
+#####The organization works to reduce travel times on transport
+#####And improving public transport services and adding
+#####Public and therefore provide a suitable alternative for use in vehicles
+#####Private.
 <br />
 
 
@@ -34,7 +37,7 @@ Please visit our wiki for furthur project info:
 [![osyed]()](https://github.com/osyejda)
 
 ### Project Documents
-- [Project Idea](docs/idea.pdf) ([Presentation](docs/Presentation.pdf))
+- [Project Idea](docs/idea.pdf) ([Presentation](docs/Presentation))
 - [Project Inception](../../wiki/Project-Inception-and-Planing)
 - [Software Requirements Specification](../../wiki/srs)
 - [Software Design Specification](../../wiki/sds)
