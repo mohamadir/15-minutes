@@ -14,7 +14,7 @@
 
 ## Contact Info
 ###Our Chat
-[![Join the chat at https://gitter.im/mohamadir/15-minutes](https://badges.gitter.im/robi-y/seproject-team-template.svg)](https://gitter.im/moria0525/MadeinJLM-students?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/mohamadir/15-minutes](https://badges.gitter.im/robi-y/seproject-team-template.svg)](https://gitter.im/mohamadir/15-minutes)
 <br />
 ###Our Email
 15.minutes.org@gmail.com
