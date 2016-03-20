@@ -40,7 +40,7 @@ Please visit our wiki for furthur project info:
 ### Project Documents
 - [Project Idea](../../wiki/idea)
 - [Project Inception](../../wiki/Project-Inception-and-Planing)
-- [Software Requirements Specification](../../wiki/srs)
+- [SRS](https://docs.google.com/document/d/1Oumfp4G0fV_jFVYWblNpYqtNVUUXgxXus80hDzfhKI0/pub)
 - [Software Design Specification](../../wiki/sds)
 - [Organization Facebook page] (https://www.facebook.com/15.minutes.org/)
 
