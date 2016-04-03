@@ -1,0 +1,117 @@
+<ion-view view-title="טופס תלונה" ng-controller="ReportCtrl">
+    <ion-content class="padding">
+          <form ng-submit="">
+    		<div class="list list-inset">
+
+            <!-- Report Description -->
+            <label class="item item-input item-floating-label">
+              <span class="input-label">פירוט התלונה ו/או הצעה לשיפור</span>
+              <textarea name="" id="" cols="30" rows="5" placeholder="פירוט התלונה ו/או הצעה לשיפור"></textarea>
+			  	  </label>
+
+            <!-- Report Date -->
+			  	  <label class="item item-input item-input">
+              <i class="icon ion-calendar placeholder-icon"></i>
+              <span class="input-label">תאריך האירוע</span>
+              <input type="date">
+			  	  </label>
+
+            <!-- Report Time -->
+            <label class="item item-input">
+              <i class="icon ion-android-time placeholder-icon"></i>
+              <span class="input-label">שעת האירוע</span>
+              <input type="time">
+            </label>
+
+            <!-- Report Bus Line -->
+            <label class="item item-input">
+              <i class="icon ion-android-bus placeholder-icon"></i>
+              <input type="number" placeholder="מספר הקו">
+            </label>
+
+
+            <!-- Report Bus Company -->
+            <label class="item item-input item-select">
+                <div class="input-label">
+                  חברת התחבורה
+                </div>
+                <select>
+                  <option>אגד</option>
+                  <option>אגד תעבורה</option>
+                  <option>אפיקים</option>
+                  <option>גולן</option>
+                  <option>גלים</option>
+                  <option>דן</option>
+                  <option>דן שבדרום</option>
+                  <option>דן שבצפון</option>
+                  <option>מטרופולין</option>
+                  <option>נזרין טורס</option>
+                  <option>נתיב אקספרס</option>
+                  <option>סופרבוס</option>
+                  <option>סיטיפס</option>
+                  <option>עילית</option>
+                  <option>קווים</option>
+                  <option>רכבת ישראל</option>
+                  <option>ג"י.בי.טורס</option>
+                  <option>UNBS שירותי אוטובוסים מאוחדים נצרת</option>
+                  <option>אחר</option>
+                </select>
+            </label>
+
+          <!-- Report Location -->
+          <label class="item item-input">
+            <i class="icon ion-location placeholder-icon"></i>
+            <input type="text" placeholder="מקום האירוע">
+          </label>
+
+          <!-- Report Problem -->
+          <label class="item item-input item-select">
+            <div class="input-label">
+              מהות התלונה
+            </div>
+            <select>
+              <option>אי עמידה בלו"ז</option>
+              <option>תלונות על נהגים</option>
+              <option>תדירות נמוכה</option>
+              <option>זיהום וליכלוך</option>
+              <option>דילוג על תחנות</option>
+              <option>בעיות בנתיבי תחבורה ציבורית</option>
+              <option>תקלות רב-קו</option>
+              <option>מידע שגוי (בתחנה או באתר)</option>
+              <option>מסלולי קווים</option>
+              <option>אחר</option>
+            </select>
+          </label>
+
+          <!-- Report Name -->
+          <label class="item item-input">
+            <i class="icon ion-person placeholder-icon"></i>
+            <input type="text" placeholder="שם">
+          </label>
+
+          <!-- Report Email -->
+          <label class="item item-input">
+            <i class="icon ion-email placeholder-icon"></i>
+            <input type="email" placeholder="מייל">
+          </label>
+
+          <!-- Report Tele -->
+          <label class="item item-input">
+            <i class="icon ion-ios-telephone placeholder-icon"></i>
+            <input type="tel" placeholder="טלפון">
+          </label>
+
+          <!-- Report Tele -->
+          <label class="item item-input">
+            <i class="icon ion-ios-telephone placeholder-icon"></i>
+            <input type="file" placeholder="צרפו קובץ">
+          </label>
+
+          <button type="submit" class="button button-block button-positive">
+            הגשת תלונה
+          </button>
+
+         	</div>
+        </form>
+    </ion-content>
+</ion-view>
