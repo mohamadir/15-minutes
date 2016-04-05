@@ -1,0 +1,24 @@
+.report-panel{
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+
+.report-description{
+	margin: 15px 15px 0 15px;
+}
+
+.report-detail{
+	margin-left: 15px;
+}
+
+.report-detail-body{
+	margin-left: 15px;
+}
+
+.report-person{
+	margin-left: 15px;
+}
+
+.footer{
+	margin-top: 15px;
+}

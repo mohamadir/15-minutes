@@ -45,6 +45,13 @@ app.post('/api/v1/report', function(req, res){
 	})
 });
 
+app.get('/api/v1/report/:id', function(req, res){
+	console.log(req.params.id);
+	Report.find({'_id': req.params.id}).exec(function(err, item){
+		res.json(item);
+	});
+});
+
 // // Delete requset
 // app.delete('/personlist/:id', function(req, res){
 // 	console.log("Delete Requests: ", req.params.id);

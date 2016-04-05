@@ -1,0 +1,16 @@
+<div class="container" ng-controller="ReportsCtrl">
+	<h2>15 Minutes App</h2>
+	<hr>
+	<div class="panel panel-default">
+	  <!-- Default panel contents -->
+	  <div class="panel-heading">15 Minutes App</div>
+	  <!-- List group -->
+	  <ul class="list-group">
+	    <li class="list-group-item" ng-repeat="report in reports.results">
+	    	<a ng-href="#/reports/{{ report._id }}">
+				<h4>{{ report.description }} <small>form: {{ report.name }}</small></h4>
+			</a>
+	    </li>
+	  </ul>
+	</div>
+</div>
