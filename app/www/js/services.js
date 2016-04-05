@@ -20,15 +20,15 @@ angular.module('starter.services', [])
                 defer.resolve(response);
             });
             return defer.promise;
-        },
-        'removePerson': function(person){
-            $http.delete('http://localhost:1337/personlist/' + person._id).then(function(res){
-                console.log("Delete Success");
-                self.load();
-            },function(res){
-                console.log("Delete Error");
-            });
         }
+        // 'removePerson': function(person){
+        //     $http.delete('http://localhost:1337/personlist/' + person._id).then(function(res){
+        //         console.log("Delete Success");
+        //         self.load();
+        //     },function(res){
+        //         console.log("Delete Error");
+        //     });
+        // }
     }
 
     self.load();
