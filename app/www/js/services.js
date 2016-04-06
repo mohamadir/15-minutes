@@ -1,3 +1,6 @@
+//var serverUrl = 'http://15-minutes-server.azurewebsites.net/';
+
+
 angular.module('starter.services', [])
 
 .service('Report', function($http, $q) {
@@ -14,7 +17,7 @@ angular.module('starter.services', [])
         },
         'addReport': function(formData){
             var defer = $q.defer();
-            $http.post(serverUrl + 'api/v1/report', formData).success(function(response) {
+            $http.post('http://15-minutes-server.azurewebsites.net/api/v1/report', formData).success(function(response) {
                 console.log("Post http: ", formData);
                 self.load();
                 defer.resolve(response);
