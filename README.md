@@ -7,7 +7,7 @@
 <br />
 
 
-![alt text](https://github.com/mohamadir/15-minutes/blob/master/logo.jpg "Logo Title Text 1")
+![15 minutes logo](https://github.com/mohamadir/15-minutes/blob/master/project/logo.png)
 
 ## Please visit our [live application](https://15min.azurewebsites.net/)
 - Alright, currently only a landing page...
