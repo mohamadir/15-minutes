@@ -17,10 +17,14 @@ angular.module('starter.services', [])
         },
         'addReport': function(formData){
             var defer = $q.defer();
-            $http.post('http://15-minutes-server.azurewebsites.net/api/v1/report', formData).success(function(response) {
+            $http.post('http://15-minutes-server.azurewebsites.net/api/v1/report', formData)
+            .success(function(response) {
                 console.log("Post http: ", formData);
                 self.load();
                 defer.resolve(response);
+            })
+            .error(function(response){
+                defer.reject(response);
             });
             return defer.promise;
         }

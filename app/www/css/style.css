@@ -17,3 +17,11 @@
   color: #fff;
   text-align: center;
 }
+
+.spinner svg {
+  width: 28px;
+  height: 28px;
+  stroke: #eee;
+  fill: #eee;
+}
+
