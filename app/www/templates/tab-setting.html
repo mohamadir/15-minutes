@@ -1,5 +1,5 @@
 <ion-view view-title="הגדרות" ng-controller="SettingCtrl">
-  <ion-content>
+  <ion-content class="padding">
     <ion-list>
 
         <ion-toggle  ng-model="settings.enableSound">
@@ -7,11 +7,11 @@
 			
         </ion-toggle>
 				
-		<button ng-click="getCurrentPosition()">hi </button>
-		<label class="d">
+		  <button ng-click="getPosition()" class="button button-positive button-block">Get Position</button>
+	    <label class="d">
             <i class="icon ion-location placeholder-icon"></i>
              {{result.results[0].formatted_address}}
-          </label>				
+      </label>				
 
     </ion-list>
   </ion-content>

@@ -96,23 +96,24 @@ app.controller('ReportCtrl', function($scope, $state, $ionicLoading, $ionicPopup
 
 // Setting Controller
 app.controller('SettingCtrl', function($scope,$http, $cordovaGeolocation) {
-		 var posOptions = {timeout: 10000, enableHighAccuracy: false}; 
+    var posOptions = {timeout: 10000, enableHighAccuracy: false}; 
      
-   $cordovaGeolocation
-   .getCurrentPosition(posOptions)
-	
-   .then(function (position) {
-       $scope.lat  = position.coords.latitude
-      $scope.long = position.coords.longitude
-    $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+$scope.lat+','+$scope.long+'&sensor=true')
-            .success(function (res){
-                $scope.result=res;
-      });
-            
+    $scope.getPosition = function(){
+    	$cordovaGeolocation
+    	.getCurrentPosition(posOptions)
+    	
+    	.then(function (position) {
+    	    $scope.lat  = position.coords.latitude
+    	   	$scope.long = position.coords.longitude
+    	 	$http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+$scope.lat+','+$scope.long+'&sensor=true')
+    	    .success(function (res){
+    	        $scope.result = res;
+    	   	});
+    	}, function(err) {
+    	   console.log(err)
+    	})
+    }
 
-   }, function(err) {
-      console.log(err)
-   })
   $scope.settings = {
     enableSound: true
   };
