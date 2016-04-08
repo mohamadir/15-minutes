@@ -6,10 +6,12 @@
             הפעל מקום תלונה
 			
         </ion-toggle>
-			
-        <button class="button button-positive" ng-click="getPostion()"></button>
-        {{result.results[0].formatted_address}}
 				
+		<button ng-click="getCurrentPosition()">hi </button>
+		<label class="d">
+            <i class="icon ion-location placeholder-icon"></i>
+             {{result.results[0].formatted_address}}
+          </label>				
 
     </ion-list>
   </ion-content>
