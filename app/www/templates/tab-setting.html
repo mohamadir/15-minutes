@@ -1,11 +1,14 @@
-<ion-view view-title="הגדרות">
+<ion-view view-title="הגדרות" ng-controller="SettingCtrl">
   <ion-content>
     <ion-list>
 
         <ion-toggle  ng-model="settings.enableSound">
             הפעל מקום תלונה
+			
         </ion-toggle>
-
+			
+                {{result.results[0].formatted_address}}
+				
 
     </ion-list>
   </ion-content>
