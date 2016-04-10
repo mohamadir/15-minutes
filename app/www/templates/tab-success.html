@@ -1,18 +1,5 @@
-<ion-view view-title="success" ng-controller="CardsCtrl">
+<ion-view view-title="הצלחות">
   <ion-content class="padding">
-		
-      <td-cards>
-        <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{$index}}">
-          <div class="image" ng-controller="CardCtrl">
-            <div class="no-text">NOPE</div>
-            <img ng-src="{{card.image}}">
-            <div class="yes-text">LIKE</div>
-          </div>
-        </td-card>
-      </td-cards>
-	
-	
-	
-	
+    <h1>Success</h1>
   </ion-content>
 </ion-view>

@@ -3,31 +3,10 @@ var app = angular.module('starter.controllers', [])
 // Home Controller
 app.controller('HomeCtrl', function($scope, $ionicLoading, Report) {});
 
-
-
 // Report Controller
 app.controller('ReportCtrl', function($scope, $state, $ionicLoading, $ionicPopup, Report,$http, $cordovaGeolocation) {
-	 var posOptions = {timeout: 10000, enableHighAccuracy: false}; 
-     
-   $cordovaGeolocation
-   .getCurrentPosition(posOptions)
-	
-   .then(function (position) {
-       $scope.lat  = position.coords.latitude
-      $scope.long = position.coords.longitude
-    $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+$scope.lat+','+$scope.long+'&sensor=true')
-            .success(function (res){
-                $scope.result=res;
-      });
-            
-
-   }, function(err) {
-      console.log(err)
-   })
-  $scope.settings = {
-    enableSound: true
-  };
-
+	var posOptions = {timeout: 10000, enableHighAccuracy: false}; 
+        	
 	$scope.formData = {
 		description: "",
 		date: "",
@@ -41,6 +20,27 @@ app.controller('ReportCtrl', function($scope, $state, $ionicLoading, $ionicPopup
 		telephone: "",
 		file: ""
 	}
+
+	$scope.getPostion = function(){
+		// Show Loading 
+		$ionicLoading.show({
+		    template: '<p>Loading...</p><ion-spinner icon="dots"></ion-spinner>'
+		});
+
+		$cordovaGeolocation
+		.getCurrentPosition(posOptions)
+		.then(function (position) {
+	    	$scope.lat  = position.coords.latitude
+		   	$scope.long = position.coords.longitude
+		 	$http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+$scope.lat+','+$scope.long+'&sensor=true')
+		    .success(function (res){
+		        $scope.result = res;
+		        $ionicLoading.hide();
+		   	});
+		}, function(err) {
+	   		console.log(err)
+		});
+	};
 
 	$scope.addReport = function(){
 		console.log("Add New Reprot");
@@ -94,30 +94,15 @@ app.controller('ReportCtrl', function($scope, $state, $ionicLoading, $ionicPopup
 			});
 		}); 
 	} // End AddReport()
+
 });
 
 // Setting Controller
 app.controller('SettingCtrl', function($scope,$http, $cordovaGeolocation) {
-    var posOptions = {timeout: 10000, enableHighAccuracy: false}; 
-     
-    $scope.getPosition = function(){
-    	$cordovaGeolocation
-    	.getCurrentPosition(posOptions)
-    	
-    	.then(function (position) {
-    	    $scope.lat  = position.coords.latitude
-    	   	$scope.long = position.coords.longitude
-    	 	$http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+$scope.lat+','+$scope.long+'&sensor=true')
-    	    .success(function (res){
-    	        $scope.result = res;
-    	   	});
-    	}, function(err) {
-    	   console.log(err)
-    	})
-    }
 
   $scope.settings = {
     enableSound: true
   };
 
 });
+
