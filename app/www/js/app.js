@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ngCordova'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ngCordova','ionic.contrib.ui.tinderCards'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -22,7 +22,53 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
     }
   });
 })
+  .directive('noScroll', function($document) {
 
+  return {
+    restrict: 'A',
+    link: function($scope, $element, $attr) {
+
+      $document.on('touchmove', function(e) {
+        e.preventDefault();
+      });
+    }
+  }
+})
+
+  .controller('CardsCtrl', function($scope, TDCardDelegate) {
+  console.log('CARDS CTRL');
+  var cardTypes = [
+    { image: 'img/suc1.png' },
+    { image: 'img/suc2.png'},
+    { image: 'img/suc4.png' },
+    { image: 'img/suc5.png'},
+	{ image: 'img/suc6.png'} ,
+
+  ];
+
+  $scope.cards = Array.prototype.slice.call(cardTypes, 0);
+
+  $scope.cardDestroyed = function(index) {
+    $scope.cards.splice(index, 1);
+  };
+
+  $scope.addCard = function() {
+    var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+    newCard.id = Math.random();
+    $scope.cards.push(angular.extend({}, newCard));
+  }
+})
+
+  .controller('CardCtrl', function($scope, TDCardDelegate) {
+  $scope.cardSwipedLeft = function(index) {
+    console.log('LEFT SWIPE');
+    $scope.addCard();
+  };
+  $scope.cardSwipedRight = function(index) {
+    console.log('RIGHT SWIPE');
+    $scope.addCard();
+  };
+})
 .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -56,6 +102,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
         'tab-report': {
           templateUrl: 'templates/tab-report.html',
           controller: 'ReportCtrl'
+        }
+      }
+    })
+	  .state('tab.success', {
+      url: '/success',
+      views: {
+        'tab-success': {
+          templateUrl: 'templates/tab-success.html',
+          controller: 'CardsCtrl'
         }
       }
     })

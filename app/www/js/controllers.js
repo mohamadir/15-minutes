@@ -3,6 +3,8 @@ var app = angular.module('starter.controllers', [])
 // Home Controller
 app.controller('HomeCtrl', function($scope, $ionicLoading, Report) {});
 
+
+
 // Report Controller
 app.controller('ReportCtrl', function($scope, $state, $ionicLoading, $ionicPopup, Report,$http, $cordovaGeolocation) {
 	 var posOptions = {timeout: 10000, enableHighAccuracy: false}; 
