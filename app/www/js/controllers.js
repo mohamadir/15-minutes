@@ -4,9 +4,8 @@ var app = angular.module('starter.controllers', [])
 app.controller('HomeCtrl', function($scope, $ionicLoading, Report) {});
 
 // Report Controller
-app.controller('ReportCtrl', function($scope, $state, $ionicLoading, $ionicPopup, Report,$http, $cordovaGeolocation) {
-	var posOptions = {timeout: 10000, enableHighAccuracy: false}; 
-        	
+app.controller('ReportCtrl', function($scope, $state, $ionicLoading, $ionicPopup, Report) {
+	     	
 	$scope.formData = {
 		description: "",
 		date: "",
@@ -27,19 +26,12 @@ app.controller('ReportCtrl', function($scope, $state, $ionicLoading, $ionicPopup
 		    template: '<p>Loading...</p><ion-spinner icon="dots"></ion-spinner>'
 		});
 
-		$cordovaGeolocation
-		.getCurrentPosition(posOptions)
-		.then(function (position) {
-	    	$scope.lat  = position.coords.latitude
-		   	$scope.long = position.coords.longitude
-		 	$http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+$scope.lat+','+$scope.long+'&sensor=true')
-		    .success(function (res){
-		        $scope.result = res;
-		        $ionicLoading.hide();
-		   	});
-		}, function(err) {
-	   		console.log(err)
+		Report.getPostion().then(function(res){
+			$ionicLoading.hide();
+			$scope.results = res;
+			console.log(res);
 		});
+
 	};
 
 	$scope.addReport = function(){
@@ -98,7 +90,7 @@ app.controller('ReportCtrl', function($scope, $state, $ionicLoading, $ionicPopup
 });
 
 // Setting Controller
-app.controller('SettingCtrl', function($scope,$http, $cordovaGeolocation) {
+app.controller('SettingCtrl', function($scope) {
 
   $scope.settings = {
     enableSound: true

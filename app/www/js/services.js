@@ -3,42 +3,40 @@
 
 angular.module('starter.services', [])
 
-.service('Report', function($http, $q) {
+.service('Report', function($http, $q, $cordovaGeolocation) {
     var self = {
-        'results': [],
-        'load': function () {
-            // var defer = $q.defer();
-            // $http.get('http://localhost:1337/personlist').success(function(response) {
-            //     self.results = response;
-            //     console.log(response);
-            //     defer.resolve(response);
-            // });
-            // return defer.promise;
-        },
+        'lat': 0,
+        'lon': 0,
         'addReport': function(formData){
             var defer = $q.defer();
             $http.post('http://15-minutes-server.azurewebsites.net/api/v1/report', formData)
             .success(function(response) {
                 console.log("Post http: ", formData);
-                self.load();
                 defer.resolve(response);
             })
             .error(function(response){
                 defer.reject(response);
             });
             return defer.promise;
+        },
+        'getPostion': function(){
+            var posOptions = {timeout: 10000, enableHighAccuracy: false};
+            var defer = $q.defer();
+            $cordovaGeolocation
+            .getCurrentPosition(posOptions)
+            .then(function (position) {
+                self.lat  = position.coords.latitude
+                self.lon  = position.coords.longitude
+                $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+self.lat+','+self.lon+'&sensor=true')
+                .success(function (res){
+                    defer.resolve(res);
+                });
+            }, function(err) {
+                defer.reject();
+            });
+            return defer.promise;
         }
-        // 'removePerson': function(person){
-        //     $http.delete('http://localhost:1337/personlist/' + person._id).then(function(res){
-        //         console.log("Delete Success");
-        //         self.load();
-        //     },function(res){
-        //         console.log("Delete Error");
-        //     });
-        // }
     }
-
-    self.load();
 
     return self;
 });
