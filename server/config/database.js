@@ -1,5 +1,5 @@
 module.exports = {
-	url : "mongodb://40.83.122.67:27017/report"
+	url : "mongodb://52.165.25.38:27017/report"
 }
 
-// mongodb://40.83.122.67:27017/report
+// mongodb://52.165.25.38:27017/report

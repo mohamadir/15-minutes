@@ -9,7 +9,7 @@ angular.module('starter.services', [])
         'lon': 0,
         'addReport': function(formData){
             var defer = $q.defer();
-            $http.post('http://15-minutes-server.azurewebsites.net/api/v1/report', formData)
+            $http.post('http://localhost:8080/api/v1/report', formData)
             .success(function(response) {
                 console.log("Post http: ", formData);
                 defer.resolve(response);
