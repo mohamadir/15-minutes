@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //var serverUrl = 'http://15-minutes-server.azurewebsites.net/';
 
 
@@ -40,3 +41,47 @@ angular.module('starter.services', [])
 
     return self;
 });
+=======
+//var serverUrl = 'http://15-minutes-server.azurewebsites.net/';
+
+
+angular.module('starter.services', [])
+
+.service('Report', function($http, $q, $cordovaGeolocation) {
+    var self = {
+        'lat': 0,
+        'lon': 0,
+        'addReport': function(formData){
+            var defer = $q.defer();
+            $http.post('http://15-minutes-server.azurewebsites.net/api/v1/report', formData)
+            .success(function(response) {
+                console.log("Post http: ", formData);
+                defer.resolve(response);
+            })
+            .error(function(response){
+                defer.reject(response);
+            });
+            return defer.promise;
+        },
+        'getPostion': function(){
+            var posOptions = {timeout: 10000, enableHighAccuracy: false};
+            var defer = $q.defer();
+            $cordovaGeolocation
+            .getCurrentPosition(posOptions)
+            .then(function (position) {
+                self.lat  = position.coords.latitude
+                self.lon  = position.coords.longitude
+                $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+self.lat+','+self.lon+'&sensor=true')
+                .success(function (res){
+                    defer.resolve(res);
+                });
+            }, function(err) {
+                defer.reject();
+            });
+            return defer.promise;
+        }
+    }
+
+    return self;
+});
+>>>>>>> c828ca50d59a0b963b9508db09dda6c05aff1f1a
