@@ -1,16 +1,24 @@
 <div class="container" ng-controller="ReportsCtrl">
-	<h2>15 Minutes App</h2>
+	<div class="well well-sm">
+		<h2>15 Minutes App Admin Dashboard</h2>
+	</div>
+	<a href="/logout" class="btn btn-default btn-sm">Filter</a>
 	<a href="/logout" class="btn btn-default btn-sm">Logout</a>
 	<hr>
 	<div class="panel panel-default">
 	  <!-- Default panel contents -->
-	  <div class="panel-heading">15 Minutes App</div>
+	  <div class="panel-heading">Reports List</div>
 	  <!-- List group -->
 	  <ul class="list-group">
-	    <li class="list-group-item" ng-repeat="report in reports.results">
+	    <li class="list-group-item clearfix" ng-repeat="report in reports.results">
 	    	<a ng-href="#/reports/{{ report._id }}">
-				<h4>{{ report.description }} <small>form: {{ report.name }}</small></h4>
+				<h4>{{ report.description }}</h4>
+				<h4><small>form: {{ report.name }}</small></h4>
 			</a>
+			<span class="pull-right">
+		     	<button class="btn btn-primary">Edit</button>
+		     	<button class="btn btn-danger">Delete</button>
+		    </span>
 	    </li>
 	  </ul>
 	</div>

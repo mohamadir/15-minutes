@@ -1,3 +1,7 @@
+body{
+	margin-top: 20px;
+}
+
 .report-panel{
 	border: 1px solid #ddd;
 	border-radius: 5px;

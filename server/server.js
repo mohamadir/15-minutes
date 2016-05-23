@@ -23,7 +23,8 @@ app.use(express.static(path.join(__dirname + '/public')));
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser.json()); //app.use(bodyParser.json({ extended: true }));// get information from html forms
+app.use(bodyParser.urlencoded({ extended: true })); //app.use(bodyParser.json({ extended: true }));// get information from html forms
+app.use(bodyParser.json({ extended: true }));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 
