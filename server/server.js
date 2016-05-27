@@ -17,7 +17,7 @@ require('./config/passport')(passport); // pass passport for configuration
 // set database setup
 mongoose.connect(configDB.url);
 
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 3000);
 app.use(express.static(path.join(__dirname + '/public')));
 
 // set up our express application

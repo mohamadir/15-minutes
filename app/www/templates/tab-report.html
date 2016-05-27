@@ -1,12 +1,12 @@
 <ion-view view-title="טופס תלונה" ng-controller="ReportCtrl">
     <ion-content class="padding">
-        <form ng-submit="addReport()">
+        <form name="reportForm" ng-submit="addReport()">
     		  <div class="list list-inset">
 
             <!-- Report Description -->
             <label class="item item-input item-floating-label">
               <span class="input-label">פירוט התלונה ו/או הצעה לשיפור</span>
-              <textarea name="" id="" cols="30" rows="5" placeholder="פירוט התלונה ו/או הצעה לשיפור" ng-model="formData.description"></textarea>
+              <textarea name="" id="" cols="30" rows="5" placeholder="פירוט התלונה ו/או הצעה לשיפור" ng-model="formData.description" required></textarea>
 			  	  </label>
 
             <!-- Report Date -->
@@ -63,7 +63,8 @@
             <button class="button button-rounded button-positive" ng-click="$event.preventDefault(); getPostion();">
             <i class="icon ion-location icon-top"></i><br>
             </button>
-            <h2>{{results.results[0].formatted_address}}</h2>
+            <p ng-if="formData.location == ''">Click to check your location</p>
+            <h2>{{ formData.location }}</h2>
 
           </label>
 		 
@@ -104,10 +105,33 @@
             <input type="tel" placeholder="טלפון" ng-model="formData.telephone">
           </label>
 
-          <!-- Report file -->
-          <label class="item item-input">
-            <i class="icon ion-ios-telephone placeholder-icon"></i>
-            <input type="file" placeholder="צרפו קובץ" ng-model="formData.file">
+          <!-- Report img or vedio -->
+          <label class="item item-input padding">
+            <button class="button button-rounded button-positive" ng-click="$event.preventDefault(); getPicture();">
+            <i class="icon ion-android-camera icon-top"></i><br>
+            </button>
+            
+            <!-- placeholder -->
+            <p ng-if="formData.images.length == 0">click to capture or select image</p>
+
+            <!-- Display images -->
+            
+            <div class="row">
+              <div class="col col-75">
+                <div class="list card" ng-if="formData.images.length > 0">
+                  <div class="item item-image" ng-repeat="image in formData.images">
+                    <img ng-src="{{ image }}" alt="img">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <label class="deletePicture padding">
+              <button ng-if="formData.images.length > 0" class="button button-rounded button-assertive" ng-click="$event.preventDefault(); deletePicture();">
+              <i class="icon ion-close-round icon-top"></i><br>
+              </button>
+            </label>
+
           </label>
 
           <button type="submit" class="button button-block button-positive">

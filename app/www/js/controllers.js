@@ -4,10 +4,19 @@ var app = angular.module('starter.controllers', [])
 app.controller('HomeCtrl', function($scope, $ionicLoading, Report) {});
 
 // Report Controller
-app.controller('ReportCtrl', function($scope, $state, $ionicLoading, $ionicPopup, Report) {
-	     	
+app.controller('ReportCtrl', function(
+  $scope, 
+  $state, 
+  $cordovaCamera,
+  $cordovaCapture, 
+  $ionicLoading, 
+  $ionicPopup, 
+  Report) {
+	
+  // Form Data
 	$scope.formData = {
 		description: "",
+    createdAt: "",
 		date: "",
 		time: "",
 		busLine: "",
@@ -17,23 +26,66 @@ app.controller('ReportCtrl', function($scope, $state, $ionicLoading, $ionicPopup
 		name: "",
 		email: "",
 		telephone: "",
-		file: ""
+		images: []
 	}
 
+  // set time
+  $scope.time = Date.now();
+
+  // Get Location
 	$scope.getPostion = function(){
 		// Show Loading 
 		$ionicLoading.show({
-		    template: '<p>Loading...</p><ion-spinner icon="dots"></ion-spinner>'
+		  template: '<p>Loading...</p><ion-spinner icon="dots"></ion-spinner>'
 		});
 
 		Report.getPostion().then(function(res){
 			$ionicLoading.hide();
 			$scope.results = res;
+      $scope.formData.location = $scope.results.results[0].formatted_address;
+      console.log("location: ", $scope.formData.location);
 			console.log(res);
 		});
 
 	};
 
+  // Get Picture
+  $scope.getPicture = function(){
+    console.log("Get Picture");
+    var options = {
+      quality: 50,
+      destinationType: Camera.DestinationType.DATA_URL,
+      sourceType: Camera.PictureSourceType.CAMERA,
+      allowEdit: false,
+      encodingType: Camera.EncodingType.JPEG,
+      targetWidth: 440,
+      targetHeight: 440,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: true,
+      correctOrientation: false
+    };
+
+    $cordovaCamera.getPicture(options).then(function(imageData) {
+      $scope.formData.images.push("data:image/jpeg;base64," + imageData);
+      console.log($scope.formData.images);
+    }, function(err) {
+      console.log("Camera Error!!");
+    });
+
+  }
+
+  // delete Picture
+  $scope.deletePicture = function(){
+    console.log("Delete Picture");
+    $scope.formData.images = [];
+    $cordovaCamera.cleanup(function(){
+      alert("Delete");
+    }, function(){
+      alert("Error Delete!!");
+    });
+  }
+
+  // Add Report
 	$scope.addReport = function(){
 		console.log("Add New Reprot");
 		console.log($scope.formData);
@@ -43,6 +95,11 @@ app.controller('ReportCtrl', function($scope, $state, $ionicLoading, $ionicPopup
 		    template: '<p>Loading...</p><ion-spinner icon="ripple"></ion-spinner>'
 		});
 
+    // Get Report Created At Date 
+    var date = new Date();    
+    var dateStr = JSON.stringify(date);
+    var dateNow = JSON.parse(dateStr);
+    $scope.formData.createdAt = dateNow;
 
 		Report.addReport($scope.formData).then(function(){ // Success
 			console.log("Success!!");
@@ -64,9 +121,22 @@ app.controller('ReportCtrl', function($scope, $state, $ionicLoading, $ionicPopup
 			});
 
 			// Reset the form data
-			$scope.formData = "";
+      $scope.formData = {
+        description: "",
+        createdAt: "",
+        date: "",
+        time: "",
+        busLine: "",
+        transportCompany: "",
+        location: "",
+        complaint: "",
+        name: "",
+        email: "",
+        telephone: "",
+        images: []
+      }
 
-		}, function(){ // Failed
+		}, function(err){ // Failed
 			console.log("Failed!!");
 
 			// Hide Loading
@@ -75,7 +145,7 @@ app.controller('ReportCtrl', function($scope, $state, $ionicLoading, $ionicPopup
 			// Alert
 			$ionicPopup.show({
 				title: 'Failed',
-				subTitle: 'Error with sending the report try again later.',
+				subTitle: 'Error with sending the report try again later. ' + err,
 				buttons: [{
 				    text: 'OK',
 				    type: 'button-positive',
@@ -89,20 +159,11 @@ app.controller('ReportCtrl', function($scope, $state, $ionicLoading, $ionicPopup
 
 });
 
-// Setting Controller
-app.controller('SettingCtrl', function($scope) {
+// More Controller
+app.controller('MoreCtrl', function($scope) {});
 
-  $scope.settings = {
-    enableSound: true
-  };
-
-});
-
-
-
-
-///////////////////////////////////////////
-app.controller('MainCtrl', ['$scope', '$ionicModal', '$ionicSlideBoxDelegate', function ($scope, $ionicModal, $ionicSlideBoxDelegate) {
+// Info Controller
+app.controller('InfoCtrl', ['$scope', '$ionicModal', '$ionicSlideBoxDelegate', function ($scope, $ionicModal, $ionicSlideBoxDelegate) {
 		
   	$scope.aImages = [{
       	'src' : 'img/suc1.png', 

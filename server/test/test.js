@@ -1,7 +1,8 @@
-var expect = require('chai').expect;
+var chai = require('chai');
+var expect = chai.expect;
 
-describe('A basic test', function(){
-	it('should pass when everything is okay', function(){
+describe('Server test', function(){
+	it('Pass everything is okay', function(){
 		expect(true).to.be.true;
 	});
 });

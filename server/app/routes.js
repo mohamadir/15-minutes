@@ -1,6 +1,7 @@
 // app/routes.js
 
 var Report = require('./models/report.js');
+var sendgrid  = require('sendgrid')('15min', '15min12345');
 
 module.exports = function(app, passport) {
 
@@ -82,12 +83,26 @@ module.exports = function(app, passport) {
 
 	app.post('/api/v1/report', function(req, res){
 		console.log("Post Requests.");
-		console.log(req.body);
+    console.log(req.body);
 		Report.create(req.body, function(err, item){
 			if(err){
-				console.log("Erorr!! Post Requests.");
+				return console.log("Erorr Post Requests!.");
 			}
-			res.json(item);
+
+      // Send Email
+      var email = new sendgrid.Email(); 
+      email.setTos(['mohamdib@gmail.com', 'abdalhadi.m92@gmail.com']);
+      email.setFrom(req.body.email);
+      email.setSubject('Report');
+      email.setHtml('<h1>' + req.body.description + '</h1>');
+      sendgrid.send(email, function(err, json) {
+        if (err) {
+          return console.log("Erorr Send Email!."); 
+        }
+        console.log("Okay Send Email.");
+      });
+
+      res.json(item);
 		})
 	});
 
