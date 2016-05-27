@@ -91,7 +91,7 @@ module.exports = function(app, passport) {
 
       // Send Email
       var email = new sendgrid.Email(); 
-      email.setTos(['mohamdib@gmail.com', 'abdalhadi.m92@gmail.com']);
+      email.setTos(['abdalhadi.m92@gmail.com', 'mohamdib@gmail.com']);
       email.setFrom(req.body.email);
       email.setSubject('Report');
       email.setHtml('<h1>' + req.body.description + '</h1>');
