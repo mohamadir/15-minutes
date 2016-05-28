@@ -151,12 +151,13 @@ app.controller('ReportCtrl', function(
 
 			// Alert
 			$ionicPopup.show({
-				title: 'Failed',
-				subTitle: 'Error with sending the report try again later. ' + err,
+				title: 'אופס !',
+				subTitle: 'ישנה בעיה בשרת <br> אנא נסה בעוד כמה דקות ' + err,
 				buttons: [{
 				    text: 'OK',
 				    type: 'button-positive',
-				    onTap: function(e) {
+				    onTap: function(e) 
+					{
 				    	$state.go("tab.report");
 				    }
 				}]
