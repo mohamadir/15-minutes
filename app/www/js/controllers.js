@@ -1,7 +1,13 @@
 var app = angular.module('starter.controllers', [])
 
 // Home Controller
-app.controller('HomeCtrl', function($scope, $ionicLoading, Report) {});
+app.controller('HomeCtrl', function($scope, $ionicLoading, Report, $cordovaSplashscreen) {
+	
+	//  $cordovaSplashscreen.show();
+	//  $cordovaSplashscreen.hide();
+
+	
+});
 
 // Report Controller
 app.controller('ReportCtrl', function(
@@ -109,9 +115,10 @@ app.controller('ReportCtrl', function(
 
 			// Alert
 			$ionicPopup.show({
-				title: 'Success',
-				subTitle: 'The report sent Successfully.',
+				title: 'תודה',
+				subTitle: 'תלונתך התקבלה בהצלחה ,<br> מייד תקבל הודעה למייל בה מפורטת תלונך <br> ',
 				buttons: [{
+					
 				    text: 'OK',
 				    type: 'button-positive',
 				    onTap: function(e) {
@@ -159,12 +166,20 @@ app.controller('ReportCtrl', function(
 
 });
 
+
 // More Controller
 app.controller('MoreCtrl', function($scope) {});
 
 // Info Controller
-app.controller('InfoCtrl', ['$scope', '$ionicModal', '$ionicSlideBoxDelegate', function ($scope, $ionicModal, $ionicSlideBoxDelegate) {
+app.controller('InfoCtrl', ['$scope', '$ionicModal','$cordovaSocialSharing', '$ionicSlideBoxDelegate', function ($scope, $ionicModal,$cordovaSocialSharing, $ionicSlideBoxDelegate) {
 		
+		
+		
+		
+	$scope.shareAnyWhere=function(){
+		$cordovaSocialSharing.share("This is message to share","This is subject",null
+		,"https://www.google.com");		
+	};
   	$scope.aImages = [{
       	'src' : 'img/suc1.png', 
       	'msg' : 'החלק ימינה לאות עוד או תגע כדי לצאת'

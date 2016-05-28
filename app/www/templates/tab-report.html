@@ -1,42 +1,32 @@
 <ion-view view-title="טופס תלונה" ng-controller="ReportCtrl">
-    <ion-content>
-        <form ng-submit="addReport()">
-    		  <div class="list">
+    <ion-content class="padding">
+        <form name="reportForm" ng-submit="addReport()">
+    		  <div class="list list-inset">
 
             <!-- Report Description -->
-            <label class="item item-input item-stacked-label">
-              <i class="icon ion-android-list placeholder-icon"></i>
-              <span class="input-label text-right">פירוט התלונה ו/או הצעה לשיפור</span>
-              <textarea class="text-right" cols="30" rows="9" 
-              placeholder="כאן המקום לפרט ולהסביר מה הייתה הבעיה? האם מדובר בבעיה חד פעמית או בבעיה קבועה? האם התלוננתם על הבעיה הזו בעבר? אנחנו מאמינים שאנו הנוסעים יודעים יותר טוב מכל אחד איך אפשר לשפר לנו את השירות. כאן המקום לפרט אילו דברים, קטנים או גדולים, ישפרו לכם את התחבורה הציבורית ויעודדו אתכם לנסוע יותר בתחבורה ציבורית. נשמח מאוד להמלצות לקווים חדשים, מסלולים שנחוץ בהם נתיב לתחבורה ציבורית ועוד." 
-              ng-model="formData.description" required></textarea>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">פירוט התלונה ו/או הצעה לשיפור</span>
+              <textarea name="" id="" cols="30" rows="5" placeholder="פירוט התלונה ו/או הצעה לשיפור" ng-model="formData.description" required></textarea>
 			  	  </label>
 
             <!-- Report Date -->
-            <label class="item item-input item-stacked-label">
+			  	  <label class="item item-input item-input">
               <i class="icon ion-calendar placeholder-icon"></i>
               <span class="input-label">תאריך האירוע</span>
-              <input class="text-right" type="text" onfocus="(this.type='date')" 
-              placeholder="באיזה תאריך התרחש האירוע עליו אתם מתלוננים"
-              ng-model="formData.date"> 
-            </label>
+              <input type="date" ng-model="formData.date">
+			  	  </label>
 
             <!-- Report Time -->
-            <label class="item item-input item-stacked-label">
+            <label class="item item-input">
               <i class="icon ion-android-time placeholder-icon"></i>
               <span class="input-label">שעת האירוע</span>
-              <input class="text-right" type="text" onfocus="(this.type='time')"
-              placeholder="באיזו שעה בערך הגעת לתחנה או התרחש האירוע עליו התלונה" 
-              ng-model="formData.time">
+              <input type="time" ng-model="formData.time">
             </label>
 
             <!-- Report Bus Line -->
-            <label class="item item-input item-stacked-label">
+            <label class="item item-input">
               <i class="icon ion-android-bus placeholder-icon"></i>
-              <span class="input-label">מספר הקו</span>
-              <input class="text-right" type="number" 
-              placeholder="בהמשך תוכלו לפרט מספרי קווים נוספים, וכן על תחנות המוצא והיעד שלכם" 
-              ng-model="formData.busLine">
+              <input type="number" placeholder="מספר הקו" ng-model="formData.busLine">
             </label>
 
 
@@ -68,96 +58,85 @@
                 </select>
             </label>
 
-            <!-- Report Location -->
-            <label class="item item-input">
-              <button class="button button-rounded button-positive" ng-click="$event.preventDefault(); getPostion();">
-              <i class="icon ion-location icon-top"></i><br>
-              </button>
-              <p ng-if="formData.location == ''">Click to check your location</p>
-              <h2>{{ formData.location }}</h2>
+          <!-- Report Location -->
+          <label class="item item-input">
+            <button class="button button-rounded button-positive" ng-click="$event.preventDefault(); getPostion();">
+            <i class="icon ion-location icon-top"></i><br>
+            </button>
+            <p ng-if="formData.location == ''">Click to check your location</p>
+            <h2>{{ formData.location }}</h2>
 
-            </label>
+          </label>
 		 
-            <!-- Report Problem -->
-            <label class="item item-input item-select"> 
-              <div class="input-label">
-                מהות התלונה
-              </div>
-              <select ng-model="formData.complaint">
-                <option>אי עמידה בלו"ז</option>
-                <option>תלונות על נהגים</option>
-                <option>תדירות נמוכה</option>
-                <option>זיהום וליכלוך</option>
-                <option>דילוג על תחנות</option>
-                <option>בעיות בנתיבי תחבורה ציבורית</option>
-                <option>תקלות רב-קו</option>
-                <option>מידע שגוי (בתחנה או באתר)</option>
-                <option>מסלולי קווים</option>
-                <option>אחר</option>
-              </select>
-            </label>
+          <!-- Report Problem -->
+          <label class="item item-input item-select"> 
+            <div class="input-label">
+              מהות התלונה
+            </div>
+            <select ng-model="formData.complaint">
+              <option>אי עמידה בלו"ז</option>
+              <option>תלונות על נהגים</option>
+              <option>תדירות נמוכה</option>
+              <option>זיהום וליכלוך</option>
+              <option>דילוג על תחנות</option>
+              <option>בעיות בנתיבי תחבורה ציבורית</option>
+              <option>תקלות רב-קו</option>
+              <option>מידע שגוי (בתחנה או באתר)</option>
+              <option>מסלולי קווים</option>
+              <option>אחר</option>
+            </select>
+          </label>
 
-            <!-- Report Name -->
-            <label class="item item-input item-stacked-label">
-              <i class="icon ion-person placeholder-icon"></i>
-              <span class="input-label">שם</span>
-              <input class="text-right" type="text" 
-              placeholder="שמך המלא הכרחי לצורך הטיפול בתלונה" 
-              ng-model="formData.name">
-            </label>
+          <!-- Report Name -->
+          <label class="item item-input">
+            <i class="icon ion-person placeholder-icon"></i>
+            <input type="text" placeholder="שם" ng-model="formData.name">
+          </label>
 
-            <!-- Report Email -->
-            <label class="item item-input item-stacked-label">
-              <i class="icon ion-email placeholder-icon"></i>
-              <span class="input-label">מייל</span>
-              <input class="text-right" type="email" 
-              placeholder="כך נוכל לברר איתך פרטים נוספים אודות התלונה - במקרה הצורך" 
-              ng-model="formData.email">
-            </label>
+          <!-- Report Email -->
+          <label class="item item-input">
+            <i class="icon ion-email placeholder-icon"></i>
+            <input type="email" placeholder="מייל" ng-model="formData.email">
+          </label>
 
-            <!-- Report Tele -->
-            <label class="item item-input item-stacked-label">
-              <i class="icon ion-ios-telephone placeholder-icon"></i>
-              <span class="input-label">טלפון</span>
-              <input class="text-right" type="tel" 
-              placeholder="נייח או נייד" 
-              ng-model="formData.telephone">
-            </label>
+          <!-- Report Tele -->
+          <label class="item item-input">
+            <i class="icon ion-ios-telephone placeholder-icon"></i>
+            <input type="tel" placeholder="טלפון" ng-model="formData.telephone">
+          </label>
 
-            <!-- Report img or vedio -->
-            <label class="item item-input padding">
-              <button class="button button-rounded button-positive" ng-click="$event.preventDefault(); getPicture();">
-              <i class="icon ion-android-camera icon-top"></i><br>
-              </button>
-              
-              <!-- placeholder -->
-              <p ng-if="formData.images.length == 0">click to capture or select image</p>
+          <!-- Report img or vedio -->
+          <label class="item item-input padding">
+            <button class="button button-rounded button-positive" ng-click="$event.preventDefault(); getPicture();">
+            <i class="icon ion-android-camera icon-top"></i><br>
+            </button>
+            
+            <!-- placeholder -->
+            <p ng-if="formData.images.length == 0">click to capture or select image</p>
 
-              <!-- Display images -->
-              
-              <div class="row">
-                <div class="col col-75">
-                  <div class="list card" ng-if="formData.images.length > 0">
-                    <div class="item item-image" ng-repeat="image in formData.images">
-                      <img ng-src="{{ image }}" alt="img">
-                    </div>
+            <!-- Display images -->
+            
+            <div class="row">
+              <div class="col col-75">
+                <div class="list card" ng-if="formData.images.length > 0">
+                  <div class="item item-image" ng-repeat="image in formData.images">
+                    <img ng-src="{{ image }}" alt="img">
                   </div>
                 </div>
               </div>
+            </div>
 
-              <label class="deletePicture padding">
-                <button ng-if="formData.images.length > 0" class="button button-rounded button-assertive" ng-click="$event.preventDefault(); deletePicture();">
-                <i class="icon ion-close-round icon-top"></i><br>
-                </button>
-              </label>
-
+            <label class="deletePicture padding">
+              <button ng-if="formData.images.length > 0" class="button button-rounded button-assertive" ng-click="$event.preventDefault(); deletePicture();">
+              <i class="icon ion-close-round icon-top"></i><br>
+              </button>
             </label>
 
-            <div class="padding">
-              <button type="submit" class="button button-block button-positive">
-                הגשת תלונה
-              </button>
-            </div>
+          </label>
+
+          <button type="submit" class="button button-block button-positive">
+           הגש תלונה
+          </button>
 
          	</div>
         </form>
