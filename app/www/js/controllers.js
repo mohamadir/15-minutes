@@ -29,9 +29,6 @@ app.controller('ReportCtrl', function(
 		images: []
 	}
 
-  // set time
-  $scope.time = Date.now();
-
   // Get Location
 	$scope.getPostion = function(){
 		// Show Loading 
