@@ -1,12 +1,12 @@
 <ion-view view-title="טופס תלונה" ng-controller="ReportCtrl">
-    <ion-content class="padding">
+    <ion-content>
         <form name="reportForm" ng-submit="addReport()">
-    		  <div class="list list-inset">
+    		  <div class="list">
 
             <!-- Report Description -->
             <label class="item item-input item-floating-label">
               <span class="input-label">פירוט התלונה ו/או הצעה לשיפור</span>
-              <textarea name="" id="" cols="30" rows="5" placeholder="פירוט התלונה ו/או הצעה לשיפור" ng-model="formData.description" required></textarea>
+              <textarea name="" id="" cols="30" rows="9" placeholder="פירוט התלונה ו/או הצעה לשיפור" ng-model="formData.description" required></textarea>
 			  	  </label>
 
             <!-- Report Date -->
@@ -134,9 +134,11 @@
 
           </label>
 
-          <button type="submit" class="button button-block button-positive">
-           הגש תלונה
-          </button>
+          <div class="padding">
+            <button type="submit" class="button button-block button-positive">
+             הגש תלונה
+            </button>
+          </div>
 
          	</div>
         </form>

@@ -1,12 +1,8 @@
 var app = angular.module('starter.controllers', [])
 
 // Home Controller
-app.controller('HomeCtrl', function($scope, $ionicLoading, Report, $cordovaSplashscreen) {
-	
-	//  $cordovaSplashscreen.show();
-	//  $cordovaSplashscreen.hide();
+app.controller('HomeCtrl', function($scope, $ionicLoading, Report) {
 
-	
 });
 
 // Report Controller
@@ -115,12 +111,11 @@ app.controller('ReportCtrl', function(
 				title: 'תודה',
 				subTitle: 'תלונתך התקבלה בהצלחה ,<br> מייד תקבל הודעה למייל בה מפורטת תלונך <br> ',
 				buttons: [{
-					
-				    text: 'OK',
-				    type: 'button-positive',
-				    onTap: function(e) {
-				    	$state.go("tab.home");
-				    }
+			    text: 'OK',
+			    type: 'button-positive',
+			    onTap: function(e) {
+			    	$state.go("tab.home");
+			    }
 				}]
 			});
 
@@ -169,11 +164,8 @@ app.controller('MoreCtrl', function($scope) {});
 
 // Info Controller
 app.controller('InfoCtrl', ['$scope', '$ionicModal','$cordovaSocialSharing', '$ionicSlideBoxDelegate', function ($scope, $ionicModal,$cordovaSocialSharing, $ionicSlideBoxDelegate) {
-		
-		
-		
-		
-	$scope.shareAnyWhere=function(){
+
+	$scope.shareAnyWhere = function(){
 		$cordovaSocialSharing.share("This is message to share","This is subject",null
 		,"https://www.google.com");		
 	};
@@ -186,19 +178,17 @@ app.controller('InfoCtrl', ['$scope', '$ionicModal','$cordovaSocialSharing', '$i
       }, { 
         'src' : 'img/suc4.png', 
         'msg' : ''
-    }, { 
+      }, { 
         'src' : 'img/suc5.png', 
         'msg' : ''
-    }, { 
+      }, { 
         'src' : 'img/suc6.png', 
         'msg' : ''
-    }          
-                     ];
+      }          
+    ];
   
-    
-    $scope.exit=function() {
-      
-        ionic.Platform.exitApp();
+    $scope.exit = function() {
+      ionic.Platform.exitApp();
     };
     
     $ionicModal.fromTemplateUrl('image-modal.html', {
