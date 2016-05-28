@@ -26,11 +26,26 @@
 }
 
 /* Button */
-
 .button-rounded{
   margin-right: 10px;
   margin-left: 0px;
 }
+
+/***** Report Page *****/
+.right{
+  right: 0px !important;
+}
+.right-text{
+  float: right !important;
+  right: 10px !important;
+  display: block !important; 
+  margin-right: 5px !important;
+  margin-left: 5px !important;
+}
+.right-text::after{
+  clear: both;
+}
+
 
 
 /**************************** swipe images ***********************/
