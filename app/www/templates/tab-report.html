@@ -1,32 +1,38 @@
 <ion-view view-title="טופס תלונה" ng-controller="ReportCtrl">
-    <ion-content class="padding">
+    <ion-content>
         <form name="reportForm" ng-submit="addReport()">
-    		  <div class="list list-inset">
+    		  <div class="list">
 
             <!-- Report Description -->
-            <label class="item item-input item-floating-label">
+            <label class="item item-input item-stacked-label">
+              <i class="icon ion-android-list placeholder-icon"></i>
               <span class="input-label">פירוט התלונה ו/או הצעה לשיפור</span>
-              <textarea name="" id="" cols="30" rows="5" placeholder="פירוט התלונה ו/או הצעה לשיפור" ng-model="formData.description" required></textarea>
+              <textarea class="text-right" cols="30" rows="9" 
+              placeholder="כאן המקום לפרט ולהסביר מה הייתה הבעיה? האם מדובר בבעיה חד פעמית או בבעיה קבועה? האם התלוננתם על הבעיה הזו בעבר? אנחנו מאמינים שאנו הנוסעים יודעים יותר טוב מכל אחד איך אפשר לשפר לנו את השירות. כאן המקום לפרט אילו דברים, קטנים או גדולים, ישפרו לכם את התחבורה הציבורית ויעודדו אתכם לנסוע יותר בתחבורה ציבורית. נשמח מאוד להמלצות לקווים חדשים, מסלולים שנחוץ בהם נתיב לתחבורה ציבורית ועוד." 
+              ng-model="formData.description" required></textarea>
 			  	  </label>
 
             <!-- Report Date -->
-			  	  <label class="item item-input item-input">
+			  	  <label class="item item-input item-stacked-label">
               <i class="icon ion-calendar placeholder-icon"></i>
               <span class="input-label">תאריך האירוע</span>
               <input type="date" ng-model="formData.date">
 			  	  </label>
 
             <!-- Report Time -->
-            <label class="item item-input">
+            <label class="item item-input item-stacked-label">
               <i class="icon ion-android-time placeholder-icon"></i>
               <span class="input-label">שעת האירוע</span>
               <input type="time" ng-model="formData.time">
             </label>
 
             <!-- Report Bus Line -->
-            <label class="item item-input">
+            <label class="item item-input item-stacked-label">
               <i class="icon ion-android-bus placeholder-icon"></i>
-              <input type="number" placeholder="מספר הקו" ng-model="formData.busLine">
+              <span class="input-label">מספר הקו</span>
+              <input type="number" 
+              placeholder="מספר הקו שאתם מתלוננים עליו" 
+              ng-model="formData.busLine">
             </label>
 
 
@@ -63,7 +69,7 @@
             <button class="button button-rounded button-positive" ng-click="$event.preventDefault(); getPostion();">
             <i class="icon ion-location icon-top"></i><br>
             </button>
-            <p ng-if="formData.location == ''">Click to check your location</p>
+            <p ng-if="formData.location == ''">לחץ על הכפתור לזיהוי מיקום</p>
             <h2>{{ formData.location }}</h2>
 
           </label>
@@ -88,21 +94,30 @@
           </label>
 
           <!-- Report Name -->
-          <label class="item item-input">
+          <label class="item item-input item-stacked-label">
             <i class="icon ion-person placeholder-icon"></i>
-            <input type="text" placeholder="שם" ng-model="formData.name">
+            <span class="input-label">שם</span>
+            <input type="text" 
+            placeholder="שמך המלא הכרחי לצורך הטיפול בתלונה" 
+            ng-model="formData.name">
           </label>
 
           <!-- Report Email -->
-          <label class="item item-input">
+          <label class="item item-input item-stacked-label">
             <i class="icon ion-email placeholder-icon"></i>
-            <input type="email" placeholder="מייל" ng-model="formData.email">
+            <span class="input-label">מייל</span>
+            <input type="email" 
+            placeholder="כך נוכל לברר איתך פרטים נוספים אודות התלונה - במקרה הצורך" 
+            ng-model="formData.email">
           </label>
 
           <!-- Report Tele -->
-          <label class="item item-input">
+          <label class="item item-input item-stacked-label">
             <i class="icon ion-ios-telephone placeholder-icon"></i>
-            <input type="tel" placeholder="טלפון" ng-model="formData.telephone">
+            <span class="input-label">טלפון</span>
+            <input type="tel" 
+            placeholder="נייח או נייד" 
+            ng-model="formData.telephone">
           </label>
 
           <!-- Report img or vedio -->
@@ -134,9 +149,11 @@
 
           </label>
 
-          <button type="submit" class="button button-block button-positive">
-           הגש תלונה
-          </button>
+          <div class="padding">
+            <button type="submit" class="button button-block button-positive">
+             הגש תלונה
+            </button>
+          </div>
 
          	</div>
         </form>
