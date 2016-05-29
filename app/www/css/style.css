@@ -2,7 +2,7 @@
 .homebg{
   width: 100%;
   height: 100%;
-  background: url("../img/bg.jpg");
+  background: url("../img/busbg.jpg");
   background-position: center;
   background-size: cover;
   padding: 30px;
@@ -32,6 +32,20 @@
 .button-rounded{
   margin-right: 10px;
   margin-left: 0px;
+}
+
+/***** Home Page *****/
+.logo{
+  width: 100%;
+}
+
+.fixed {
+  position: fixed;
+  left: 20px;
+  right: 20px;
+  bottom: 10%;
+  font-size: 22px;
+  border: 2px solid #fff;
 }
 
 /***** Report Page *****/
