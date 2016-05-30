@@ -22,6 +22,10 @@
   width: 100%;
 }
 
+.platform-android .logo{
+  margin-top: 40px !important;
+}
+
 /* report button */
 .fixed {
   position: fixed;
@@ -61,7 +65,13 @@
 }
 
 /***** More Page *****/
-/* Empty */
+.title-more{
+  background: #C2DA4E;
+  color: #fff;
+  text-align: center;
+  padding: 8px;
+  border-bottom: 1px solid #7d8f24;
+}
 
 /**************************** swipe images ***********************/
 .transparent {
