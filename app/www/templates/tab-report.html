@@ -127,25 +127,25 @@
             </button>
             
             <!-- placeholder -->
-            <p ng-if="formData.images.length == 0">click to capture or select image</p>
+            <p ng-if="formData.images.length == 0">לחץ כדי להצטרף תמונות</p>
 
             <!-- Display images -->
             
-            <div class="row">
-              <div class="col col-75">
+<!--             <div class="row">
+              <div class="col col-75"> -->
                 <div class="list card" ng-if="formData.images.length > 0">
                   <div class="item item-image" ng-repeat="image in formData.images">
                     <img ng-src="{{ image }}" alt="img">
                   </div>
                 </div>
-              </div>
-            </div>
+<!--               </div>
+            </div> -->
 
-            <label class="deletePicture padding">
+            <!-- <label class="deletePicture padding">
               <button ng-if="formData.images.length > 0" class="button button-rounded button-assertive" ng-click="$event.preventDefault(); deletePicture();">
               <i class="icon ion-close-round icon-top"></i><br>
               </button>
-            </label>
+            </label> -->
 
           </label>
 
