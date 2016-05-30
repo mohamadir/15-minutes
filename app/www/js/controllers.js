@@ -1,13 +1,31 @@
 var app = angular.module('starter.controllers', [])
 
 // Home Controller
-app.controller('HomeCtrl', function($scope, $ionicLoading, Report) {
+app.controller('HomeCtrl', function($scope) {});
 
+app.directive('hideTabs', function($rootScope, $state) {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs){
+      scope.$state = $state;
+      scope.currentstate = $state.current;
+      scope.$on("$stateChangeSuccess", function(evt, to) {
+        scope.currentstate = $state.current
+        console.log(scope.currentstate.name);
+        if($state.includes('tab.home')){
+          element.addClass("hide-tabs");
+        }else{
+          element.removeClass("hide-tabs");
+        }
+      });
+    }
+  };
 });
 
 // Report Controller
 app.controller('ReportCtrl', function(
-  $scope, 
+  $scope,
+  $rootScope, 
   $state, 
   $cordovaCamera,
   $cordovaCapture, 
@@ -44,7 +62,10 @@ app.controller('ReportCtrl', function(
       $scope.formData.location = $scope.results.results[0].formatted_address;
       console.log("location: ", $scope.formData.location);
 			console.log(res);
-		});
+		}, function(){
+      alert("Error GPS!!");
+      $ionicLoading.hide();
+    });
 
 	};
 
@@ -167,88 +188,92 @@ app.controller('MoreCtrl', function() {
 });
 
 // Info Controller
-app.controller('InfoCtrl', ['$scope', '$ionicModal','$cordovaSocialSharing', '$ionicSlideBoxDelegate', function ($scope, $ionicModal,$cordovaSocialSharing, $ionicSlideBoxDelegate) {
+app.controller('InfoCtrl', function (
+  $scope, 
+  $ionicModal,
+  $cordovaSocialSharing, 
+  $ionicSlideBoxDelegate) {
 
 	$scope.shareAnyWhere = function(){
 		$cordovaSocialSharing.share("This is message to share","This is subject",null
 		,"https://www.google.com");		
 	};
-  	$scope.aImages = [{
-      	'src' : 'img/suc1.png', 
-      	'msg' : 'החלק ימינה לאות עוד או תגע כדי לצאת'
-    	}, {
-        'src' : 'img/suc2.png', 
-        'msg' : ''
-      }, { 
-        'src' : 'img/suc4.png', 
-        'msg' : ''
-      }, { 
-        'src' : 'img/suc5.png', 
-        'msg' : ''
-      }, { 
-        'src' : 'img/suc6.png', 
-        'msg' : ''
-      }          
-    ];
-  
-    $scope.exit = function() {
-      ionic.Platform.exitApp();
-    };
-    
-    $ionicModal.fromTemplateUrl('image-modal.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function(modal) {
-      $scope.modal = modal;
-    });
 
-    $scope.openModal = function() {
-      $ionicSlideBoxDelegate.slide(0);
-      $scope.modal.show();
-    };
-    
-    $scope.openModal4 = function() {
-      $ionicSlideBoxDelegate.slide(0);
-       $scope.modal.show();
-    };
+  $scope.aImages = [{
+    	'src' : 'img/suc1.png', 
+    	'msg' : 'החלק ימינה לאות עוד או תגע כדי לצאת'
+  	}, {
+      'src' : 'img/suc2.png', 
+      'msg' : ''
+    }, { 
+      'src' : 'img/suc4.png', 
+      'msg' : ''
+    }, { 
+      'src' : 'img/suc5.png', 
+      'msg' : ''
+    }, { 
+      'src' : 'img/suc6.png', 
+      'msg' : ''
+    }          
+  ];
 
-    $scope.closeModal = function() {
-      $scope.modal.hide();
-    };
+  $scope.exit = function() {
+    ionic.Platform.exitApp();
+  };
+  
+  $ionicModal.fromTemplateUrl('image-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
 
-    // Cleanup the modal when we're done with it!
-    $scope.$on('$destroy', function() {
-      $scope.modal.remove();
-    });
-    // Execute action on hide modal
-    $scope.$on('modal.hide', function() {
-      // Execute action
-    });
-    // Execute action on remove modal
-    $scope.$on('modal.removed', function() {
-      // Execute action
-    });
-    $scope.$on('modal.shown', function() {
-      console.log('Modal is shown!');
-    });
+  $scope.openModal = function() {
+    $ionicSlideBoxDelegate.slide(0);
+    $scope.modal.show();
+  };
+  
+  $scope.openModal4 = function() {
+    $ionicSlideBoxDelegate.slide(0);
+     $scope.modal.show();
+  };
 
-    // Call this functions if you need to manually control the slides
-    $scope.next = function() {
-      $ionicSlideBoxDelegate.next();
-    };
-  
-    $scope.previous = function() {
-      $ionicSlideBoxDelegate.previous();
-    };
-  
-  	$scope.goToSlide = function(index) {
-      $scope.modal.show();
-      $ionicSlideBoxDelegate.slide(index);
-    }
-  
-    // Called each time the slide changes
-    $scope.slideChanged = function(index) {
-      $scope.slideIndex = index;
-    };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+
+  // Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hide', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
+  $scope.$on('modal.shown', function() {
+    console.log('Modal is shown!');
+  });
+
+  // Call this functions if you need to manually control the slides
+  $scope.next = function() {
+    $ionicSlideBoxDelegate.next();
+  };
+
+  $scope.previous = function() {
+    $ionicSlideBoxDelegate.previous();
+  };
+
+	$scope.goToSlide = function(index) {
+    $scope.modal.show();
+    $ionicSlideBoxDelegate.slide(index);
   }
-]);
+
+  // Called each time the slide changes
+  $scope.slideChanged = function(index) {
+    $scope.slideIndex = index;
+  };
+});

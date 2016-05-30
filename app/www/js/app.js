@@ -3,7 +3,6 @@ var app = angular.module('starter', [
   'ngCordova',
   'starter.controllers', 
   'starter.services'
-  
 ])
 
 .run(function($ionicPlatform) {

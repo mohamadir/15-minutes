@@ -1,44 +1,28 @@
-/* Empty. Add your own CSS if you like */
+/***** Home Page *****/
 .homebg{
   width: 100%;
   height: 100%;
-  background: url("../img/busbg.jpg");
+  background: url("../img/dembg.jpg");
   background-position: center;
   background-size: cover;
-  padding: 30px;
-}
-.more {
-	text-align: right;
-	
-}
-.homebg h2{
-  color: #fff;
-  text-align: center;
+  padding: 18px;
 }
 
-.homebg p{
-  color: #fff;
-  text-align: center;
+/* Open text */
+.open-text{
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 4px; 
+  // border: 1px solid #f8f8f8;
+  color: #f8f8f8;
 }
 
-.spinner svg {
-  width: 28px;
-  height: 28px;
-  stroke: #eee;
-  fill: #eee;
-}
-
-/* Button */
-.button-rounded{
-  margin-right: 10px;
-  margin-left: 0px;
-}
-
-/***** Home Page *****/
+/* 15 min logo */
 .logo{
   width: 100%;
 }
 
+/* report button */
 .fixed {
   position: fixed;
   left: 20px;
@@ -46,6 +30,19 @@
   bottom: 10%;
   font-size: 22px;
   border: 2px solid #fff;
+}
+
+/* content */
+.full-content{
+  min-height: 100% !important;
+  top:0 !important;
+  bottom:0 !important;
+}
+
+/* transparent tabs */
+.hide-tabs > .tabs{
+  background-color: rgba(0, 0, 0, 0) !important;
+  border-top: 1px solid #C2DA4E !important;
 }
 
 /***** Report Page *****/
@@ -63,7 +60,8 @@
   clear: both;
 }
 
-
+/***** More Page *****/
+/* Empty */
 
 /**************************** swipe images ***********************/
 .transparent {
@@ -91,8 +89,7 @@
   height: 100%;
 }
 .item.item-positive{
-    
-    text-align: center; 
+  text-align: center; 
 }
 
 p.info {

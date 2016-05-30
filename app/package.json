@@ -30,7 +30,8 @@
       "id": "cordova-plugin-image-picker"
     },
     "cordova-plugin-media-capture",
-    "cordova-plugin-inappbrowser"
+    "cordova-plugin-inappbrowser",
+    "org.apache.cordova.statusbar"
   ],
   "cordovaPlatforms": [
     "android"
