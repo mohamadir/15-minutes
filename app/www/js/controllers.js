@@ -64,7 +64,7 @@ app.controller('ReportCtrl', function(
 			console.log(res);
 		}, function(){
       $ionicLoading.hide();
-      // Alert
+      // Location Error Msg
       $ionicPopup.show({
         title: 'אופס !',
         subTitle: 'תפעיל את המיקום של הטלפון',
@@ -97,7 +97,15 @@ app.controller('ReportCtrl', function(
       $scope.formData.images.push("data:image/jpeg;base64," + imageData);
       console.log($scope.formData.images);
     }, function(err) {
-      console.log("Camera Error!!");
+      // Camera Error Msg
+      $ionicPopup.show({
+        title: 'אופס !',
+        subTitle: 'בעיה במצלמה תנסה שוב',
+        buttons: [{
+          text: 'OK',
+          type: 'button-assertive',
+        }]
+      });
     });
 
   }
@@ -135,10 +143,10 @@ app.controller('ReportCtrl', function(
 			// Hide Loading
 			$ionicLoading.hide();
 
-			// Alert
+			// Report success Msg
 			$ionicPopup.show({
 				title: 'תודה',
-				subTitle: 'תלונתך התקבלה בהצלחה ,<br> מייד תקבל הודעה למייל בה מפורטת תלונך <br> ',
+				subTitle: 'הדיווח התקבל בהצלחה!<span class="delete-text">א</span><br/>ביחד נשפר את התחבורה הציבורית',
 				buttons: [{
 			    text: 'OK',
 			    type: 'button-positive',
@@ -170,15 +178,14 @@ app.controller('ReportCtrl', function(
 			// Hide Loading
 			$ionicLoading.hide();
 
-			// Alert
+			// Report Error Msg
 			$ionicPopup.show({
 				title: 'אופס !',
 				subTitle: 'ישנה בעיה בשרת <br> אנא נסה בעוד כמה דקות ' + err,
 				buttons: [{
 				    text: 'OK',
 				    type: 'button-assertive',
-				    onTap: function(e) 
-					{
+				    onTap: function(e){
 				    	$state.go("tab.report");
 				    }
 				}]

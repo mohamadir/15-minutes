@@ -7,23 +7,16 @@
   background-size: cover;
   padding: 18px;
 }
-.links a{
-	margin-left: 5%;
-}
-.button-bar{
-	margin-bottom: 10%;
-	
-}
 /* Open text */
 .open-text{
   background: rgba(0, 0, 0, 0.6);
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px; 
-  // border: 1px solid #f8f8f8;
   color: #f8f8f8;
 }
 .open-text p{
-  padding: 10px;
+  padding: 15px;
+  font-size: 22px;
   text-align: right;
 }
 .green-line{
@@ -51,11 +44,9 @@
 .logo{
   width: 100%;
 }
-
 .platform-android .logo{
   margin-top: 40px !important;
 }
-
 /* report button */
 .fixed {
   position: fixed;
@@ -65,18 +56,15 @@
   font-size: 22px;
   border: 2px solid #fff;
 }
-
 .platform-android .fixed {
   bottom: 2%;
 }
-
 /* content */
 .full-content{
   min-height: 100% !important;
   top:0 !important;
   bottom:0 !important;
 }
-
 /* transparent tabs */
 .hide-tabs > .tabs{
   background-color: rgba(0, 0, 0, 0) !important;
@@ -85,6 +73,7 @@
 .text-about{
 	text-align: center;
 }
+
 /***** Report Page *****/
 /* Empty */
 
@@ -117,7 +106,6 @@
 .item.item-positive{
   text-align: center; 
 }
-
 p.info {
   position: absolute;
   bottom: 55px;
@@ -127,6 +115,32 @@ p.info {
   text-align: center;
   font-size: 28px;
   color: #ffffff;
+}
+/* Fix modal backdrop for smaller devices */
+@media (max-width: 679px) {
+  .active .modal-backdrop-bg {
+    opacity: .5;
+  }
+  .modal-backdrop-bg {
+    -webkit-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
+    background-color: #000;
+    opacity: 0;
+  }
+} 
+/* End swipe images */
+.links{
+  text-align: center;
+}
+.text-about{
+  font-size: 18px;
+  text-align: center;
+  font-weight: bold;
+}
+.icon-set{
+  font-size: 4em;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 /***** More Page *****/
@@ -142,27 +156,25 @@ p.info {
   margin-right: 4%;
 }
 
-/* Fix modal backdrop for smaller devices */
-@media (max-width: 679px) {
-  .active .modal-backdrop-bg {
-    opacity: .5;
-  }
-  .modal-backdrop-bg {
-    -webkit-transition: opacity 300ms ease-in-out;
-    transition: opacity 300ms ease-in-out;
-    background-color: #000;
-    opacity: 0;
-  }
-} 
+/***** Misc *****/
+.spinner svg {
+  width: 28px;
+  height: 28px;
+  stroke: #fff;
+  fill: #fff;
+}
+.delete-text{
+  color: transparent;
+}
 
 /***** icon *****/
 @font-face {
     font-family: 'icomoon';
-    src:    url('../fonts/icomoon.eot?o9m59s');
-    src:    url('../fonts/icomoon.eot?o9m59s#iefix') format('embedded-opentype'),
-        url('../fonts/icomoon.ttf?o9m59s') format('truetype'),
-        url('../fonts/icomoon.woff?o9m59s') format('woff'),
-        url('../fonts/icomoon.svg?o9m59s#icomoon') format('svg');
+    src:    url('../fonts/icomoon.eot?o07r34');
+    src:    url('../fonts/icomoon.eot?o07r34#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon.ttf?o07r34') format('truetype'),
+        url('../fonts/icomoon.woff?o07r34') format('woff'),
+        url('../fonts/icomoon.svg?o07r34#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -181,11 +193,25 @@ p.info {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
-.icon-minBus:before {
+.icon-Bus:before {
     content: "\e900";
+    color: #C2DA4E;
 }
-.icon-minBusOutline:before {
+.icon-Document:before {
     content: "\e901";
+    color: #252525;
 }
+.icon-facebook:before {
+    content: "\e902";
+}
+.icon-min-bus:before {
+    content: "\e917";
+}
+.icon-min-bus-outline:before {
+    content: "\e918";
+}
+
+
+
+
 

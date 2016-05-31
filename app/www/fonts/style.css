@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'icomoon';
-    src:    url('fonts/icomoon.eot?o9m59s');
-    src:    url('fonts/icomoon.eot?o9m59s#iefix') format('embedded-opentype'),
-        url('fonts/icomoon.ttf?o9m59s') format('truetype'),
-        url('fonts/icomoon.woff?o9m59s') format('woff'),
-        url('fonts/icomoon.svg?o9m59s#icomoon') format('svg');
+    src:    url('fonts/icomoon.eot?o07r34');
+    src:    url('fonts/icomoon.eot?o07r34#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?o07r34') format('truetype'),
+        url('fonts/icomoon.woff?o07r34') format('woff'),
+        url('fonts/icomoon.svg?o07r34#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -24,10 +24,19 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-minBus:before {
+.icon-Bus:before {
     content: "\e900";
 }
-.icon-minBusOutline:before {
+.icon-Document:before {
     content: "\e901";
+}
+.icon-facebook:before {
+    content: "\e902";
+}
+.icon-min-bus:before {
+    content: "\e917";
+}
+.icon-min-bus-outline:before {
+    content: "\e918";
 }
 
