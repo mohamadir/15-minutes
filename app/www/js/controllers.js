@@ -1,14 +1,7 @@
 var app = angular.module('starter.controllers', [])
 
 // Home Controller
-app.controller('HomeCtrl', function($scope, $ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // var s = Snap("#svglogo");
-    // Snap.load("../img/15minlogo.svg", function(data){
-    //   s.append(data);
-    // });
-  });
-});
+app.controller('HomeCtrl', function($scope, $ionicPlatform) {});
 
 app.directive('hideTabs', function($rootScope, $state) {
   return {

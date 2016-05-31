@@ -1,0 +1,67 @@
+/* bus */
+#bus{
+  transform: translate(250px,0px);
+  animation: busanim 2s ease forwards;
+}
+@keyframes busanim {
+    0% {
+        transform: translate(250px,0px);
+    }
+    100% {
+        transform: translate(0px,0px);
+    }
+}
+
+/* logo */
+#logo{
+  transform: translate(250px,0px);
+  animation: logoanim 2s ease forwards;
+}
+@keyframes logoanim {
+    0% {
+        transform: translate(0px,-100px);
+    }
+    100% {
+        transform: translate(0px,0px);
+    }
+}
+
+/* text */
+#text{
+  transform: translate(250px,0px);
+  animation: textanim 2s ease forwards;
+}
+@keyframes textanim {
+    0% {
+        transform: translate(250px,0px);
+    }
+    100% {
+        transform: translate(0px,0px);
+    }
+}
+
+/* right line */
+#line_right{
+  animation: linerightanim 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+@keyframes linerightanim {
+    0% {
+        transform: translate(300px,0px);
+    }
+    100% {
+        transform: translate(0px,0px);
+    }
+}
+
+/* left line */
+#line_left{
+  animation: lineleftanim 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+@keyframes lineleftanim {
+    0% {
+        transform: translate(-300px,0px);
+    }
+    100% {
+        transform: translate(0px,0px);
+    }
+}
