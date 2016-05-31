@@ -69,8 +69,12 @@
             <button class="button button-rounded button-positive" ng-click="$event.preventDefault(); getPostion();">
             <i class="icon ion-location icon-top"></i><br>
             </button>
-            <p ng-if="formData.location == ''">לחץ על הכפתור לזיהוי מיקום</p>
-            <h2>{{ formData.location }}</h2>
+            <div class="row">
+              <div class="col col-90">
+                <p ng-if="formData.location == ''">לחץ על הכפתור לזיהוי מיקום</p>
+                <h2>{{ formData.location }}</h2>
+              </div>
+            </div>
 
           </label>
 		 
@@ -125,14 +129,12 @@
             <button class="button button-rounded button-positive" ng-click="$event.preventDefault(); getPicture();">
             <i class="icon ion-android-camera icon-top"></i><br>
             </button>
-            
-            <!-- placeholder -->
-            <p ng-if="formData.images.length == 0">click to capture or select image</p>
 
             <!-- Display images -->
-            
             <div class="row">
-              <div class="col col-75">
+              <div class="col col-90">
+                <!-- placeholder -->
+                <p ng-if="formData.images.length == 0">לחץ כדי להצטרף תמונות</p>
                 <div class="list card" ng-if="formData.images.length > 0">
                   <div class="item item-image" ng-repeat="image in formData.images">
                     <img ng-src="{{ image }}" alt="img">
@@ -141,11 +143,11 @@
               </div>
             </div>
 
-            <label class="deletePicture padding">
+            <!-- <label class="deletePicture padding">
               <button ng-if="formData.images.length > 0" class="button button-rounded button-assertive" ng-click="$event.preventDefault(); deletePicture();">
               <i class="icon ion-close-round icon-top"></i><br>
               </button>
-            </label>
+            </label> -->
 
           </label>
 

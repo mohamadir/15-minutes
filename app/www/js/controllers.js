@@ -63,8 +63,19 @@ app.controller('ReportCtrl', function(
       console.log("location: ", $scope.formData.location);
 			console.log(res);
 		}, function(){
-      alert("Error GPS!!");
       $ionicLoading.hide();
+      // Alert
+      $ionicPopup.show({
+        title: 'אופס !',
+        subTitle: 'תפעיל את המיקום של הטלפון',
+        buttons: [{
+          text: 'OK',
+          type: 'button-assertive',
+          onTap: function(e) {
+            $state.go("tab.home");
+          }
+        }]
+      });
     });
 
 	};
@@ -168,7 +179,7 @@ app.controller('ReportCtrl', function(
 				subTitle: 'ישנה בעיה בשרת <br> אנא נסה בעוד כמה דקות ' + err,
 				buttons: [{
 				    text: 'OK',
-				    type: 'button-positive',
+				    type: 'button-assertive',
 				    onTap: function(e) 
 					{
 				    	$state.go("tab.report");
