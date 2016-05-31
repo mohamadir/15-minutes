@@ -71,9 +71,6 @@ app.controller('ReportCtrl', function(
         buttons: [{
           text: 'OK',
           type: 'button-assertive',
-          onTap: function(e) {
-            $state.go("tab.home");
-          }
         }]
       });
     });

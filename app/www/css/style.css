@@ -22,16 +22,6 @@
   // border: 1px solid #f8f8f8;
   color: #f8f8f8;
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-.15min{
-	display:block;
-	margin-right: 4%;
-}
-
-=======
-=======
->>>>>>> 54db9279363636726331ddea9b0b41040c4585f8
 .open-text p{
   padding: 10px;
   text-align: right;
@@ -146,6 +136,10 @@ p.info {
   text-align: center;
   padding: 8px;
   border-bottom: 1px solid #7d8f24;
+}
+.15min{
+  display:block;
+  margin-right: 4%;
 }
 
 /* Fix modal backdrop for smaller devices */
