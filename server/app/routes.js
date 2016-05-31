@@ -89,7 +89,7 @@ module.exports = function(app, passport) {
 				return console.log("Erorr Post Requests!.");
 			}
 
-      // Send Email
+      // Send Email to 15 minutes
       var email = new sendgrid.Email(); 
       email.setTos(['abdalhadi.m92@gmail.com', 'mohamdib@gmail.com']);
       email.setFrom(req.body.email);
@@ -102,6 +102,33 @@ module.exports = function(app, passport) {
         console.log("Okay Send Email.");
       });
 
+      // Send Email to client
+      var email = new sendgrid.Email(); 
+      email.setTos([req.body.email]);
+      email.setFrom('15minutes.co.il@gmail.com');
+      email.setSubject('Report');
+      email.setHtml(`<p>תודה על הדיווח למוקד שלנו! הפנייה שלך ועוד פניות רבות אחרות מסייעות לנו להבין מה המצב בשטח ולהוכיח למשרד התחבורה ומפעילי התחבורה הציבורית שיש עוד הרבה עבודה בדרך לתחבורה ציבורית מהירה, יעילה ואטרקטיבית.</p>
+      <p>
+      כמה שיותר תלונות ודיווחים- יותר טוב!! 
+      גם אם התלוננת עכשיו, חשוב להמשיך ולדווח..
+      ​</p>
+      ​​<p>
+      בנוסף, אם המתנת לאוטובוס זמן רב מדי​ או שהאוטובוס דילג על התחנה​
+      ונגרמו לך נזקים כספיים בשל כך אנו ממליצים לך לקרוא את המדריך לתביעות קטנות, כי תביעה קטנה זה ממש בקטנה!
+      ​</p>
+      <p>נשמח לסייע לך​ ​
+      לפעול למען התחבורה הציבורית​,</p>
+      <p>המון תודה על האיכפתיות ושיתוף הפעולה :)</p>
+      <p>מוקד 15 דקות</p>
+      <p>www.15minutes.co.il​</p>`);
+      sendgrid.send(email, function(err, json) {
+        if (err) {
+          return console.log("Erorr Send Email!."); 
+        }
+        console.log("Okay Send Email.");
+      });
+
+      // Response
       res.json(item);
 		})
 	});
