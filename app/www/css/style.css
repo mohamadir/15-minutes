@@ -75,7 +75,11 @@
 }
 
 /***** Report Page *****/
-/* Empty */
+.report-text{
+  text-align: right;
+  color: #444;
+  font-weight: bold;
+}
 
 /***** Info Page *****/
 /* swipe images */
