@@ -1,7 +1,14 @@
 var app = angular.module('starter.controllers', [])
 
 // Home Controller
-app.controller('HomeCtrl', function($scope) {});
+app.controller('HomeCtrl', function($scope, $ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    // var s = Snap("#svglogo");
+    // Snap.load("../img/15minlogo.svg", function(data){
+    //   s.append(data);
+    // });
+  });
+});
 
 app.directive('hideTabs', function($rootScope, $state) {
   return {
@@ -195,13 +202,6 @@ app.controller('ReportCtrl', function(
 
 });
 
-
-// More Controller
-
-app.controller('MoreCtrl', function() {
-
-});
-
 // Info Controller
 app.controller('InfoCtrl', function (
   $scope, 
@@ -292,3 +292,6 @@ app.controller('InfoCtrl', function (
     $scope.slideIndex = index;
   };
 });
+
+// More Controller
+app.controller('MoreCtrl', function() {});

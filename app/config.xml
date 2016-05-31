@@ -2,11 +2,11 @@
 <widget id="com.ionicframework.testapp415059" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>15 Minutes</name>
   <description>&#xD;
-        An Ionic Framework and Cordova project.&#xD;
-    </description>
+    An Ionic Framework and Cordova project.&#xD;
+  </description>
   <author email="you@example.com" href="http://example.com.com/">&#xD;
-      Hadiab&#xD;
-    </author>
+     Hadiab&#xD;
+  </author>
   <content src="index.html"/>
   <access origin="*"/>
   <allow-navigation href="*"/>
@@ -17,6 +17,9 @@
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="3000"/>
+  <preference name="orientation" value="portrait" />
+  <preference name="StatusBarBackgroundColor" value="#252525"/>
+  <preference name="StatusBarStyle" value="#FFFFFF" />
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
