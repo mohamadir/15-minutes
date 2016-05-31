@@ -23,12 +23,15 @@
   color: #f8f8f8;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 .15min{
 	display:block;
 	margin-right: 4%;
 }
 
 =======
+=======
+>>>>>>> 54db9279363636726331ddea9b0b41040c4585f8
 .open-text p{
   padding: 10px;
   text-align: right;
@@ -54,8 +57,6 @@
 .clear-fix{
   clear: both;
 }
-
->>>>>>> b3b92f11d9d0f27e0cc3a13d5260f17d0aa07e41
 /* 15 min logo */
 .logo{
   width: 100%;
@@ -97,16 +98,8 @@
 /***** Report Page *****/
 /* Empty */
 
-/***** More Page *****/
-.title-more{
-  background: #C2DA4E;
-  color: #fff;
-  text-align: center;
-  padding: 8px;
-  border-bottom: 1px solid #7d8f24;
-}
-
-/**************************** swipe images ***********************/
+/***** Info Page *****/
+/* swipe images */
 .transparent {
   background: transparent !important;
 }
@@ -144,6 +137,15 @@ p.info {
   text-align: center;
   font-size: 28px;
   color: #ffffff;
+}
+
+/***** More Page *****/
+.title-more{
+  background: #C2DA4E;
+  color: #fff;
+  text-align: center;
+  padding: 8px;
+  border-bottom: 1px solid #7d8f24;
 }
 
 /* Fix modal backdrop for smaller devices */
