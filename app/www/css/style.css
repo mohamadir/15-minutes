@@ -7,7 +7,9 @@
   background-size: cover;
   padding: 18px;
 }
-
+.links a{
+	margin-left: 5%;
+}
 /* Open text */
 .open-text{
   background: rgba(0, 0, 0, 0.2);
@@ -16,7 +18,10 @@
   // border: 1px solid #f8f8f8;
   color: #f8f8f8;
 }
-
+.15min{
+	display:block;
+	margin-right: 4%;
+}
 /* 15 min logo */
 .logo{
   width: 100%;
@@ -44,7 +49,9 @@
   background-color: rgba(0, 0, 0, 0) !important;
   border-top: 1px solid #C2DA4E !important;
 }
-
+.text-about{
+	text-align: center;
+}
 /***** Report Page *****/
 .right{
   right: 0px !important;
