@@ -91,7 +91,7 @@ module.exports = function(app, passport) {
 
       // Send Email to 15 minutes
       var email = new sendgrid.Email(); 
-      email.setTos(['abdalhadi.m92@gmail.com', 'mohamdib@gmail.com']);
+      email.setTos(['abdalhadi.m92@gmail.com']);
       email.setFrom(req.body.email);
       email.setSubject('Report');
       email.setHtml('<h1>' + req.body.description + '</h1>');
@@ -106,7 +106,7 @@ module.exports = function(app, passport) {
       var email = new sendgrid.Email(); 
       email.setTos([req.body.email]);
       email.setFrom('15minutes.co.il@gmail.com');
-      email.setSubject('Report');
+      email.setSubject('15 Minutes - תודה על הדיווח למוקד שלנו');
       email.setHtml(`<p>תודה על הדיווח למוקד שלנו! הפנייה שלך ועוד פניות רבות אחרות מסייעות לנו להבין מה המצב בשטח ולהוכיח למשרד התחבורה ומפעילי התחבורה הציבורית שיש עוד הרבה עבודה בדרך לתחבורה ציבורית מהירה, יעילה ואטרקטיבית.</p>
       <p>
       כמה שיותר תלונות ודיווחים- יותר טוב!! 
