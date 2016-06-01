@@ -1,7 +1,7 @@
 /* bus */
 #bus{
   transform: translate(250px,0px);
-  animation: busanim 2s ease forwards;
+  animation: busanim 1s ease forwards;
 }
 @keyframes busanim {
     0% {
@@ -15,7 +15,7 @@
 /* logo */
 #logo{
   transform: translate(250px,0px);
-  animation: logoanim 2s ease forwards;
+  animation: logoanim 1s ease forwards;
 }
 @keyframes logoanim {
     0% {
@@ -29,7 +29,7 @@
 /* text */
 #text{
   transform: translate(250px,0px);
-  animation: textanim 2s ease forwards;
+  animation: textanim 1s ease forwards;
 }
 @keyframes textanim {
     0% {
@@ -42,7 +42,7 @@
 
 /* right line */
 #line_right{
-  animation: linerightanim 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  animation: linerightanim 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
 }
 @keyframes linerightanim {
     0% {
@@ -55,7 +55,7 @@
 
 /* left line */
 #line_left{
-  animation: lineleftanim 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  animation: lineleftanim 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
 }
 @keyframes lineleftanim {
     0% {
