@@ -1,7 +1,13 @@
-body{
-	margin-top: 20px;
+/***** Reports Page *****/
+.btn-excel{
+	background: #1D7044;
+	color: #fff;
+}
+.empty{
+	color: #bbb;
 }
 
+/***** Report Detail Page *****/
 .report-panel{
 	border: 1px solid #ddd;
 	border-radius: 5px;
