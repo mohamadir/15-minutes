@@ -1,4 +1,11 @@
 /***** Reports Page *****/
+.description{
+  width : 100px;
+  overflow:hidden;
+  display:inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .btn-excel{
 	background: #1D7044;
 	color: #fff;

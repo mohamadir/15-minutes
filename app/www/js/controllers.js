@@ -111,31 +111,31 @@ app.controller('ReportCtrl', function(
   }
 
   // delete Picture
-  $scope.deletePicture = function(){
-    console.log("Delete Picture");
-    $scope.formData.images = [];
-    $cordovaCamera.cleanup(function(){
-      alert("Delete");
-    }, function(){
-      alert("Error Delete!!");
-    });
-  }
+  // $scope.deletePicture = function(){
+  //   console.log("Delete Picture");
+  //   $scope.formData.images = [];
+  //   $cordovaCamera.cleanup(function(){
+  //     alert("Delete");
+  //   }, function(){
+  //     alert("Error Delete!!");
+  //   });
+  // }
 
   // Add Report
 	$scope.addReport = function(){
 		console.log("Add New Reprot");
+
+    var date = new Date();    
+    var dateStr = JSON.stringify(date);
+    var dateNow = JSON.parse(dateStr);
+    $scope.formData.createdAt = dateNow;
+
 		console.log($scope.formData);
 
 		// Show Loading 
 		$ionicLoading.show({
 		    template: '<p>Loading...</p><ion-spinner icon="ripple"></ion-spinner>'
 		});
-
-    // Get Report Created At Date 
-    var date = new Date();    
-    var dateStr = JSON.stringify(date);
-    var dateNow = JSON.parse(dateStr);
-    $scope.formData.createdAt = dateNow;
 
 		Report.addReport($scope.formData).then(function(){ // Success
 			console.log("Success!!");
@@ -170,7 +170,7 @@ app.controller('ReportCtrl', function(
         email: "",
         telephone: "",
         images: []
-      }
+      };
 
 		}, function(err){ // Failed
 			console.log("Failed!!");

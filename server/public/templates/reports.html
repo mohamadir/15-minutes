@@ -28,9 +28,10 @@
 	    </thead>
 	    <tbody>
 	    	
-		      <tr ng-repeat="report in reports.results">
+		      <tr ng-repeat="report in reports.results | orderBy:'-createdAt'">
 		        <td>
-		        	<a ng-href="#/reports/{{ report._id }}">{{ report.description }}</a>
+		        	<a class="description" ng-href="#/reports/{{ report._id }}">{{ report.description }}</a>
+		        	<p>{{ report.createdAt | relativeDate }}</p>
 		        </td>
 		        <td>
 							<div class="empty" ng-if="report.date == null">Empty</div>

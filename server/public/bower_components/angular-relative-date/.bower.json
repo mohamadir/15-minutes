@@ -1,0 +1,15 @@
+{
+  "name": "angular-relative-date",
+  "homepage": "https://github.com/wildlyinaccurate/angular-relative-date",
+  "version": "2.0.0",
+  "_release": "2.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.0.0",
+    "commit": "bb72da571f35a05329479601cb5e43d5eb4b9c2b"
+  },
+  "_source": "https://github.com/wildlyinaccurate/angular-relative-date.git",
+  "_target": "^2.0.0",
+  "_originalSource": "angular-relative-date",
+  "_direct": true
+}

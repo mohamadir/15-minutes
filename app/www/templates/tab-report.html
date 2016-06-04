@@ -9,14 +9,14 @@
           <span class="input-label">פירוט התלונה ו/או הצעה לשיפור</span>
           <textarea name="description" class="text-right" cols="30" rows="9" 
           placeholder="כאן המקום לפרט ולהסביר מה הייתה הבעיה? האם מדובר בבעיה חד פעמית או בבעיה קבועה? האם התלוננתם על הבעיה הזו בעבר? אנחנו מאמינים שאנו הנוסעים יודעים יותר טוב מכל אחד איך אפשר לשפר לנו את השירות. כאן המקום לפרט אילו דברים, קטנים או גדולים, ישפרו לכם את התחבורה הציבורית ויעודדו אתכם לנסוע יותר בתחבורה ציבורית. נשמח מאוד להמלצות לקווים חדשים, מסלולים שנחוץ בהם נתיב לתחבורה ציבורית ועוד." 
-          ng-model="formData.description" ng-minlength="3" required></textarea>
+          ng-model="formData.description" ng-minlength="4" required></textarea>
 	  	  </label>
 
         <!-- Report Date -->
 	  	  <label class="item item-input item-stacked-label">
           <i class="icon ion-calendar placeholder-icon"></i>
           <span class="input-label">תאריך האירוע</span>
-          <input type="date" ng-model="formData.date">
+          <input type="date" ng-model="formData.date" >
 	  	  </label>
 
         <!-- Report Time -->
@@ -155,11 +155,19 @@
         <p class="report-text">שליחת טופס הדיווח תאפשר לך לקבל עדכונים מ 15 דקות ארגון צרכני תחבורה ציבורית. ניתן להפסיק קבלת עדכונים בכל עת.​<span class="delete-text">א</span></p>
         <hr>
         <div class="error">
+          <!-- ReportDescription Validation -->
           <p ng-show="reportForm.description.$error.required">
-            Description required
+            פירוט תלונה שדה חובה
           </p>
+          <p ng-show="reportForm.description.$error.minlength">
+            פירוט תלונה חייב להיות יותר מ 3 תווים
+          </p>
+          <!-- Email Validation -->
           <p ng-show="reportForm.email.$error.required">
-            Email required
+            אימייל שדה חובה
+          </p>
+          <p ng-show="reportForm.email.$invalid && !reportForm.email.$pristine">
+            אימייל לא תקין
           </p>
         </div>
         <button type="submit" class="button button-block button-positive"
