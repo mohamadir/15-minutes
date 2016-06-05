@@ -1,6 +1,8 @@
 var app = angular.module('starter.controllers', [])
 
-// Home Controller
+// ======================================================//
+// Home Controller ======================================//
+// ======================================================//
 app.controller('HomeCtrl', function($scope, $ionicPlatform) {});
 
 app.directive('hideTabs', function($rootScope, $state) {
@@ -22,7 +24,9 @@ app.directive('hideTabs', function($rootScope, $state) {
   };
 });
 
-// Report Controller
+// ======================================================//
+// Report Controller ====================================//
+// ======================================================//
 app.controller('ReportCtrl', function(
   $scope,
   $rootScope, 
@@ -32,6 +36,9 @@ app.controller('ReportCtrl', function(
   $ionicLoading, 
   $ionicPopup, 
   Report) {
+
+  // images counter
+  var imgCount = 0;
 	
   // Form Data
 	$scope.formData = {
@@ -47,7 +54,14 @@ app.controller('ReportCtrl', function(
 		email: "",
 		telephone: "",
 		images: []
-	}
+	};
+
+  // Temp =================
+  $scope.imgIndex = function(index){
+    console.log("Index: ", index);
+    $scope.tempimg.splice(index, 1);
+  }
+  // ======================
 
   // Get Location
 	$scope.getPostion = function(){
@@ -94,8 +108,17 @@ app.controller('ReportCtrl', function(
     };
 
     $cordovaCamera.getPicture(options).then(function(imageData) {
-      $scope.formData.images.push("data:image/jpeg;base64," + imageData);
+      // check if more than 10 pic
+      if(imgCount > 9){
+        console.log("you can't take more than 10 picture.");
+        return;
+      }
+      console.log("image counter: ", imgCount);
+      // Adding new image
+      $scope.formData.images.push({id: i, src: "data:image/jpeg;base64," + imageData});
+      imgCount++;
       console.log($scope.formData.images);
+
     }, function(err) {
       // Camera Error Msg
       $ionicPopup.show({
@@ -111,15 +134,11 @@ app.controller('ReportCtrl', function(
   }
 
   // delete Picture
-  // $scope.deletePicture = function(){
-  //   console.log("Delete Picture");
-  //   $scope.formData.images = [];
-  //   $cordovaCamera.cleanup(function(){
-  //     alert("Delete");
-  //   }, function(){
-  //     alert("Error Delete!!");
-  //   });
-  // }
+  $scope.deletePicture = function(index){
+    console.log("Delete Picture index: ", index);
+    $scope.formData.images.splice(index, 1);
+    imgCount--;
+  }
 
   // Add Report
 	$scope.addReport = function(){
@@ -195,7 +214,9 @@ app.controller('ReportCtrl', function(
 
 });
 
-// Info Controller
+// ======================================================//
+// Info Controller ======================================//
+// ======================================================//
 app.controller('InfoCtrl', function (
   $scope, 
   $ionicModal,
@@ -286,5 +307,7 @@ app.controller('InfoCtrl', function (
   };
 });
 
-// More Controller
+// ======================================================//
+// More Controller ======================================//
+// ======================================================//
 app.controller('MoreCtrl', function() {});

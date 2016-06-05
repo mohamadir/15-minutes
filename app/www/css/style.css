@@ -85,6 +85,23 @@
   color: #444;
   font-weight: bold;
 }
+.imgcont{
+  position: relative;
+}
+.imgcol{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 25px;
+  height: 25px;
+  background: #ef473a;
+  text-align: center;
+  line-height: 25px;
+  border-radius: 30px;
+  border: 1px solid #ef473a;
+  color: #fff;
+  font-size: 12px;
+}
 .error p{
   background: #ef473a;
   text-align: right;

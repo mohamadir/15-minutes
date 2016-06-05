@@ -126,20 +126,39 @@
 
       <!-- Report img or vedio -->
       <label class="item item-input padding">
-        <button class="button button-rounded button-positive" ng-click="$event.preventDefault(); getPicture();">
-        <i class="icon ion-android-camera icon-top"></i><br>
-        </button>
 
-        <!-- Display images -->
         <div class="row">
-          <div class="col col-90">
+
+          <!-- Camera Btn -->
+          <div class="col col-20">
+            <button class="button button-rounded button-positive" ng-click="$event.preventDefault(); getPicture();">
+            <i class="icon ion-android-camera icon-top"></i><br>
+            </button>
+          </div>
+
+          <div class="col col-80">
+
             <!-- placeholder -->
             <p ng-if="formData.images.length == 0">לחץ כדי להצטרף תמונות</p>
-            <div class="list card" ng-if="formData.images.length > 0">
-              <div class="item item-image" ng-repeat="image in formData.images">
-                <img ng-src="{{ image }}" alt="img">
+
+            <!-- Display images -->
+            <div class="row" ng-repeat="image in formData.images" ng-if="$index % 2 === 0">
+              <!-- First col -->
+              <div class="col col-50 imgcont" ng-if="$index < formData.images.length">
+                <a ng-click="deletePicture($index)" class="imgcol">
+                  <i class="icon ion-close-round icon-top"></i>
+                </a>
+                <img ng-src="{{ formData.images[$index].src }}" width="100%" alt="img">
+              </div>
+              <!-- Second col -->
+              <div class="col col-50 imgcont" ng-if="$index + 1 < formData.images.length">
+                <a ng-click="deletePicture($index + 1)" class="imgcol">
+                  <i class="icon ion-close-round icon-top"></i>
+                </a>
+                <img ng-src="{{ formData.images[$index + 1].src }}" width="100%" alt="img">
               </div>
             </div>
+
           </div>
         </div>
 
