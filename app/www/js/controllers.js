@@ -56,13 +56,6 @@ app.controller('ReportCtrl', function(
 		images: []
 	};
 
-  // Temp =================
-  $scope.imgIndex = function(index){
-    console.log("Index: ", index);
-    $scope.tempimg.splice(index, 1);
-  }
-  // ======================
-
   // Get Location
 	$scope.getPostion = function(){
 		// Show Loading 
@@ -107,15 +100,24 @@ app.controller('ReportCtrl', function(
       correctOrientation: false
     };
 
+    // check if more than 10 pic
+    if(imgCount > 9){
+      // Report success Msg
+      $ionicPopup.show({
+        title: 'אופס!',
+        subTitle: 'אפשר לצלם רק 10 תמונות.',
+        buttons: [{
+          text: 'OK',
+          type: 'button-positive',
+        }]
+      });
+      return;
+    }
+
     $cordovaCamera.getPicture(options).then(function(imageData) {
-      // check if more than 10 pic
-      if(imgCount > 9){
-        console.log("you can't take more than 10 picture.");
-        return;
-      }
       console.log("image counter: ", imgCount);
       // Adding new image
-      $scope.formData.images.push({id: i, src: "data:image/jpeg;base64," + imageData});
+      $scope.formData.images.push({id: imgCount, src: "data:image/jpeg;base64," + imageData});
       imgCount++;
       console.log($scope.formData.images);
 
@@ -123,7 +125,7 @@ app.controller('ReportCtrl', function(
       // Camera Error Msg
       $ionicPopup.show({
         title: 'אופס !',
-        subTitle: 'בעיה במצלמה תנסה שוב',
+        subTitle: 'לא הצלחתה תנסה שוב.',
         buttons: [{
           text: 'OK',
           type: 'button-assertive',
