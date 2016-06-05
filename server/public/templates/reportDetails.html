@@ -41,7 +41,7 @@
 					    <h4><strong>Email:</strong> {{ report[0].email }}</h4>
 					    <h4><strong>Tele:</strong> {{ report[0].telephone }}</h4>
 					    <h4><strong>Image:</strong></h4>
-					    <!-- <img ng-src="{{}}" alt="img"> -->
+					    <img ng-repeat="image in report[0].images" ng-src="{{image}}" alt="img">
 					</div>
 				</div>
 			</div>

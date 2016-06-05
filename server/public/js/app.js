@@ -22,7 +22,7 @@ app.value('relativeDateTranslations', {
   a_year_ago: 'לפני שנה',
   years_ago: 'לפני {{time}} שנים',
   over_a_year_ago: 'יותר משנה',
-})
+});
 
 // Routes
 app.config(function($routeProvider){
