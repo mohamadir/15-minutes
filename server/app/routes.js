@@ -2,6 +2,20 @@
 
 var Report = require('./models/report.js');
 var sendgrid  = require('sendgrid')('15min', '15min12345');
+// var WP = require( 'wordpress-rest-api' );
+// var wp = new WP({
+//     endpoint: 'http://www.15minutes.co.il/',
+//     // This assumes you are using basic auth, as described further below
+//     username: 'hadiab',
+//     password: 'hadi12345'
+// });
+
+var wordpress = require("wordpress");
+var client = wordpress.createClient({
+    url: "www.15minutes.co.il",
+    username: "hadiab",
+    password: "hadi12345"
+});
 
 module.exports = function(app, passport) {
 
@@ -64,10 +78,25 @@ module.exports = function(app, passport) {
     res.redirect('/');
   });
 
+  // =====================================
+  // Wordpress ===========================
+  // =====================================
+  app.get('/wordpress', function(req, res){
+    client.getPosts(function( error, posts ) {
+      if(error){
+        console.log("Error!");
+        res.send(error);
+      }
+      console.log("Found " + posts.length + " posts!");
+      console.log(posts);
+      res.json(posts);
+    });
+  });
+
 	// =====================================
   // REPORT ==============================
   // =====================================
-  app.get('/reports', isLoggedIn, function(){
+  app.get('/reports', isLoggedIn, function(req, res){
   	console.log('> GET Report');
   	res.render('index.html');
   });
@@ -133,12 +162,34 @@ module.exports = function(app, passport) {
 		})
 	});
 
-	app.get('/api/v1/report/:id', isLoggedIn, function(req, res){
+  // Get Report
+	app.get('/api/v1/report/:id', function(req, res){
 		console.log(req.params.id);
 		Report.find({'_id': req.params.id}).exec(function(err, item){
 			res.json(item);
 		});
 	});
+
+  app.put('/api/v1/report/:id', function(req, res){
+    console.log("id: " + req.params.id + ", Note:" + req.body[0].note);
+    Report.findById(req.params.id, function(err, report) {
+      if (!report){
+        return next(new Error('Could not load Document'));
+      }
+      else {
+        // do your updates here
+        //report.modified = new Date();
+        report.note = req.body[0].note;
+
+        report.save(function(err) {
+          if (err)
+            console.log('Update error');
+          else
+            console.log('Update success');
+        });
+      }
+    });
+  });
 
 };
 

@@ -53,8 +53,29 @@ app.controller('ReportCtrl', function(
 		name: "",
 		email: "",
 		telephone: "",
-		images: []
+		images: [],
+    note: ""
 	};
+
+  // Reset Form
+  $scope.reset = function(){
+    console.log("Reset Form");
+    $scope.formData = {
+      description: "",
+      createdAt: "",
+      date: "",
+      time: "",
+      busLine: "",
+      transportCompany: "",
+      location: "",
+      complaint: "",
+      name: "",
+      email: "",
+      telephone: "",
+      images: [],
+      note: ""
+    };
+  }
 
   // Get Location
 	$scope.getPostion = function(){
@@ -101,11 +122,11 @@ app.controller('ReportCtrl', function(
     };
 
     // check if more than 10 pic
-    if(imgCount > 9){
+    if(imgCount == 4){
       // Report success Msg
       $ionicPopup.show({
         title: 'אופס!',
-        subTitle: 'אפשר לצלם רק 10 תמונות.',
+        subTitle: 'אפשר לצלם רק 4 תמונות.',
         buttons: [{
           text: 'OK',
           type: 'button-positive',
@@ -117,7 +138,7 @@ app.controller('ReportCtrl', function(
     $cordovaCamera.getPicture(options).then(function(imageData) {
       console.log("image counter: ", imgCount);
       // Adding new image
-      $scope.formData.images.push({id: imgCount, src: "data:image/jpeg;base64," + imageData});
+      $scope.formData.images.push("data:image/jpeg;base64," + imageData);
       imgCount++;
       console.log($scope.formData.images);
 
@@ -178,20 +199,7 @@ app.controller('ReportCtrl', function(
 			});
 
 			// Reset the form data
-      $scope.formData = {
-        description: "",
-        createdAt: "",
-        date: "",
-        time: "",
-        busLine: "",
-        transportCompany: "",
-        location: "",
-        complaint: "",
-        name: "",
-        email: "",
-        telephone: "",
-        images: []
-      };
+      $scope.reset();
 
 		}, function(err){ // Failed
 			console.log("Failed!!");
@@ -202,7 +210,7 @@ app.controller('ReportCtrl', function(
 			// Report Error Msg
 			$ionicPopup.show({
 				title: 'אופס !',
-				subTitle: 'ישנה בעיה בשרת <br> אנא נסה בעוד כמה דקות ' + err,
+				subTitle: 'ישנה בעיה בשרת<br>אנא נסה בעוד כמה דקות<br>' + err,
 				buttons: [{
 				    text: 'OK',
 				    type: 'button-assertive',

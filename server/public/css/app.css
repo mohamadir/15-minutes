@@ -1,3 +1,12 @@
+/***** Reset *****/
+.*{
+	padding: 0px;
+	margin: 0px; 
+}
+body{
+	background: #f8f8f8;
+}
+
 /***** Reports Page *****/
 .description{
   width : 100px;
@@ -18,24 +27,36 @@
 .report-panel{
 	border: 1px solid #ddd;
 	border-radius: 5px;
+	padding: 10px 20px;
+	margin-top: 25px;
+	/*background: #fff;*/
 }
-
 .report-description{
-	margin: 15px 15px 0 15px;
+	text-align: right;
+}
+.report-detail{}
+.report-image{}
+p.title{
+	font-size: 1.8em;
+	font-weight: bold;
+}
+p.text{
+	font-size: 1.2em;
+}
+img.report-img{
+	width: 100%;
+	margin-bottom: 25px; 
+	border-radius: 5px;
 }
 
-.report-detail{
-	margin-left: 15px;
-}
-
-.report-detail-body{
-	margin-left: 15px;
-}
-
-.report-person{
-	margin-left: 15px;
-}
-
+/**** Misc ***********************************************/
+/**** footer *********************************************/
 .footer{
-	margin-top: 15px;
+	margin-top: 25px;
+	padding: 20px 0px;
+	border-top: 1px solid #ddd;
+}
+.footer-text{
+	font-weight: bold;
+	color: #555;
 }

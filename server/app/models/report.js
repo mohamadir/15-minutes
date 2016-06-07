@@ -13,7 +13,8 @@ var reportSchema = mongoose.Schema({
 	name: String,
 	email: String,
 	telephone: String,
-	images: [String]
+	images: [String],
+	note: String
 });
 
 module.exports = mongoose.model('Report', reportSchema);

@@ -65,7 +65,7 @@
         </label>
 
       <!-- Report Location -->
-      <label class="item item-input">
+      <div class="item item-input">
         <button class="button button-rounded button-positive" ng-click="$event.preventDefault(); getPostion();">
         <i class="icon ion-location icon-top"></i><br>
         </button>
@@ -75,8 +75,7 @@
             <h2>{{ formData.location }}</h2>
           </div>
         </div>
-
-      </label>
+      </div>
  
       <!-- Report Problem -->
       <label class="item item-input item-select"> 
@@ -125,7 +124,7 @@
       </label>
 
       <!-- Report img or vedio -->
-      <label class="item item-input padding">
+      <div class="item padding">
 
         <div class="row">
 
@@ -148,21 +147,21 @@
                 <a ng-click="deletePicture($index)" class="imgcol">
                   <i class="icon ion-close-round icon-top"></i>
                 </a>
-                <img ng-src="{{ formData.images[$index].src }}" width="100%" alt="img">
+                <img ng-src="{{ formData.images[$index] }}" width="100%" alt="img">
               </div>
               <!-- Second col -->
               <div class="col col-50 imgcont" ng-if="$index + 1 < formData.images.length">
                 <a ng-click="deletePicture($index + 1)" class="imgcol">
                   <i class="icon ion-close-round icon-top"></i>
                 </a>
-                <img ng-src="{{ formData.images[$index + 1].src }}" width="100%" alt="img">
+                <img ng-src="{{ formData.images[$index + 1] }}" width="100%" alt="img">
               </div>
             </div>
 
           </div>
         </div>
 
-      </label>
+      </div>
 
       <div class="padding">
         <p class="report-text">שליחת טופס הדיווח תאפשר לך לקבל עדכונים מ 15 דקות ארגון צרכני תחבורה ציבורית. ניתן להפסיק קבלת עדכונים בכל עת.​<span class="delete-text">א</span></p>
@@ -186,6 +185,9 @@
         <button type="submit" class="button button-block button-positive"
           ng-disabled="reportForm.$invalid">
          הגש תלונה
+        </button>
+        <button ng-click="$event.preventDefault(); reset();" class="button button-block button-positive">
+         אפוס
         </button>
       </div>
 
