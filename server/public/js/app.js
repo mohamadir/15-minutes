@@ -42,3 +42,9 @@ app.config(function($routeProvider){
 	.otherwise('/');
 });
 
+// Filter
+app.filter('startFrom', function(){
+	return function(data, start){
+		return data.slice(start);
+	}
+});

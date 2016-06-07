@@ -5,11 +5,12 @@ angular.module('services', [])
 	var self = {
 		'results': [],
 		'load': function(){
+			var defer = $q.defer();
 			$http.get('/api/v1/report').success(function(res){
-				console.log("==> Get the reports");
-				console.log(res);
 				self.results = res;
+				defer.resolve(res);
 			});
+			return defer.promise;
 		},
 		'getReport': function(id){
 			var defer = $q.defer();

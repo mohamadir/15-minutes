@@ -36,19 +36,24 @@
 			</div>	
 		</div>
 
-		<!-- Images -->
 		<div class="col-md-7">
+
+			<!-- Images -->
 			<div class="report-panel report-image">
 				<p class="title">Images</p>
 				<div class="row">
-					<div class="col-md-4" ng-repeat="image in report[0].images">
+					<div class="col-md-12" ng-if="report[0].images.length == 0">
+						<p>No Images</p>
+					</div>
+					<div class="col-md-3"
+					 	ng-repeat="image in report[0].images"
+					 	ng-if="report[0].images.length > 0">
 						<img class="report-img" ng-src="{{image}}" alt="img">
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="col-md-12">
+			<!-- Note -->
 			<div class="report-panel note-image">
 				<p class="title">Note</p>
 				
@@ -56,7 +61,8 @@
 					<button type="button" class="btn btn-primary" ng-click="edit(report[0]._id)">
 					  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 					</button>
-					<p>Note: {{ report[0].note }}</p>
+					<p ng-if="report[0].note === ''">No Note</p>
+					<p ng-if="report[0].note !== ''">{{ report[0].note }}</p>
 				</div>
 
 				<div class="div" ng-if="formMode == true">

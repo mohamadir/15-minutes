@@ -27,7 +27,7 @@
 	    </thead>
 	    <tbody>
 	    	
-		      <tr ng-repeat="report in reports.results | orderBy:'-createdAt'">
+		      <tr ng-repeat="report in reports.results | orderBy:'-createdAt' | startFrom:(currentPage - 1) * pageSize | limitTo:pageSize">
 		        <td>
 		        	<a class="description" ng-href="#/reports/{{ report._id }}">{{ report.description }}</a>
 		        	<p>{{ report.createdAt | relativeDate }}</p>
@@ -69,9 +69,21 @@
 		        	{{ report.telephone }}
 		        </td>
 		      </tr>
-	      
 	    </tbody>
 		</table>
+
+    <!-- Pagination -->
+		<uib-pagination 
+			ng-show="total > pageSize"
+			boundary-links="true"
+			total-items="total"
+			ng-model="currentPage"
+			items-per-page="pageSize"
+			previous-text="&lsaquo;" 
+			next-text="&rsaquo;" 
+			first-text="&laquo;" 
+			last-text="&raquo;">
+		</uib-pagination>
 	</div>
 </div>
 
