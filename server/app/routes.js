@@ -1,6 +1,8 @@
 // app/routes.js
 
 var Report = require('./models/report.js');
+var User = require('./models/user.js');
+var passwordHash = require('password-hash');
 var sendgrid  = require('sendgrid')('15min', '15min12345');
 // var WP = require( 'wordpress-rest-api' );
 // var wp = new WP({
@@ -31,13 +33,6 @@ module.exports = function(app, passport) {
 	});
 
   // =====================================
-  // HOME PAGE (with login links) ========
-  // =====================================
-  app.get('/', function(req, res) {
-      res.render('index.html'); // load the index.ejs file
-  });
-
-  // =====================================
   // SIGNUP ==============================
   // =====================================
   // show the signup form
@@ -57,24 +52,60 @@ module.exports = function(app, passport) {
   // LOGIN ===============================
   // =====================================
   // show the login form
-  app.get('/login', function(req, res) {
-    console.log(req.flash('loginMessage'));
-    // render the page and pass in any flash data if it exists
-    res.render('login.ejs', { message: req.flash('loginMessage') }); 
-  });
+  // app.get('/login', function(req, res) {
+  //   console.log('> Get Login');
+  //   console.log(req.flash('loginMessage'));
+  //   // render the page and pass in any flash data if it exists
+  //   res.json({ message: req.flash('loginMessage') }); 
+  // });
+
+  // // process the login form
+  // app.post('/api/v1/login', passport.authenticate('local-login', {
+  //   successRedirect : '/#/reports', // redirect to the secure profile section
+  //   failureRedirect : '/#/', // redirect back to the signup page if there is an error
+  //   failureFlash : true // allow flash messages
+  // }));
 
   // process the login form
-  app.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/#/reports', // redirect to the secure profile section
-    failureRedirect : '/login', // redirect back to the signup page if there is an error
-    failureFlash : true // allow flash messages
-  }));
+  app.post('/api/v1/login', function(req, res, next){
+    console.log("Email: ", req.body.email);
+    console.log("Pass: ", req.body.password);
+    User.find({'local.email': req.body.email}).exec(function(err, item){
+      console.log("Item: ", item);
+
+      // if the exec failed
+      if(err){
+        console.log("Server Login error.");
+        return next(err);
+      }
+
+      // Check if the email exist.
+      if(item.length == 0){
+        console.log('Email not match.');
+        return next(err);
+      }
+
+      // set the hashed password
+      var hashedPassword = item[0].local.password;
+      console.log(passwordHash.verify(req.body.password, hashedPassword));
+
+      // check the password
+      if(!passwordHash.verify(req.body.password, hashedPassword)){
+        console.log('Password not match.');
+        return next(err);
+      }else{
+        console.log("Server Login success.");
+        res.json(item);
+      }
+      
+    });
+  });
 
 	// =====================================
   // LOGOUT ==============================
   // =====================================
   app.get('/logout', function(req, res) {
-    req.logout();
+    //req.logout();
     res.redirect('/');
   });
 
@@ -94,17 +125,9 @@ module.exports = function(app, passport) {
   });
 
 	// =====================================
-  // REPORT ==============================
-  // =====================================
-  app.get('/reports', isLoggedIn, function(req, res){
-  	console.log('> GET Report');
-  	res.render('index.html');
-  });
-
-	// =====================================
   // REPORT API ==========================
   // =====================================
-	app.get('/api/v1/report', isLoggedIn, function(req, res){
+	app.get('/api/v1/report', function(req, res){
 		Report.find().exec(function(err, item){
 			res.json(item);
 		});
@@ -170,6 +193,7 @@ module.exports = function(app, passport) {
 		});
 	});
 
+  // Edit Report
   app.put('/api/v1/report/:id', function(req, res){
     console.log("id: " + req.params.id + ", Note:" + req.body[0].note);
     Report.findById(req.params.id, function(err, report) {
@@ -191,14 +215,30 @@ module.exports = function(app, passport) {
     });
   });
 
+  // =====================================
+  // HOME PAGE (with login links) ========
+  // =====================================
+  app.get('/*', function(req, res){
+    console.log("Ever request.");  
+    var email = '';
+    if(req.user) {
+      console.log("Found User: ", req.user.email);
+      email = req.user.email;
+    }
+
+    res.cookie('user', JSON.stringify({'email': email}));
+
+    res.render('index');
+  });
+
 };
 
-// route middleware to make sure a user is logged in
-function isLoggedIn(req, res, next) {
-  // if user is authenticated in the session, carry on 
-  if (req.isAuthenticated())
-      return next();
+// // route middleware to make sure a user is logged in
+// function isLoggedIn(req, res, next) {
+//   // if user is authenticated in the session, carry on 
+//   if (req.isAuthenticated())
+//       return next();
 
-  // if they aren't redirect them to the home page
-  res.redirect('/');
-}
+//   // if they aren't redirect them to the home page
+//   res.redirect('/');
+// }

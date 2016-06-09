@@ -1,12 +1,75 @@
-var mod = angular.module('controller', ['ui.bootstrap']);
+var mod = angular.module('controller', []);
 
-mod.controller('HomeCtrl', function(){});
+mod.controller('HomeCtrl', function(
+	$scope, 
+	$rootScope, 
+	$cookieStore,
+	$location, 
+	Auth){
 
-mod.controller('ReportsCtrl', function($scope, Report){
-	console.log('> ReportsCtrl');
+	console.log('> HomeCtrl');
+
+	// cookie user
+  console.log("Cookies.user: ", $cookieStore.get('user'));
+	// current user
+  console.log("currentUser: ", Auth.currentUser);
+  // logged in bool
+  console.log("loggedIn: ", $rootScope.loggedIn);
+
+  // User data 
+	$scope.user = {
+		email: '',
+		password: ''
+	};
+
+	// Error param
+	$scope.hasError = false;
+
+	// Login 
+	$scope.login = function(){
+
+		console.log("> Login");
+
+		// Check validaiton
+		if($scope.loginForm.$valid){
+			console.log("> 1 - Form Input: ", $scope.user);
+			Auth.login($scope.user).then(function(){
+				$scope.hasError = false;
+				$location.path('/dashboard');
+			}, function(err){
+				console.log("> Server Error: ", err);
+				$scope.hasError = true;
+			});
+		}else{
+			$scope.loginForm.submitted = true;
+		}
+
+	};
+
+});
+
+mod.controller('DashboardCtrl', function(
+	$scope, 
+	$rootScope, 
+	$location, 
+	$cookieStore,
+	Report, 
+	Auth){
+
+	console.log('> DashboardCtrl');
+
+	// cookie user
+  console.log("Cookies.user: ", $cookieStore.get('user'));
+	// current user
+  console.log("currentUser: ", Auth.currentUser);
+  // logged in bool
+  console.log("loggedIn: ", $rootScope.loggedIn);
 
 	// Get all the report
 	$scope.reports = Report;
+
+	// Get current user
+	$scope.currentUser = Auth.currentUser;
 
 	// Set the total report after the loading the data
 	Report.load().then(function(){
@@ -27,12 +90,18 @@ mod.controller('ReportsCtrl', function($scope, Report){
   	saveAs(blob, "Reports.xls");
   };
 
-
+  // Logout
+  $scope.logout = function(){
+  	Auth.logout().then(function(){
+  		$location.path('/');
+  	});
+  };
 
 });
 
-mod.controller('ReportDetailsCtrl', function($scope, $routeParams, Report){
-	console.log('> ReportDetailsCtrl');
+mod.controller('ReportCtrl', function($scope, $routeParams, Report){
+
+	console.log('> ReportCtrl');
 	console.log('==> Route Params id: ', $routeParams.id);
 
 	// Get the Report
