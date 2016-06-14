@@ -85,7 +85,7 @@
   	// Export to excel
   	$scope.exportData = function(){
       var blob = new Blob([document.getElementById('table-data-export').innerHTML], {
-         type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+         type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
       });
     	saveAs(blob, "Reports.xls");
     };
