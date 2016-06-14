@@ -6,7 +6,7 @@ var reportSchema = mongoose.Schema({
 	createdAt: Date,
 	date: Date,
 	time: Date,
-	busLine: Number,
+	busLine: String,
 	transportCompany: String,
 	location: String,
 	complaint: String,

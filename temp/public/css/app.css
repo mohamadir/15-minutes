@@ -1,0 +1,62 @@
+/***** Reset *****/
+.*{
+	padding: 0px;
+	margin: 0px; 
+}
+body{
+	background: #fff;
+}
+
+/***** Reports Page *****/
+.description{
+  width : 100px;
+  overflow:hidden;
+  display:inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.btn-excel{
+	background: #1D7044;
+	color: #fff;
+}
+.empty{
+	color: #bbb;
+}
+
+/***** Report Detail Page *****/
+.report-panel{
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	padding: 10px 20px;
+	margin-top: 25px;
+	/*background: #fff;*/
+}
+.report-description{
+	text-align: right;
+}
+.report-detail{}
+.report-image{}
+p.title{
+	font-size: 1.8em;
+	font-weight: bold;
+}
+p.text{
+	font-size: 1.2em;
+}
+img.report-img{
+	width: 100%;
+	margin-bottom: 25px; 
+	border-radius: 5px;
+}
+
+/**** Misc ***********************************************/
+/**** footer *********************************************/
+.footer{
+	margin-top: 25px;
+	padding: 20px 0px;
+	border-top: 1px solid #ddd;
+}
+.footer-text{
+	font-weight: bold;
+	color: #555;
+}

@@ -1,112 +1,30 @@
-// app/routes.js
-
+var jwt = require('express-jwt');
 var Report = require('./models/report.js');
-var User = require('./models/user.js');
-var passwordHash = require('password-hash');
 var sendgrid  = require('sendgrid')('15min', '15min12345');
-// var WP = require( 'wordpress-rest-api' );
-// var wp = new WP({
-//     endpoint: 'http://www.15minutes.co.il/',
-//     // This assumes you are using basic auth, as described further below
-//     username: 'hadiab',
-//     password: 'hadi12345'
+// Wordpress
+// var wordpress = require("wordpress");
+// var client = wordpress.createClient({
+//     url: "www.15minutes.co.il",
+//     username: "hadiab",
+//     password: "hadi12345"
 // });
 
-var wordpress = require("wordpress");
-var client = wordpress.createClient({
-    url: "www.15minutes.co.il",
-    username: "hadiab",
-    password: "hadi12345"
-});
-
-module.exports = function(app, passport) {
-
-	// =====================================
-	// CORS (Cross-Origin Resource Sharing) 
-	// headers to support Cross-site HTTP requests
-	// =====================================
-	app.all('*', function(req, res, next) {
-	    res.header("Access-Control-Allow-Origin", "*");
-	    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-	    res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
-	    next();
-	});
+module.exports = function(app) {
 
   // =====================================
-  // SIGNUP ==============================
+  // auth0 Check =========================
   // =====================================
-  // show the signup form
-  // app.get('/signup', function(req, res) {
-  //   // render the page and pass in any flash data if it exists
-  //   res.render('signup.ejs', { message: req.flash('signupMessage') });
-  // });
-
-  // // process the signup form
-  // app.post('/signup', passport.authenticate('local-signup', {
-  //   successRedirect : '/#/reports', // redirect to the secure profile section
-  //   failureRedirect : '/signup', // redirect back to the signup page if there is an error
-  //   failureFlash : true // allow flash messages
-  // }));
-
-  // =====================================
-  // LOGIN ===============================
-  // =====================================
-  // show the login form
-  // app.get('/login', function(req, res) {
-  //   console.log('> Get Login');
-  //   console.log(req.flash('loginMessage'));
-  //   // render the page and pass in any flash data if it exists
-  //   res.json({ message: req.flash('loginMessage') }); 
-  // });
-
-  // // process the login form
-  // app.post('/api/v1/login', passport.authenticate('local-login', {
-  //   successRedirect : '/#/reports', // redirect to the secure profile section
-  //   failureRedirect : '/#/', // redirect back to the signup page if there is an error
-  //   failureFlash : true // allow flash messages
-  // }));
-
-  // process the login form
-  app.post('/api/v1/login', function(req, res, next){
-    console.log("Email: ", req.body.email);
-    console.log("Pass: ", req.body.password);
-    User.find({'local.email': req.body.email}).exec(function(err, item){
-      console.log("Item: ", item);
-
-      // if the exec failed
-      if(err){
-        console.log("Server Login error.");
-        return next(err);
-      }
-
-      // Check if the email exist.
-      if(item.length == 0){
-        console.log('Email not match.');
-        return next(err);
-      }
-
-      // set the hashed password
-      var hashedPassword = item[0].local.password;
-      console.log(passwordHash.verify(req.body.password, hashedPassword));
-
-      // check the password
-      if(!passwordHash.verify(req.body.password, hashedPassword)){
-        console.log('Password not match.');
-        return next(err);
-      }else{
-        console.log("Server Login success.");
-        res.json(item);
-      }
-      
-    });
+  var authCheck = jwt({
+    secret: new Buffer('8Gy8N84TkXWuC2md96FxRxftf4axHap9O4GeXlC_FrvaffTffuygDbaS0Z3VoutH', 'base64'),
+    audience: 'wMiaGVcupBYebZC5whqoyYAwtz8k04E1'
   });
 
-	// =====================================
-  // LOGOUT ==============================
-  // =====================================
-  app.get('/logout', function(req, res) {
-    //req.logout();
-    res.redirect('/');
+  app.get('/api/public', function(req, res){
+    res.json({message: 'public endpoint, you dont need to be authenticated to see this.'})
+  });
+
+  app.get('/api/private', authCheck, function(req, res){
+    res.json({message: 'private endpoint, you DO need to be authenticated to see this.'})
   });
 
   // =====================================
@@ -124,18 +42,108 @@ module.exports = function(app, passport) {
     });
   });
 
+  // =====================================
+  // REPORT Seed =========================
+  // =====================================
+  app.get('/seed', function(req, res, next){
+    console.log("Start Seeding....");
+
+    for(var i = 0; i < 50; i++){
+      var seedObj = {
+        "description" : "#" + (i+1) +" - Report " + (i+1),
+        "createdAt" : new Date(),
+        "date" : new Date(),
+        "time" : new Date(),
+        "busLine" : null,
+        "transportCompany" : "",
+        "location" : "",
+        "complaint" : "",
+        "name" : "",
+        "email" : "report" + (i+1) + "@hotmail.com",
+        "telephone" : "",
+        "note" : "",
+        "images" : []
+      };
+      Report.create(seedObj, function(err, item){
+        if(err){
+          return console.log("Erorr!! Seeding...");
+        }
+      });
+    }
+    console.log("Done.");
+    next();
+  });
+
 	// =====================================
   // REPORT API ==========================
   // =====================================
-	app.get('/api/v1/report', function(req, res){
-		Report.find().exec(function(err, item){
-			res.json(item);
+
+  // Get the Reports with sort limit and skip
+	app.post('/api/v1/getreport/', function(req, res){
+    console.log("Sort: " + req.body.order + ", limit: " + req.body.limit + ", Page Number: " + req.body.page);
+    var perPage = req.body.limit;
+    var page = Math.max(0, (req.body.page - 1));
+    var sort = req.body.order;
+		Report
+    .find()
+    .sort("-createdAt")
+    .limit(perPage)
+    .skip(perPage * page)
+    .exec(function(err, reports){
+      Report.count().exec(function(err, count){
+        res.json({
+          reports: reports,
+          page: page,
+          pages: count / perPage,
+          count: count
+        });
+      });
 		});
 	});
 
+  // Search for a report
+  app.post('/api/v1/searchreport/', function(req, res, next){
+    console.log("Search", req.body.query);
+    var reqx = new RegExp(req.body.query, 'i');
+    Report
+    .find({'description': { $regex: reqx }})
+    .limit(15)
+    .exec(function(err, reports) {
+      if(err){
+        console.log("Error Searching... ", err);
+      }
+      Report.count().exec(function(err, count){
+        res.json({
+          reports: reports,
+          count: count
+        });
+      });
+    });
+  });
+
+  // get bus line by count
+  app.post('/api/v1/buslinereport/', function(req, res){
+    Report.aggregate({$group: 
+      { 
+        _id: '$busLine', 
+        count: { $sum: 1 } 
+      } 
+    },
+      function (err, doc) {
+        if (err){
+          console.log(err);
+        }
+        console.log(doc);
+        res.json(doc);
+      }
+    );
+  });
+
+  // Save a new Report to mongo
 	app.post('/api/v1/report', function(req, res){
 		console.log("Post Requests.");
     console.log(req.body);
+
 		Report.create(req.body, function(err, item){
 			if(err){
 				return console.log("Erorr Post Requests!.");
@@ -186,14 +194,14 @@ module.exports = function(app, passport) {
 	});
 
   // Get Report
-	app.get('/api/v1/report/:id', function(req, res){
+	app.post('/api/v1/report/:id', function(req, res){
 		console.log(req.params.id);
 		Report.find({'_id': req.params.id}).exec(function(err, item){
 			res.json(item);
 		});
 	});
 
-  // Edit Report
+  // Update Report
   app.put('/api/v1/report/:id', function(req, res){
     console.log("id: " + req.params.id + ", Note:" + req.body[0].note);
     Report.findById(req.params.id, function(err, report) {
@@ -218,27 +226,8 @@ module.exports = function(app, passport) {
   // =====================================
   // HOME PAGE (with login links) ========
   // =====================================
-  app.get('/*', function(req, res){
-    console.log("Ever request.");  
-    var email = '';
-    if(req.user) {
-      console.log("Found User: ", req.user.email);
-      email = req.user.email;
-    }
-
-    res.cookie('user', JSON.stringify({'email': email}));
-
-    res.render('index');
+  app.get('*', function (req, res) {
+     res.sendFile(__dirname + '/public/index.html');
   });
 
 };
-
-// // route middleware to make sure a user is logged in
-// function isLoggedIn(req, res, next) {
-//   // if user is authenticated in the session, carry on 
-//   if (req.isAuthenticated())
-//       return next();
-
-//   // if they aren't redirect them to the home page
-//   res.redirect('/');
-// }

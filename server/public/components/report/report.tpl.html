@@ -1,0 +1,92 @@
+  <toolbar></toolbar>
+<md-content layout-padding layout-wrap>
+
+	<md-card>
+	        
+    <md-toolbar class="md-table-toolbar md-default">
+      <div class="md-toolbar-tools">
+      	<span>Reports</span>
+      	<div flex></div>
+
+        <!-- search -->
+        <i class="fa fa-search" aria-hidden="true" flex="1"></i>
+        <md-input-container class="md-block search-bar" flex-gt-sm>
+          <label>Search</label>
+          <input type="text" 
+            ng-change="reportSearch(searchquery)" 
+            ng-model="searchquery"
+            ng-model-options="{debounce: 500}">
+        </md-input-container>
+        
+        <md-button class="md-icon-button" ng-click="exportData()">
+          <md-icon>
+						<i class="fa fa-file-excel-o" aria-hidden="true"></i>
+          </md-icon>
+        </md-button>
+
+      </div>
+    </md-toolbar>
+    
+    <md-table-container id="table-data-export">
+      <table md-table md-progress="promise">
+        <thead md-head md-order="query.order" md-on-reorder="reportReorder">
+          <tr md-row>
+            <th md-column md-order-by="createdAt"><span>Description</span></th>
+            <th md-column md-numeric md-order-by="date">Date</th>
+            <th md-column md-numeric md-order-by="time">Time</th>
+            <th md-column md-numeric>Bus Line</th>
+            <th md-column>Transport Company</th>
+            <th md-column>Location</th>
+            <th md-column>Complaint</th>
+            <th md-column>From</th>
+            <th md-column>Email</th>
+            <th md-column md-numeric>Telephone</th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row ng-repeat="report in reports | orderBy: query.order | limitTo: query.limit">
+            <!-- Description -->
+            <td md-cell>
+	            <a class="description" ng-href="#/report/{{ report._id }}">
+	            	{{ report.description }}
+	            </a>
+	            <p class="sub-description">{{ report.createdAt | relativeDate }}</p>
+            </td>
+            <!-- Date -->
+            <td md-cell>{{report.date | date:'dd/MM/yyyy'}}</td>
+            <td md-cell ng-show="report.date == null">Empty</td>
+            <!-- Time -->
+            <td md-cell>{{report.time | date:'HH:mm'}}</td>
+            <td md-cell ng-show="report.time == null">Empty</td>
+            <!-- Bus Line -->
+            <td md-cell>{{report.busLine}}</td>
+            <td md-cell ng-show="report.busLine == null">Empty</td>
+            <!-- Transport Company -->
+            <td md-cell>{{report.transportCompany}}</td>
+            <td md-cell ng-show="report.transportCompany == null">Empty</td>
+            <!-- Location -->
+            <td md-cell>{{report.location}}</td>
+            <td md-cell ng-show="report.location == ''">Empty</td>
+            <!-- Complaint -->
+            <td md-cell>{{report.complaint}}</td>
+            <td md-cell ng-show="report.complaint == ''">Empty</td>
+            <!-- Name -->
+            <td md-cell>{{report.name}}</td>
+            <td md-cell ng-show="report.name == ''">Empty</td>
+            <!-- Email -->
+            <td md-cell>{{report.email}}</td>
+            <td md-cell ng-show="report.email == ''">Empty</td>
+            <!-- Telephone -->
+            <td md-cell>{{report.telephone}}</td>
+            <td md-cell ng-show="report.telephone == ''">Empty</td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+
+    <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{total}}" md-page-select="true" md-on-paginate="reportPagination">
+    </md-table-pagination>
+    <!--   -->
+  </md-card>
+
+</md-content>

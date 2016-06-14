@@ -1,0 +1,87 @@
+<!-- navbar -->
+<navbar></navbar>
+
+<!-- content -->
+<div class="container">
+	<div class="row">
+		
+		<!-- Report ID -->
+		<div class="col-md-12">
+			<h2>#{{ report[0]._id }}</h2>
+			<hr>
+		</div>
+
+		<!-- Report Description -->
+		<div class="col-md-12">
+			<div class="report-panel report-description">
+				<p class="title">:פירות תלונה</p>
+				<p class="text">{{ report[0].description }}</p>
+			</div>
+		</div>
+		
+		<!-- Report Details -->
+		<div class="col-md-5">
+			<div class="report-panel report-detail">
+
+				<!-- Report detail -->
+				<p class="title">Report detail</p>
+				<p class="text">Date: {{ report[0].date | date:'dd-MM-yyyy' }}</p>
+				<p class="text">Time: {{ report[0].time | date:'HH:mm' }}</p>
+				<p class="text">Bus Line: {{ report[0].busLine }}</p>
+				<p class="text">Transport Company: {{ report[0].transportCompany }}</p>
+				<p class="text">Location: {{ report[0].location }}</p>
+				<p class="text">Complaint: {{ report[0].complaint }}</p>
+
+				<!-- Person detail -->
+				<p class="title">Person detail</p>
+				<p class="text">Name: {{ report[0].name }}</p>
+				<p class="text">Email: {{ report[0].email }}</p>
+				<p class="text">Tele: {{ report[0].telephone }}</p>
+			</div>	
+		</div>
+
+		<div class="col-md-7">
+
+			<!-- Images -->
+			<div class="report-panel report-image">
+				<p class="title">Images</p>
+				<div class="row">
+					<div class="col-md-12" ng-if="report[0].images.length == 0">
+						<p>No Images</p>
+					</div>
+					<div class="col-md-3"
+					 	ng-repeat="image in report[0].images"
+					 	ng-if="report[0].images.length > 0">
+						<img class="report-img" ng-src="{{image}}" alt="img">
+					</div>
+				</div>
+			</div>
+
+			<!-- Note -->
+			<div class="report-panel note-image">
+				<p class="title">Note</p>
+				
+				<div class="div" ng-if="formMode == false">
+					<button type="button" class="btn btn-primary" ng-click="edit(report[0]._id)">
+					  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+					</button>
+					<p ng-if="report[0].note === ''">No Note</p>
+					<p ng-if="report[0].note !== ''">{{ report[0].note }}</p>
+				</div>
+
+				<div class="div" ng-if="formMode == true">
+					<form>
+						<input type="text" ng-model="report[0].note" />
+						<button type="button" class="btn btn-primary" ng-click="update(report[0]._id)">
+						  <i class="fa fa-check" aria-hidden="true"></i>
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div><!-- End Row -->
+</div><!-- End container -->
+
+<!-- footer -->
+<footer-bar></footer-bar>

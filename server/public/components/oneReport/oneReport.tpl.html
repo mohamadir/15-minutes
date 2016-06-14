@@ -1,0 +1,114 @@
+<toolbar></toolbar>
+<md-content layout-padding layout-wrap>
+
+	<md-card>
+		<md-card-title>
+			<h4 class="report-id">#{{ report[0]._id }}</h4>
+		</md-card-title>
+		<md-card-content>
+			<h2>{{ report[0].description }}</h2>
+		</md-card-content>
+	</md-card>
+	
+	<md-card layout="row">
+		<div flex>
+			<!-- Report detail -->
+			<md-card-title>
+	      <md-card-title-text>
+	        <span class="md-headline">Report detail</span>
+	      </md-card-title-text>
+	    </md-card-title>
+	    <md-card-content>
+				<p class="text">Date: {{ report[0].date | date:'dd-MM-yyyy' }}</p>
+				<p class="text">Time: {{ report[0].time | date:'HH:mm' }}</p>
+				<p class="text">Bus Line: {{ report[0].busLine }}</p>
+				<p class="text">Transport Company: {{ report[0].transportCompany }}</p>
+				<p class="text">Location: {{ report[0].location }}</p>
+				<p class="text">Complaint: {{ report[0].complaint }}</p>
+			</md-card-content>
+		</div>
+		<div flex>
+			<!-- Person detail -->
+			<md-card-title>
+	      <md-card-title-text>
+	        <span class="md-headline">Person detail</span>
+	      </md-card-title-text>
+	    </md-card-title>
+	    <md-card-content>
+				<p class="text">Name: {{ report[0].name }}</p>
+				<p class="text">Email: {{ report[0].email }}</p>
+				<p class="text">Tele: {{ report[0].telephone }}</p>
+			</md-card-content>
+		</div>
+	</md-card>
+
+	<!-- Images -->
+	<md-card>
+		<md-card-title>
+	    <md-card-title-text>
+	      <span class="md-headline">Images</span>
+	    </md-card-title-text>
+	  </md-card-title>
+	  <md-card-content>
+			<div layout="row">
+				<div ng-if="report[0].images.length == 0">
+					<p>No Images</p>
+				</div>
+				<div ng-repeat="image in report[0].images"
+					 	ng-if="report[0].images.length > 0">
+					<a class="report-img" id="single_image" ng-href="{{ image }}" data-lightbox="gallery" >
+						<figure>
+							<img ng-src="{{image}}" alt="img">
+							<div class="hover-box">
+								<i class="fa fa-search-plus" aria-hidden="true"></i>
+							</div>
+						</figure>
+					</a>
+				</div>
+			</div>
+		</md-card-content>
+	</md-card>
+	
+
+	<!-- Note -->
+	<md-card>
+		<md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">Note</span>
+      </md-card-title-text>
+    </md-card-title>
+
+		<div class="div" ng-if="formMode == false" layout="row">
+			<md-card-content flex>
+		    <p ng-if="report[0].note === ''">No Note</p>
+		    <p ng-if="report[0].note !== ''">{{ report[0].note }}</p>
+			</md-card-content>
+			<md-card-actions>
+	      <md-button 
+	      	class="md-fab md-primary" 
+	      	ng-click="edit(report[0]._id)"
+	      	aria-label="Edit">
+	        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+	      </md-button>
+	    </md-card-actions>
+		</div>
+
+		<div class="div" ng-if="formMode == true" layout="row">
+			<md-card-content flex>
+				<md-input-container class="md-block" flex-gt-sm>
+          <label>Note</label>
+          <input ng-model="report[0].note">
+        </md-input-container>
+			</md-card-content>
+			<md-card-actions>
+				<md-button 
+					class="md-fab md-primary" 
+					ng-click="update(report[0]._id)" 
+					aria-label="Update">
+          <i class="fa fa-check" aria-hidden="true"></i>
+        </md-button>
+      </md-card-actions>
+		</div>
+	</md-card>
+	
+</md-content>

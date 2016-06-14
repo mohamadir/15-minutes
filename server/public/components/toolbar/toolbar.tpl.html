@@ -1,0 +1,24 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<h2>
+			<span>15 Minutes</span>
+		</h2>
+
+		<span flex></span>
+
+		<md-button 
+			aria-label="Dashboard"
+			ui-sref="dashboard" 
+			ng-if="auth.isAuthenticated">Dashboard</md-button>
+
+		<md-button 
+			aria-label="Report"
+			ui-sref="report" 
+			ng-if="auth.isAuthenticated">Report</md-button>
+
+		<md-button 
+			aria-label="Logout" 
+			ng-click="logout()"
+			ng-if="auth.isAuthenticated">Logout</md-button>
+	</div>
+</md-toolbar>

@@ -1,0 +1,39 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "15 minutes app",
+  "main": "server.js",
+  "dependencies": {
+    "angular-animate": "^1.5.6",
+    "angular-aria": "^1.5.6",
+    "angular-jwt": "0.0.9",
+    "angular-material": "^1.1.0-rc.5",
+    "angular-messages": "^1.5.6",
+    "angular-storage": "0.0.15",
+    "angular-ui-router": "^0.3.1",
+    "auth0-angular": "^4.2.2",
+    "bcrypt-nodejs": "latest",
+    "body-parser": "^1.15.0",
+    "chai": "^3.5.0",
+    "connect-flash": "~0.1.1",
+    "cookie-parser": "~1.0.0",
+    "ejs": "~0.8.5",
+    "express": "^4.13.4",
+    "express-session": "~1.0.0",
+    "jsonwebtoken": "^7.0.0",
+    "method-override": "~1.0.0",
+    "mocha": "^2.4.5",
+    "mongoose": "^4.4.10",
+    "morgan": "~1.0.0",
+    "sendgrid": "^2.0.0",
+    "wordpress": "^1.2.0",
+    "wordpress-rest-api": "^0.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "author": "hadiab",
+  "license": "ISC"
+}

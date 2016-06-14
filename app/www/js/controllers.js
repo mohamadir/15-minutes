@@ -210,7 +210,7 @@ app.controller('ReportCtrl', function(
 			// Report Error Msg
 			$ionicPopup.show({
 				title: 'אופס !',
-				subTitle: 'ישנה בעיה בשרת<br>אנא נסה בעוד כמה דקות<br>' + err,
+				subTitle: 'ישנה בעיה בשרת<br>אנא נסה בעוד כמה דקות<br>',
 				buttons: [{
 				    text: 'OK',
 				    type: 'button-assertive',
