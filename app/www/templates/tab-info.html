@@ -1,20 +1,30 @@
-<ion-view view-title="מידע שימוש" >
+<ion-view view-title="מידע שימושי" >
   <ion-content class="has-header">
 
-    <!-- Success's -->
+    <!-- info's -->
     <div class="card">
-      <div class="item item-positive">הצלחתנו היא הצלחתכם</div>
-      <div class="item item-text-wrap">
-        <div class="button-bar">
-            <a class="button button-block button-balanced" ng-click="openModal()">
-                 להצלחות לחץ כאן</a>
+      <div class="row">
+
+        <div class="col">
+          <div class="icon-btn">
+            <a ng-click="toSuccess()"><i class="icon ion-ios-checkmark"></i></a>
+            <h6>הצלחות</h6>
+          </div>
         </div>
+
+        <div class="col">
+          <div class="icon-btn">
+            <a ui-sref="tab.more"><i class="icon ion-ios-plus"></i></a>
+            <h6>עוד</h6>
+          </div>
+        </div>
+
       </div>
     </div>
 		
     <!-- About us -->
 		<div class="card">
-			<div class="item item-positive">קצת עלינו</div>
+			<div class="item item-light item-center">קצת עלינו</div>
 			<div class="item item-text-wrap">
   			<p class="text-about">
   			  <span class="delete-text">א</span>15 דקות הוא ארגון צרכני תחבורה ציבורית. הארגון פועל לקיצור זמני הנסיעה בתחבורה הציבורית ולשיפור והוספת שירות בתחבורה הציבורית, כך שהיא תהווה חלופה ראויה לשימוש ברכב הפרטי.
@@ -24,61 +34,80 @@
 		</div>
 
     <!-- Links -->
-		<div class="card">
-		  <div class="item item-positive">קישורים</div>
-      <div class="item item-text-wrap links">
-			  <a class="icon-set" onclick="window.open('http://www.15minutes.co.il', '_system', 'location=yes'); return false;">
-        	<i class="icon icon-Bus"></i>
-			  </a>
-			  <a class="icon-set" onclick="window.open('http://www.15minutes.co.il/%D7%98%D7%95%D7%A4%D7%A1-%D7%AA%D7%9C%D7%95%D7%A0%D7%94/%D7%A4%D7%95%D7%A8%D7%9E%D7%98%D7%99%D7%9D-%D7%A9%D7%9C-%D7%9B%D7%AA%D7%91%D7%99-%D7%AA%D7%91%D7%99%D7%A2%D7%94-%D7%9C%D7%94%D7%95%D7%A8%D7%93%D7%94/', '_system', 'location=yes'); return false;">
-        	<i class="icon icon-Document"></i>
-			  </a>
-			  <a class="icon-set" onclick="window.open('https://www.facebook.com/15dakot', '_system', 'location=yes'); return false;">
-        	<i class="icon icon-facebook"></i>
-			  </a>
-		  </div>
-		</div>
-<!-- 			   <img class="15min" ng-src="../img/15min-v2.png" /> -->
-
-			   
-        <!--      <div class="item item-text-wrap">
-                  <div class="button-bar">
-                      <a class="button" ng-click="goToSlide(1)">
-                          רב קו בכל הכיוונים </a>
-                     
-                  </div>
-                  <div class="button-bar">
-                      <a class="button" ng-click="goToSlide(2)"> הצלחה אחרת דד</a>                     
-                  </div>
-                  <div class="button-bar">
-                      <a class="button" ng-click="goToSlide(2)"> הצלחה אחרת דד</a>                     
-                  </div>
-                  <div class="button-bar">
-                      <a class="button" ng-click="goToSlide(2)"> הצלחה אחרת דד</a>                     
-                  </div>
-                  <div class="button-bar">
-                      <a class="button" ng-click="goToSlide(2)"> הצלחה אחרת דד</a>                     
-                  </div>
-                  <div class="button-bar">
-                      <a class="button" ng-click="goToSlide(2)"> הצלחה אחרת דד</a>                     
-                  </div>
-                  
-                  
-              </div>-->
-          </div>
-
-          <script id="image-modal.html" type="text/ng-template">
-              <div class="modal image-modal transparent" 
-                   ng-click="closeModal()">
-                <ion-slide-box on-slide-changed="slideChanged(index)" 
-                               show-pager="false">
-                  <ion-slide ng-repeat="oImage in aImages">
-                    <img ng-src="{{oImage.src}}" class="fullscreen-image" />
-                    <p class="info">{{oImage.msg}}</p>
-                  </ion-slide>
-                </ion-slide-box>
-              </div>
-          </script>
+    <div class="card">
+      <div class="item item-light item-center">קישורים</div>
+      <div class="row">
         
-      	</ion-content>
+        <!-- facebook -->
+        <div class="col">
+          <div class="icon-btn">
+            <a onclick="window.open('https://www.facebook.com/15dakot', '_system', 'location=yes'); return false;">
+              <i class="icon icon-facebook"></i>
+            </a>
+            <h6 class="text text-blue">facebook</h6>
+          </div>
+        </div>
+      
+        <!-- 15 min site -->
+        <div class="col">
+          <div class="icon-btn">
+            <a onclick="window.open('http://www.15minutes.co.il', '_system', 'location=yes'); return false;">
+              <i class="icon icon-Bus"></i>
+              <h6 class="text text-green-bus"><span class="delete-text">א</span>15 דקות</h6>
+            </a>
+          </div>
+        </div>
+        
+        <!-- small report -->
+        <div class="col">
+          <div class="icon-btn">
+            <a onclick="window.open('http://www.15minutes.co.il/%D7%98%D7%95%D7%A4%D7%A1-%D7%AA%D7%9C%D7%95%D7%A0%D7%94/', '_system', 'location=yes'); return false;">
+              <i class="icon icon-Document"></i>
+            </a>
+            <h6 class="text text-black">תביעה קטנה</h6>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- help -->
+    <div class="card">
+      <div class="item item-light item-center">רוצה לעזור</div>
+      <div class="row">
+        
+        <!-- donation -->
+        <div class="col">
+          <div class="icon-btn">
+            <a onclick="window.open('http://www.15minutes.co.il/%d7%a6%d7%95%d7%a8-%d7%a7%d7%a9%d7%a8/', '_system', 'location=yes'); return false;">
+              <i class="icon ion-thumbsup icon-green"></i>
+            </a>
+            <h6 class="text text-green-like">רוצה להתנדב</h6>
+          </div>
+        </div>
+      
+        <!-- change -->
+        <div class="col">
+          <div class="icon-btn">
+            <a onclick="window.open('http://www.15minutes.co.il/%d7%a6%d7%95%d7%a8-%d7%a7%d7%a9%d7%a8/', '_system', 'location=yes'); return false;">
+              <i class="icon ion-chatbubbles icon-yellow"></i>
+              <h6 class="text text-yellow">רוצה להשפיע</h6>
+            </a>
+          </div>
+        </div>
+        
+        <!-- giving -->
+        <div class="col">
+          <div class="icon-btn">
+            <a onclick="window.open('http://www.15minutes.co.il/%d7%a8%d7%95%d7%a6%d7%94-%d7%9c%d7%aa%d7%a8%d7%95%d7%9d/', '_system', 'location=yes'); return false;">
+              <i class="icon ion-heart icon-red"></i>
+            </a>
+            <h6 class="text text-red">רוצה לתרום</h6>
+          </div>
+        </div>
+
+      </div>
+    </div>
+        
+	</ion-content>
 </ion-view>

@@ -23,7 +23,7 @@
 				<p class="text">Time: {{ report[0].time | date:'HH:mm' }}</p>
 				<p class="text">Bus Line: {{ report[0].busLine }}</p>
 				<p class="text">Transport Company: {{ report[0].transportCompany }}</p>
-				<p class="text">Location: {{ report[0].location }}</p>
+				<p class="text">Location: {{ report[0].location.address }}</p>
 				<p class="text">Complaint: {{ report[0].complaint }}</p>
 			</md-card-content>
 		</div>

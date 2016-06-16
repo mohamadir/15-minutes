@@ -1,0 +1,22 @@
+{
+  "name": "web",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "hadiab <abdalhadi.m92@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-chart.js": "^0.10.2",
+    "angular-google-maps": "^2.3.3",
+    "lodash": "~3.10.0"
+  }
+}

@@ -6,7 +6,7 @@
         <!-- Report Description -->
         <label class="item item-input item-stacked-label">
           <i class="icon ion-android-list placeholder-icon"></i>
-          <span class="input-label">פירוט התלונה ו/או הצעה לשיפור</span>
+          <span class="input-label">פירוט התלונה ו/או הצעה לשיפור <span class="req-red">*</span></span>
           <textarea name="description" class="text-right" cols="30" rows="9" 
           placeholder="כאן המקום לפרט ולהסביר מה הייתה הבעיה? האם מדובר בבעיה חד פעמית או בבעיה קבועה? האם התלוננתם על הבעיה הזו בעבר? אנחנו מאמינים שאנו הנוסעים יודעים יותר טוב מכל אחד איך אפשר לשפר לנו את השירות. כאן המקום לפרט אילו דברים, קטנים או גדולים, ישפרו לכם את התחבורה הציבורית ויעודדו אתכם לנסוע יותר בתחבורה ציבורית. נשמח מאוד להמלצות לקווים חדשים, מסלולים שנחוץ בהם נתיב לתחבורה ציבורית ועוד." 
           ng-model="formData.description" ng-minlength="4" required></textarea>
@@ -71,8 +71,8 @@
         </button>
         <div class="row">
           <div class="col col-90">
-            <p ng-if="formData.location == ''">לחץ על הכפתור לזיהוי מיקום</p>
-            <h2>{{ formData.location }}</h2>
+            <p ng-show="formData.location.address == ''">לחץ על הכפתור לזיהוי מיקום</p>
+            <h2>{{ formData.location.address }}</h2>
           </div>
         </div>
       </div>
@@ -108,7 +108,7 @@
       <!-- Report Email -->
       <label class="item item-input item-stacked-label">
         <i class="icon ion-email placeholder-icon"></i>
-        <span class="input-label">מייל</span>
+        <span class="input-label">מייל <span class="req-red">*</span></span>
         <input type="email" name="email" 
         placeholder="כך נוכל לברר איתך פרטים נוספים אודות התלונה - במקרה הצורך" 
         ng-model="formData.email" required>
@@ -168,18 +168,23 @@
         <hr>
         <div class="error">
           <!-- ReportDescription Validation -->
-          <p ng-show="reportForm.description.$error.required">
+          <p ng-hide="!reportForm.description.$error.required">
             פירוט תלונה שדה חובה
+            <i class="icon ion-bug"></i>
           </p>
-          <p ng-show="reportForm.description.$error.minlength">
+          <p ng-hide="!reportForm.description.$error.minlength">
             פירוט תלונה חייב להיות יותר מ 3 תווים
+            <i class="icon ion-bug"></i>
           </p>
           <!-- Email Validation -->
-          <p ng-show="reportForm.email.$error.required">
+          <p ng-hide="!reportForm.email.$error.required">
             אימייל שדה חובה
+            <i class="icon ion-bug"></i>
           </p>
-          <p ng-show="reportForm.email.$invalid && !reportForm.email.$pristine">
+          <p ng-show="reportForm.email.$invalid && !reportForm.email.$pristine"
+          	 ng-hide="!reportForm.email.$invalid">
             אימייל לא תקין
+            <i class="icon ion-bug"></i>
           </p>
         </div>
         <button type="submit" class="button button-block button-positive"

@@ -8,7 +8,7 @@ angular.module('starter.services', [])
         'lon': 0,
         'addReport': function(formData){
             var defer = $q.defer();
-            $http.post('http://15-minutes-server.azurewebsites.net/api/v1/report', formData)
+            $http.post('http://localhost:8000/api/v1/report', formData)
             .success(function(response) {
                 console.log("Post http: ", formData);
                 defer.resolve(response);
@@ -26,7 +26,7 @@ angular.module('starter.services', [])
             .then(function (position) {
                 self.lat  = position.coords.latitude
                 self.lon  = position.coords.longitude
-                $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+self.lat+','+self.lon+'&sensor=true')
+                $http.get('http://maps.googleapis.com/maps/api/geocode/json?language=he&latlng='+self.lat+','+self.lon+'&sensor=true')
                 .success(function (res){
                     defer.resolve(res);
                 });

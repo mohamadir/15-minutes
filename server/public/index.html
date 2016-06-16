@@ -32,7 +32,7 @@
 
 	<!-- view placeholder -->
 	<ui-view></ui-view>
-	
+	<script src="bower_components/lodash/lodash.js"></script>
 	<script type="text/javascript" src="node_modules/angular/angular.js"></script>
 	<script type="text/javascript" src="node_modules/angular-animate/angular-animate.js"></script>
 	<script type="text/javascript" src="node_modules/angular-aria/angular-aria.js"></script>
@@ -52,11 +52,17 @@
 	<script src="https://rawgithub.com/eligrey/FileSaver.js/master/FileSaver.js"></script>
 	<script type="text/javascript" src="node_modules/angular-material-data-table/dist/md-data-table.js"></script>
 
+	<!-- google maps -->
+	<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+	<script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+
 	<script type="text/javascript" src="app.js"></script>
 	<script type="text/javascript" src="components/toolbar/toolbar.dir.js"></script>
 	<script type="text/javascript" src="components/home/home.ctr.js"></script>
 	<script type="text/javascript" src="components/dashboard/dashboard.ctr.js"></script>
 	<script type="text/javascript" src="components/report/report.ctr.js"></script>
+	<script type="text/javascript" src="components/map/map.ctr.js"></script>
 	<script type="text/javascript" src="components/oneReport/oneReport.ctr.js"></script>
 	<script type="text/javascript" src="components/report/report.srv.js"></script>
 </body>

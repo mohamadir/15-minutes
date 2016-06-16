@@ -49,6 +49,15 @@
 				});
 				return defer.promise;
 			},
+			// Get report location
+			'getReportLocation': function(){
+				var defer = $q.defer();
+				$http.post('/api/v1/locationreport/').success(function(res){
+					//console.log(res);
+					defer.resolve(res);
+				});
+				return defer.promise;
+			},
 			// Update Report
 			'UpdateReport': function(id, report){
 				var defer = $q.defer();

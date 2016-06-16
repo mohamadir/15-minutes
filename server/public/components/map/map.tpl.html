@@ -1,0 +1,23 @@
+<toolbar></toolbar>
+<md-content layout-padding>
+	<md-card>
+		<md-card-title>
+			<md-card-title-text>
+				<h1>Report Map</h1>
+			</md-card-title-text>
+		</md-card-title>
+		
+		<md-card-content>
+			<p ng-show="loading">Loading....</p>
+			<ui-gmap-google-map ng-show="!loading" center='map.center' zoom='map.zoom'>
+				<ui-gmap-marker 
+					ng-repeat="marker in markerList" 
+					idkey="0" 
+					coords='{ latitude: marker.location.coords.lat, longitude: marker.location.coords.lon }'
+					options="options">
+				</ui-gmap-marker>
+			</ui-gmap-google-map>
+		</md-card-content>
+	</md-card>
+	
+</md-content>

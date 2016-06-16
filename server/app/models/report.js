@@ -8,7 +8,14 @@ var reportSchema = mongoose.Schema({
 	time: Date,
 	busLine: String,
 	transportCompany: String,
-	location: String,
+	location: {
+		coords:{
+			lat: Number,
+			lon: Number,
+		},
+		city: String,
+		address: String
+	},
 	complaint: String,
 	name: String,
 	email: String,

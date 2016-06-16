@@ -87,8 +87,8 @@ module.exports = function(app) {
 		Report
     .find()
     .sort("-createdAt")
-    .limit(perPage)
     .skip(perPage * page)
+    .limit(perPage)
     .exec(function(err, reports){
       Report.count().exec(function(err, count){
         res.json({
@@ -128,8 +128,7 @@ module.exports = function(app) {
         _id: '$busLine', 
         count: { $sum: 1 } 
       } 
-    },
-      function (err, doc) {
+    },function (err, doc) {
         if (err){
           console.log(err);
         }
@@ -137,6 +136,14 @@ module.exports = function(app) {
         res.json(doc);
       }
     );
+  });
+
+  // get all report location by lat and long
+  app.post('/api/v1/locationreport/', function(req, res){
+    Report.find({}, 'location').exec(function(err, reportLocation){
+      console.log(reportLocation);
+      res.json(reportLocation);
+    });
   });
 
   // Save a new Report to mongo

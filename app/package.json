@@ -3,6 +3,7 @@
   "version": "1.1.1",
   "description": "testapp: An Ionic project",
   "dependencies": {
+    "angular-animate": "^1.5.7",
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
     "gulp": "^3.5.6",
@@ -31,9 +32,15 @@
     },
     "cordova-plugin-media-capture",
     "cordova-plugin-inappbrowser",
-    "org.apache.cordova.statusbar"
+    "org.apache.cordova.statusbar",
+    {
+      "locator": "https://github.com/Telerik-Verified-Plugins/NativePageTransitions#0.6.2",
+      "id": "com.telerik.plugins.nativepagetransitions"
+    },
+    "cordova-plugin-wkwebview"
   ],
   "cordovaPlatforms": [
-    "android"
+    "android",
+    "ios"
   ]
 }

@@ -65,3 +65,17 @@
         transform: translate(0px,0px);
     }
 }
+
+/***** success *******************************************/
+.card-anim{
+  transform: translate(0px,-200px);
+  animation: imageanim 2s ease forwards;
+}
+@keyframes imageanim {
+  0% {
+      transform: translate(0px,-200px);
+  }
+  100% {
+      transform: translate(0px,0px);
+  }
+}

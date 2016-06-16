@@ -37,26 +37,35 @@ app.controller('ReportCtrl', function(
   $ionicPopup, 
   Report) {
 
+  // 
+  console.log($scope.reportForm);
+
   // images counter
   var imgCount = 0;
 	
   // Form Data
-	$scope.formData = {
-		description: "",
+  $scope.formData = {
+    description: "",
     createdAt: "",
-		date: "",
-		time: "",
-		busLine: "",
-		transportCompany: "",
-		location: "",
-		complaint: "",
-		name: "",
-		email: "",
-		telephone: "",
-		images: [],
+    date: "",
+    time: "",
+    busLine: "",
+    transportCompany: "",
+    location: {
+      coords:{
+        lat: Number,
+        lon: Number,
+      },
+      city: String,
+      address: String
+    },
+    complaint: "",
+    name: "",
+    email: "",
+    telephone: "",
+    images: [],
     note: ""
-	};
-
+  };
   // Reset Form
   $scope.reset = function(){
     console.log("Reset Form");
@@ -67,7 +76,14 @@ app.controller('ReportCtrl', function(
       time: "",
       busLine: "",
       transportCompany: "",
-      location: "",
+      location: {
+        coords:{
+          lat: Number,
+          lon: Number,
+        },
+        city: String,
+        address: String
+      },
       complaint: "",
       name: "",
       email: "",
@@ -87,8 +103,14 @@ app.controller('ReportCtrl', function(
 		Report.getPostion().then(function(res){
 			$ionicLoading.hide();
 			$scope.results = res;
-      $scope.formData.location = $scope.results.results[0].formatted_address;
-      console.log("location: ", $scope.formData.location);
+      $scope.formData.location.coords.lat = Report.lat;
+      $scope.formData.location.coords.lon = Report.lon;
+      $scope.formData.location.city = $scope.results.results[0].address_components[2].long_name;
+      $scope.formData.location.address = $scope.results.results[0].formatted_address;
+      console.log("lat: ", $scope.formData.location.coords.lat);
+      console.log("lon: ", $scope.formData.location.coords.lon);
+      console.log("city: ", $scope.formData.location.city);
+      console.log("address: ", $scope.formData.location.address);
 			console.log(res);
 		}, function(){
       $ionicLoading.hide();
@@ -227,94 +249,33 @@ app.controller('ReportCtrl', function(
 // ======================================================//
 // Info Controller ======================================//
 // ======================================================//
-app.controller('InfoCtrl', function (
-  $scope, 
-  $ionicModal,
-  $cordovaSocialSharing, 
-  $ionicSlideBoxDelegate) {
+app.controller('InfoCtrl', function($scope, $state){
 
-	$scope.shareAnyWhere = function(){
-		$cordovaSocialSharing.share("This is message to share","This is subject",null
-		,"https://www.google.com");		
-	};
-
-  $scope.aImages = [{
-    	'src' : 'img/suc1.png', 
-    	'msg' : 'החלק ימינה לאות עוד או תגע כדי לצאת'
-  	}, {
-      'src' : 'img/suc2.png', 
-      'msg' : ''
-    }, { 
-      'src' : 'img/suc4.png', 
-      'msg' : ''
-    }, { 
-      'src' : 'img/suc5.png', 
-      'msg' : ''
-    }, { 
-      'src' : 'img/suc6.png', 
-      'msg' : ''
-    }          
-  ];
-
-  $scope.exit = function() {
-    ionic.Platform.exitApp();
-  };
-  
-  $ionicModal.fromTemplateUrl('image-modal.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  $scope.openModal = function() {
-    $ionicSlideBoxDelegate.slide(0);
-    $scope.modal.show();
-  };
-  
-  $scope.openModal4 = function() {
-    $ionicSlideBoxDelegate.slide(0);
-     $scope.modal.show();
-  };
-
-  $scope.closeModal = function() {
-    $scope.modal.hide();
-  };
-
-  // Cleanup the modal when we're done with it!
-  $scope.$on('$destroy', function() {
-    $scope.modal.remove();
-  });
-  // Execute action on hide modal
-  $scope.$on('modal.hide', function() {
-    // Execute action
-  });
-  // Execute action on remove modal
-  $scope.$on('modal.removed', function() {
-    // Execute action
-  });
-  $scope.$on('modal.shown', function() {
-    console.log('Modal is shown!');
-  });
-
-  // Call this functions if you need to manually control the slides
-  $scope.next = function() {
-    $ionicSlideBoxDelegate.next();
-  };
-
-  $scope.previous = function() {
-    $ionicSlideBoxDelegate.previous();
-  };
-
-	$scope.goToSlide = function(index) {
-    $scope.modal.show();
-    $ionicSlideBoxDelegate.slide(index);
+  $scope.toSuccess = function(){
+    $state.go('success');
   }
 
-  // Called each time the slide changes
-  $scope.slideChanged = function(index) {
+});
+
+app.controller('SuccessCtrl', function($scope, $ionicSlideBoxDelegate, $state){
+
+  // Called to navigate to the main app
+   $scope.startApp = function() {
+     $state.go('tab.info');
+   };
+   $scope.next = function() {
+     $ionicSlideBoxDelegate.next();
+   };
+   $scope.previous = function() {
+     $ionicSlideBoxDelegate.previous();
+   };
+
+   // Called each time the slide changes
+   $scope.slideChanged = function(index) {
+    console.log(index);
     $scope.slideIndex = index;
-  };
+   };
+
 });
 
 // ======================================================//

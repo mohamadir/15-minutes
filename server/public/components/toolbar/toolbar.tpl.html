@@ -17,6 +17,11 @@
 			ng-if="auth.isAuthenticated">Report</md-button>
 
 		<md-button 
+			aria-label="map"
+			ui-sref="map" 
+			ng-if="auth.isAuthenticated">Map</md-button>
+
+		<md-button 
 			aria-label="Logout" 
 			ng-click="logout()"
 			ng-if="auth.isAuthenticated">Logout</md-button>

@@ -8,7 +8,8 @@ angular.module("15min", [
 	"md.data.table",
 	"ui.router",
 	"relativeDate",
-	"chart.js"
+	"chart.js",
+	"uiGmapgoogle-maps"
 	])
 
 	.config(function
@@ -69,6 +70,11 @@ angular.module("15min", [
 				url: "/report/:id",
 				templateUrl: "components/oneReport/oneReport.tpl.html",
 				controller: "oneReportController"
+			})
+			.state("map", {
+				url: "/map",
+				templateUrl: "components/map/map.tpl.html",
+				controller: "mapController"
 			});
 
 		// check if token expire
