@@ -124,18 +124,19 @@
       </label>
 
       <!-- Report img or vedio -->
-      <div class="item padding">
+      <div class="item item-input">
+
+        <button class="button button-rounded-left button-positive" ng-click="$event.preventDefault(); getPicture();">
+        <i class="icon ion-android-camera icon-top"></i><br>
+        </button>
+
+        <button class="button button-rounded-right button-positive" ng-click="$event.preventDefault(); pickPicture();">
+        <i class="icon ion-images icon-top"></i><br>
+        </button>
 
         <div class="row">
 
-          <!-- Camera Btn -->
-          <div class="col col-20">
-            <button class="button button-rounded button-positive" ng-click="$event.preventDefault(); getPicture();">
-            <i class="icon ion-android-camera icon-top"></i><br>
-            </button>
-          </div>
-
-          <div class="col col-80">
+          <div class="col col-75">
 
             <!-- placeholder -->
             <p ng-if="formData.images.length == 0">לחץ כדי להצטרף תמונות</p>

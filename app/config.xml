@@ -20,7 +20,7 @@
   <preference name="orientation" value="portrait"/>
   <preference name="StatusBarBackgroundColor" value="#252525"/>
   <preference name="StatusBarStyle" value="#FFFFFF"/>
-  <preference name="CrosswalkAnimatable" value="true" />
+  <preference name="CrosswalkAnimatable" value="true"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>

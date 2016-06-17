@@ -37,9 +37,6 @@ app.controller('ReportCtrl', function(
   $ionicPopup, 
   Report) {
 
-  // 
-  console.log($scope.reportForm);
-
   // images counter
   var imgCount = 0;
 	
@@ -127,17 +124,17 @@ app.controller('ReportCtrl', function(
 
 	};
 
-  // Get Picture
-  $scope.getPicture = function(){
-    console.log("Get Picture");
+  // Open Camera function
+  function openCamera(srcType){
+    console.log("Open Camera function and the type is ", srcType);
     var options = {
       quality: 50,
       destinationType: Camera.DestinationType.DATA_URL,
-      sourceType: Camera.PictureSourceType.CAMERA,
+      sourceType: srcType,
       allowEdit: false,
       encodingType: Camera.EncodingType.JPEG,
-      targetWidth: 440,
-      targetHeight: 440,
+      targetWidth: 400,
+      targetHeight: 400,
       popoverOptions: CameraPopoverOptions,
       saveToPhotoAlbum: true,
       correctOrientation: false
@@ -148,7 +145,7 @@ app.controller('ReportCtrl', function(
       // Report success Msg
       $ionicPopup.show({
         title: 'אופס!',
-        subTitle: 'אפשר לצלם רק 4 תמונות.',
+        subTitle: 'אפשר לצרף רק 4 תמונות.',
         buttons: [{
           text: 'OK',
           type: 'button-positive',
@@ -176,6 +173,16 @@ app.controller('ReportCtrl', function(
       });
     });
 
+  }
+
+  // Get Picture
+  $scope.getPicture = function(){
+    openCamera(1);
+  }
+
+  // Get Picture
+  $scope.pickPicture = function(){
+    openCamera(0);
   }
 
   // delete Picture
