@@ -26,17 +26,9 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
     "cordova-plugin-camera",
-    {
-      "locator": "https://github.com/wymsee/cordova-imagePicker.git",
-      "id": "cordova-plugin-image-picker"
-    },
     "cordova-plugin-media-capture",
     "cordova-plugin-inappbrowser",
     "org.apache.cordova.statusbar",
-    {
-      "locator": "https://github.com/Telerik-Verified-Plugins/NativePageTransitions#0.6.2",
-      "id": "com.telerik.plugins.nativepagetransitions"
-    },
     "cordova-plugin-wkwebview"
   ],
   "cordovaPlatforms": [

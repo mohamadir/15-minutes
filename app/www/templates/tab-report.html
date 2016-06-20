@@ -30,7 +30,7 @@
         <label class="item item-input item-stacked-label">
           <i class="icon ion-android-bus placeholder-icon"></i>
           <span class="input-label">מספר הקו</span>
-          <input type="number" 
+          <input type="tel" 
           placeholder="מספר הקו שאתם מתלוננים עליו" 
           ng-model="formData.busLine">
         </label>
@@ -71,7 +71,7 @@
         </button>
         <div class="row">
           <div class="col col-90">
-            <p ng-show="formData.location.address == ''">לחץ על הכפתור לזיהוי מיקום</p>
+            <p ng-show="formData.location.address">לחץ על הכפתור לזיהוי מיקום</p>
             <h2>{{ formData.location.address }}</h2>
           </div>
         </div>

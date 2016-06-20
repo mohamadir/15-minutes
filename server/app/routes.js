@@ -1,13 +1,8 @@
-var jwt = require('express-jwt');
-var Report = require('./models/report.js');
+var jwt       = require('express-jwt');
+var Report    = require('./models/report.js');
 var sendgrid  = require('sendgrid')('15min', '15min12345');
-// Wordpress
-// var wordpress = require("wordpress");
-// var client = wordpress.createClient({
-//     url: "www.15minutes.co.il",
-//     username: "hadiab",
-//     password: "hadi12345"
-// });
+var ejs       = require('ejs');
+var fs        = require("fs");
 
 module.exports = function(app) {
 
@@ -19,60 +14,45 @@ module.exports = function(app) {
     audience: 'wMiaGVcupBYebZC5whqoyYAwtz8k04E1'
   });
 
-  app.get('/api/public', function(req, res){
-    res.json({message: 'public endpoint, you dont need to be authenticated to see this.'})
-  });
+  // app.get('/api/public', function(req, res){
+  //   res.json({message: 'public endpoint, you dont need to be authenticated to see this.'})
+  // });
 
-  app.get('/api/private', authCheck, function(req, res){
-    res.json({message: 'private endpoint, you DO need to be authenticated to see this.'})
-  });
-
-  // =====================================
-  // Wordpress ===========================
-  // =====================================
-  app.get('/wordpress', function(req, res){
-    client.getPosts(function( error, posts ) {
-      if(error){
-        console.log("Error!");
-        res.send(error);
-      }
-      console.log("Found " + posts.length + " posts!");
-      console.log(posts);
-      res.json(posts);
-    });
-  });
+  // app.get('/api/private', authCheck, function(req, res){
+  //   res.json({message: 'private endpoint, you DO need to be authenticated to see this.'})
+  // });
 
   // =====================================
   // REPORT Seed =========================
   // =====================================
-  app.get('/seed', function(req, res, next){
-    console.log("Start Seeding....");
+  // app.get('/seed', function(req, res, next){
+  //   console.log("Start Seeding....");
 
-    for(var i = 0; i < 50; i++){
-      var seedObj = {
-        "description" : "#" + (i+1) +" - Report " + (i+1),
-        "createdAt" : new Date(),
-        "date" : new Date(),
-        "time" : new Date(),
-        "busLine" : null,
-        "transportCompany" : "",
-        "location" : "",
-        "complaint" : "",
-        "name" : "",
-        "email" : "report" + (i+1) + "@hotmail.com",
-        "telephone" : "",
-        "note" : "",
-        "images" : []
-      };
-      Report.create(seedObj, function(err, item){
-        if(err){
-          return console.log("Erorr!! Seeding...");
-        }
-      });
-    }
-    console.log("Done.");
-    next();
-  });
+  //   for(var i = 0; i < 50; i++){
+  //     var seedObj = {
+  //       "description" : "#" + (i+1) +" - Report " + (i+1),
+  //       "createdAt" : new Date(),
+  //       "date" : new Date(),
+  //       "time" : new Date(),
+  //       "busLine" : null,
+  //       "transportCompany" : "",
+  //       "location" : "",
+  //       "complaint" : "",
+  //       "name" : "",
+  //       "email" : "report" + (i+1) + "@hotmail.com",
+  //       "telephone" : "",
+  //       "note" : "",
+  //       "images" : []
+  //     };
+  //     Report.create(seedObj, function(err, item){
+  //       if(err){
+  //         return console.log("Erorr!! Seeding...");
+  //       }
+  //     });
+  //   }
+  //   console.log("Done.");
+  //   next();
+  // });
 
 	// =====================================
   // REPORT API ==========================
@@ -158,12 +138,21 @@ module.exports = function(app) {
 
       // Send Email to 15 minutes
       var email = new sendgrid.Email(); 
-      email.setTos(['abdalhadi.m92@gmail.com']);
+      email.addTo("abdalhadi.m92@gmail.com");
       email.setFrom(req.body.email);
       email.setSubject('Report');
-      email.setHtml('<h1>' + req.body.description + '</h1>');
+      email.setHtml(
+      	'<h2 style="text-align: right;">' + req.body.description + '</h2>' +
+      	'<div style="text-align: right;"><h3>מספר קו</h3><h4>' + req.body.busLine + '</h4></div>' +
+      	'<div style="text-align: right;"><h3>חברת התחבורה</h3><h4>' + req.body.transportCompany + '</h4></div>' +
+      	'<div style="text-align: right;"><h3>מיקום</h3><h4>' + req.body.location.address + '</h4></div>' +
+      	'<div style="text-align: right;"><h3>מהות התלונה</h3><h4>' + req.body.complaint + '</h4></div>' +
+      	'<div style="text-align: right;"><h3>שם</h3><h4>' + req.body.name + '</h4></div>' +
+      	'<div style="text-align: right;"><h3>טלפון</h3><h4>' + req.body.telephone + '</h4></div>'
+      );
+      // Sending the email
       sendgrid.send(email, function(err, json) {
-        if (err) {
+        if(err){
           return console.log("Erorr Send Email!."); 
         }
         console.log("Okay Send Email.");
@@ -174,20 +163,22 @@ module.exports = function(app) {
       email.setTos([req.body.email]);
       email.setFrom('15minutes.co.il@gmail.com');
       email.setSubject('15 Minutes - תודה על הדיווח למוקד שלנו');
-      email.setHtml(`<p>תודה על הדיווח למוקד שלנו! הפנייה שלך ועוד פניות רבות אחרות מסייעות לנו להבין מה המצב בשטח ולהוכיח למשרד התחבורה ומפעילי התחבורה הציבורית שיש עוד הרבה עבודה בדרך לתחבורה ציבורית מהירה, יעילה ואטרקטיבית.</p>
-      <p>
+      email.setHtml(
+      `<p style="text-align: right;">תודה על הדיווח למוקד שלנו! הפנייה שלך ועוד פניות רבות אחרות מסייעות לנו להבין מה המצב בשטח ולהוכיח למשרד התחבורה ומפעילי התחבורה הציבורית שיש עוד הרבה עבודה בדרך לתחבורה ציבורית מהירה, יעילה ואטרקטיבית.</p>
+      <p style="text-align: right;">
       כמה שיותר תלונות ודיווחים- יותר טוב!! 
       גם אם התלוננת עכשיו, חשוב להמשיך ולדווח..
       ​</p>
-      ​​<p>
+      ​​<p style="text-align: right;">
       בנוסף, אם המתנת לאוטובוס זמן רב מדי​ או שהאוטובוס דילג על התחנה​
       ונגרמו לך נזקים כספיים בשל כך אנו ממליצים לך לקרוא את המדריך לתביעות קטנות, כי תביעה קטנה זה ממש בקטנה!
       ​</p>
-      <p>נשמח לסייע לך​ ​
+      <p style="text-align: right;">נשמח לסייע לך​ ​
       לפעול למען התחבורה הציבורית​,</p>
-      <p>המון תודה על האיכפתיות ושיתוף הפעולה :)</p>
-      <p>מוקד 15 דקות</p>
-      <p>www.15minutes.co.il​</p>`);
+      <p style="text-align: right;">המון תודה על האיכפתיות ושיתוף הפעולה :)</p>
+      <p style="text-align: right;">מוקד 15 דקות</p>
+      <a style="text-align: right;" href="http://www.15minutes.co.il​">www.15minutes.co.il​</a>`);
+
       sendgrid.send(email, function(err, json) {
         if (err) {
           return console.log("Erorr Send Email!."); 

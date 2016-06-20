@@ -1,4 +1,6 @@
 <ion-view view-title="הצלחות" class="slide-left-right">
+  
+  <!-- Button right -->
   <ion-nav-buttons side="left">
     <button class="button button-icon icon ion-ios-close-empty"
             ng-click="startApp()" ng-show="!slideIndex">
@@ -7,6 +9,8 @@
             ng-click="previous()" ng-show="slideIndex > 0">
     </button>
   </ion-nav-buttons>
+
+  <!-- Button left -->
   <ion-nav-buttons side="right"> 
     <button class="button button-icon ion-ios-arrow-thin-right"
             ng-click="next()" ng-show="slideIndex != 2">
@@ -15,37 +19,55 @@
             ng-click="startApp()" ng-show="slideIndex == 2">
     </button>
   </ion-nav-buttons>
-  <ion-slide-box on-slide-changed="slideChanged(index)">
 
+  <ion-slide-box on-slide-changed="slideChanged(index)">
     <!-- image 1 -->
     <ion-slide>  
-      <a class="slide-image" 
-        onclick="window.open('http://www.15minutes.co.il/%D7%94%D7%A6%D7%9C%D7%97%D7%95%D7%AA-%D7%91%D7%9E%D7%99%D7%A9%D7%95%D7%A8-%D7%94%D7%9E%D7%A7%D7%95%D7%9E%D7%99/'); return false;">
+      <div class="list card card-anim">
         <div class="item item-image">
-          <img src="./img/suc4.png">
+          <img ng-src="./img/s1.jpg">
         </div>
-      </a>
+        <div class="item item-text-wrap">
+          <h1 class="item-title">הצלחות מקומיות</h1>
+          <a class="button button-positive" href="#"
+            onclick="window.open('http://www.15minutes.co.il/%D7%94%D7%A6%D7%9C%D7%97%D7%95%D7%AA-%D7%91%D7%9E%D7%99%D7%A9%D7%95%D7%A8-%D7%94%D7%9E%D7%A7%D7%95%D7%9E%D7%99/', '_system', 'location=yes'); return false;">
+            לעוד לחץ כאן
+          </a>
+        </div>
+      </div>
     </ion-slide>
 
     <!-- image 2 -->
     <ion-slide>  
-      <a class="slide-image" 
-        onclick="window.open('http://www.15minutes.co.il/%D7%A2%D7%9C%D7%99%D7%99%D7%94-%D7%9E%D7%94%D7%99%D7%A8%D7%94-%D7%9E%D7%9B%D7%9C-%D7%94%D7%93%D7%9C%D7%AA%D7%95%D7%AA-%D7%91%D7%AA%D7%97%D7%91%D7%95%D7%A8%D7%94-%D7%94%D7%A6%D7%99%D7%91%D7%95%D7%A8/'); return false;">
+      <div class="list card card-anim">
         <div class="item item-image">
-          <img src="./img/suc5.png">
+          <img ng-src="./img/s2.jpg">
         </div>
-      </a>
+        <div class="item item-text-wrap">
+          <h1 class="item-title">עלייה מהירה מכל הדלתות</h1>
+          <a class="button button-positive" href="#"
+            onclick="window.open('http://www.15minutes.co.il/%D7%A2%D7%9C%D7%99%D7%99%D7%94-%D7%9E%D7%94%D7%99%D7%A8%D7%94-%D7%9E%D7%9B%D7%9C-%D7%94%D7%93%D7%9C%D7%AA%D7%95%D7%AA-%D7%91%D7%AA%D7%97%D7%91%D7%95%D7%A8%D7%94-%D7%94%D7%A6%D7%99%D7%91%D7%95%D7%A8/', '_system', 'location=yes'); return false;">
+            לעוד לחץ כאן
+          </a>
+        </div>
+      </div>
     </ion-slide>
     
     <!-- image 3 -->
-    <ion-slide>
-      <a class="slide-image" 
-        onclick="window.open('http://www.15minutes.co.il/%D7%90%D7%9B%D7%99%D7%A4%D7%AA-%D7%A0%D7%A1%D7%99%D7%A2%D7%94-%D7%91%D7%A0%D7%AA%D7%99%D7%91%D7%99-%D7%AA%D7%97%D7%91%D7%95%D7%A8%D7%94-%D7%A6%D7%99%D7%91%D7%95%D7%A8%D7%99%D7%AA/'); return false;">
+    <ion-slide>  
+      <div class="list card card-anim">
         <div class="item item-image">
-          <img src="./img/suc6.png">
+          <img ng-src="./img/s3.jpg">
         </div>
-      </a>
+        <div class="item item-text-wrap">
+          <h1 class="item-title">אכיפת נסיעה בנתיבי תחבורה ציבורית</h1>
+          <a class="button button-positive" href="#"
+            onclick="window.open('http://www.15minutes.co.il/%D7%90%D7%9B%D7%99%D7%A4%D7%AA-%D7%A0%D7%A1%D7%99%D7%A2%D7%94-%D7%91%D7%A0%D7%AA%D7%99%D7%91%D7%99-%D7%AA%D7%97%D7%91%D7%95%D7%A8%D7%94-%D7%A6%D7%99%D7%91%D7%95%D7%A8%D7%99%D7%AA/', '_system', 'location=yes'); return false;">
+            לעוד לחץ כאן
+          </a>
+        </div>
+      </div>
     </ion-slide>
-
   </ion-slide-box>
+
 </ion-view>

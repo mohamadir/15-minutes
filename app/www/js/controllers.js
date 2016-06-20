@@ -114,7 +114,7 @@ app.controller('ReportCtrl', function(
       // Location Error Msg
       $ionicPopup.show({
         title: 'אופס !',
-        subTitle: 'תפעיל את המיקום של הטלפון',
+        subTitle: 'אנא כנס להגדרות והפעל את הרשאות המיקום במכשירך',
         buttons: [{
           text: 'OK',
           type: 'button-assertive',
