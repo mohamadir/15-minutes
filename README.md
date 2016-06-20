@@ -9,8 +9,14 @@
 
 ![15 minutes logo](https://github.com/mohamadir/15-minutes/blob/master/project/logo.png)
 
-## Please visit our [live application](https://15min.azurewebsites.net/)
-- Alright, currently only a landing page...
+##15 Minutes @beta v1.0.1
+###Download Beat version: 
+- 1 go to this [link](https://play.google.com/apps/testing/com.app15minutes.app15min) to became a tester.
+- 2 click the became a tester button. 
+- 3 after this you will see (You are a tester).
+- 4 now you can able to search & download the app "15 דקות" form the play store.
+
+##Please visit our [live application](https://15-minutes-server.azurewebsites.net/)
 
 ## Contact Info
 ###Our Chat
@@ -45,8 +51,7 @@ Please visit our wiki for furthur project info:
 - [Organization Facebook page] (https://www.facebook.com/15.minutes.org/)
 
 ### Iteration Pages
-- [Iteration 0 - ZFR]()
-- [Iteration 1 - MVP]()
-- [Iteration 2 - Feature X]()
-- [Iteration 3 - Feature Y]()
-- [Iteration 4 - Feature Z]()
+- [Iteration 0 - ZFR](https://github.com/mohamadir/15-minutes/wiki/ZFR)
+- [Iteration 1 - MVP](https://github.com/mohamadir/15-minutes/wiki/MVP)
+- [Iteration 2 - CS](https://github.com/mohamadir/15-minutes/wiki/CS)
+- [Iteration 3 - SS](https://github.com/mohamadir/15-minutes/wiki/SS)
