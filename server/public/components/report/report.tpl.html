@@ -17,6 +17,30 @@
             ng-model="searchquery"
             ng-model-options="{debounce: 500}">
         </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Field</label>
+          <md-select ng-model="search.field" ng-change="reportSelect(search.field)">
+            <md-option selected="selected" value="description">
+              Description
+            </md-option>            
+            <md-option value="busLine">
+              Bus Line
+            </md-option>
+            <md-option value="location.address">
+              Address
+            </md-option>
+            <md-option value="name">
+              Name
+            </md-option>
+            <md-option value="email">
+              Email
+            </md-option>
+            <md-option value="telephone">
+              Telephone
+            </md-option>
+          </md-select>
+        </md-input-container>
         
         <md-button class="md-icon-button" ng-click="exportData()">
           <md-icon>
@@ -34,7 +58,7 @@
             <th md-column md-order-by="createdAt"><span>Description</span></th>
             <th md-column md-numeric md-order-by="date">Date</th>
             <th md-column md-numeric md-order-by="time">Time</th>
-            <th md-column md-numeric>Bus Line</th>
+            <th md-column md-numeric md-order-by="busLine">Bus Line</th>
             <th md-column>Transport Company</th>
             <th md-column>Location</th>
             <th md-column>Complaint</th>
@@ -47,7 +71,7 @@
           <tr md-row ng-repeat="report in reports | orderBy: query.order | limitTo: query.limit">
             <!-- Description -->
             <td md-cell>
-	            <a class="description" ng-href="#/report/{{ report._id }}">
+	            <a ng-class="{'isHighlighted': isHighligthed && search.field == 'description'}" class="description" ng-href="#/report/{{ report._id }}">
 	            	{{ report.description }}
 	            </a>
 	            <p class="sub-description">{{ report.createdAt | relativeDate }}</p>
@@ -55,29 +79,37 @@
             <!-- Date -->
             <td md-cell>{{report.date | date:'dd/MM/yyyy'}}</td>
             <!-- <td md-cell ng-show="report.date == null">Empty</td> -->
+
             <!-- Time -->
             <td md-cell>{{report.time | date:'HH:mm'}}</td>
             <!-- <td md-cell ng-show="report.time == null">Empty</td> -->
+
             <!-- Bus Line -->
-            <td md-cell>{{report.busLine}}</td>
+            <td md-cell><span ng-class="{'isHighlighted': isHighligthed && search.field == 'busLine'}">{{report.busLine}}</span></td>
             <!-- <td md-cell ng-show="report.busLine == null">Empty</td> -->
+
             <!-- Transport Company -->
             <td md-cell>{{report.transportCompany}}</td>
             <!-- <td md-cell ng-show="report.transportCompany == null">Empty</td> -->
+
             <!-- Location -->
-            <td md-cell>{{report.location.address}}</td>
+            <td md-cell><span ng-class="{'isHighlighted': isHighligthed && search.field == 'location.address'}">{{report.location.address}}</span></td>
             <!-- <td md-cell ng-show="report.location == ''">Empty</td> -->
+
             <!-- Complaint -->
             <td md-cell>{{report.complaint}}</td>
             <!-- <td md-cell ng-show="report.complaint == ''">Empty</td> -->
+
             <!-- Name -->
-            <td md-cell>{{report.name}}</td>
+            <td md-cell><span ng-class="{'isHighlighted': isHighligthed && search.field == 'name'}">{{report.name}}</span></td>
             <!-- <td md-cell ng-show="report.name == ''">Empty</td> -->
+
             <!-- Email -->
-            <td md-cell>{{report.email}}</td>
+            <td md-cell><span ng-class="{'isHighlighted': isHighligthed && search.field == 'email'}">{{report.email}}</span></td>
             <!-- <td md-cell ng-show="report.email == ''">Empty</td> -->
+
             <!-- Telephone -->
-            <td md-cell>{{report.telephone}}</td>
+            <td md-cell><span ng-class="{'isHighlighted': isHighligthed && search.field == 'telephone'}">{{report.telephone}}</span></td>
             <!-- <td md-cell ng-show="report.telephone == ''">Empty</td> -->
           </tr>
         </tbody>

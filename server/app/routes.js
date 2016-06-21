@@ -1,8 +1,6 @@
 var jwt       = require('express-jwt');
 var Report    = require('./models/report.js');
 var sendgrid  = require('sendgrid')('15min', '15min12345');
-var ejs       = require('ejs');
-var fs        = require("fs");
 
 module.exports = function(app) {
 
@@ -83,10 +81,16 @@ module.exports = function(app) {
 
   // Search for a report
   app.post('/api/v1/searchreport/', function(req, res, next){
-    console.log("Search", req.body.query);
+    console.log("Search: " + req.body.query + ", Field: " + req.body.field);
+    var field = req.body.field;
+
     var reqx = new RegExp(req.body.query, 'i');
+
+    var query = {};
+    query[field] = { $regex: reqx };
+
     Report
-    .find({'description': { $regex: reqx }})
+    .find(query)
     .limit(15)
     .exec(function(err, reports) {
       if(err){
@@ -103,12 +107,23 @@ module.exports = function(app) {
 
   // get bus line by count
   app.post('/api/v1/buslinereport/', function(req, res){
-    Report.aggregate({$group: 
-      { 
-        _id: '$busLine', 
-        count: { $sum: 1 } 
-      } 
-    },function (err, doc) {
+    Report.aggregate([
+    	{ 
+    		$match : {"busLine": {"$ne":null}} 
+    	},
+    	{
+    		$group:{ 
+	        _id: '$busLine', 
+	        count: { $sum: 1 } 
+	      }
+	    },
+	    {
+	    	$sort: {'count': -1}
+	  	},
+	    {
+	    	$limit: 10
+	    }
+    ],function (err, doc) {
         if (err){
           console.log(err);
         }

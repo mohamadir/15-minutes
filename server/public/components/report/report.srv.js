@@ -31,9 +31,9 @@
 				return defer.promise;
 			},
 			// Search Report
-			'searchReport': function(searchquery){
+			'searchReport': function(searchObj){
 				var defer = $q.defer();
-				$http.post('/api/v1/searchreport/', searchquery).success(function(res){
+				$http.post('/api/v1/searchreport/', searchObj).success(function(res){
 					self.results = res.reports;
 					self.total = res.count;
 					defer.resolve(res.reports);

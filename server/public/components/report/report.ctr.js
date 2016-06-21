@@ -21,9 +21,14 @@
 	    page: 1
 	  };
 
+    // Search object
 	  $scope.search = {
-	  	query: ""
+	  	query: "",
+      field: ""
 	  }
+
+    // highlight after the search
+    $scope.isHighligthed = false;
 
     // load report according to the page number
 	  $scope.loadReports = function (query) {
@@ -55,15 +60,17 @@
     };
 
     // search 
-    $scope.reportSearch = function(searchquery){
-    	if(searchquery.length > 0){
+    $scope.reportSearch = function(searchQuery){
+    	if(searchQuery.length > 0){
 
-    		console.log("search query: " +  searchquery + ", length: " + searchquery.length);
-    		$scope.search.query = searchquery;
+        console.log("search query: " +  searchQuery + ", length: " + searchQuery.length);
+    		console.log("search field: " +  $scope.search.field);
+        $scope.search.query = searchQuery;
 
   			$scope.promise = Report.searchReport($scope.search).then(function(res){
   				$scope.reports = res;
   				$scope.total = Report.total;
+          $scope.isHighligthed = true;
   				console.log("Reports: ", $scope.reports);
   				console.log("Count: ", $scope.total);
   			}, function(err){
@@ -71,8 +78,17 @@
   			});
 
     	}else{
+        $scope.isHighligthed = false;
     		$scope.loadReports($scope.query);
     	}
+    }
+
+    $scope.reportSelect = function(field){
+      console.log("Field is: ", field);
+      if($scope.search.query.length > 0){
+        console.log("Bigger than zero.");
+        $scope.reportSearch($scope.search.query);
+      }
     }
 
     // Limit Option

@@ -140,3 +140,13 @@ figure:hover .hover-box{
 	display: block;
 	width: 100%;
 }
+.isHighlighted{
+	background: #eee;
+	border-radius: 5px;
+	padding: 4px;
+	animation: fadein 2s;
+}
+@keyframes fadein {
+    from {background-color: #fff;}
+    to {background-color: #eee;}
+}
