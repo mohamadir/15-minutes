@@ -1,13 +1,25 @@
   <toolbar></toolbar>
 <md-content layout-padding layout-wrap>
 
+  <md-card>
+    <md-card-title>
+      <md-card-title-text>
+        <div layout="row">
+          <div flex="70">
+            <span class="md-headline">Report's</span>
+          </div>
+          <div flex="30">
+            <h3>Count: {{ total }}</h3>
+          </div>
+        </div>
+      </md-card-title-text>
+    </md-card-title>
+  </md-card>
+
 	<md-card>
 	        
     <md-toolbar class="md-table-toolbar md-default">
       <div class="md-toolbar-tools">
-      	<span>Reports</span>
-      	<div flex></div>
-
         <!-- search -->
         <i class="fa fa-search" aria-hidden="true" flex="1"></i>
         <md-input-container class="md-block search-bar" flex-gt-sm>
@@ -18,6 +30,7 @@
             ng-model-options="{debounce: 500}">
         </md-input-container>
 
+        <!-- Seach field -->
         <md-input-container class="md-block" flex-gt-sm>
           <label>Field</label>
           <md-select ng-model="search.field" ng-change="reportSelect(search.field)">
@@ -41,14 +54,58 @@
             </md-option>
           </md-select>
         </md-input-container>
+
+        <!-- Transport Company select box -->
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Transport Company</label>
+          <md-select ng-model="query.filter.transportCompany" ng-change="reprotFilter(query.filter.transportCompany, 'transportCompany')">
+            <md-option selected="selected" value="all">הכל</md-option>            
+            <md-option value="אגד">אגד</md-option>            
+            <md-option value="אגד תעבורה">אגד תעבורה</md-option>
+            <md-option value="אפיקים">אפיקים</md-option>
+            <md-option value="גולן">גולן</md-option>
+            <md-option value="גלים">גלים</md-option>
+            <md-option value="דן">דן</md-option>
+            <md-option value="דן שבדרום">דן שבדרום</md-option>
+            <md-option value="דן שבצפון">דן שבצפון</md-option>
+            <md-option value="מטרופולין">מטרופולין</md-option>
+            <md-option value="נזרין טורס">נזרין טורס</md-option>
+            <md-option value="נתיב אקספרס">נתיב אקספרס</md-option>
+            <md-option value="סופרבוס">סופרבוס</md-option>
+            <md-option value="סיטיפס">סיטיפס</md-option>
+            <md-option value="עילית">עילית</md-option>
+            <md-option value="קווים">קווים</md-option>
+            <md-option value="רכבת ישראל">רכבת ישראל</md-option>
+            <md-option value='ג"י.בי.טורס'>ג"י.בי.טורס</md-option>
+            <md-option value="UNBS שירותי אוטובוסים מאוחדים נצרת">UNBS שירותי אוטובוסים מאוחדים נצרת</md-option>
+          </md-select>
+        </md-input-container>
+
+        <!-- Complaint select box -->
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Complaint</label>
+          <md-select ng-model="query.filter.complaint" ng-change="reprotFilter(query.filter.complaint, 'complaint')">
+            <md-option selected="selected" value="all">הכל</md-option>  
+            <md-option value="אי עמידה בלו"ז">אי עמידה בלו"ז</md-option>
+            <md-option value="תלונות על נהגים">תלונות על נהגים</md-option>            
+            <md-option value="תדירות נמוכה">תדירות נמוכה</md-option>            
+            <md-option value="זיהום וליכלוך">זיהום וליכלוך</md-option>            
+            <md-option value="דילוג על תחנות">דילוג על תחנות</md-option>            
+            <md-option value="בעיות בנתיבי תחבורה ציבורית">בעיות בנתיבי תחבורה ציבורית</md-option>            
+            <md-option value="תקלות רב-קו">תקלות רב-קו</md-option>            
+            <md-option value="מידע שגוי (בתחנה או באתר)">מידע שגוי (בתחנה או באתר)</md-option>            
+            <md-option value="מסלולי קווים">מסלולי קווים</md-option>            
+          </md-select>
+        </md-input-container>
         
+        <!-- Export to excel btn -->
         <md-button class="md-icon-button" ng-click="exportData()">
           <md-icon>
 						<i class="fa fa-file-excel-o" aria-hidden="true"></i>
           </md-icon>
         </md-button>
 
-      </div>
+      </div><!-- End md-toolbar-tools -->
     </md-toolbar>
     
     <md-table-container id="table-data-export">
@@ -58,7 +115,7 @@
             <th md-column md-order-by="createdAt"><span>Description</span></th>
             <th md-column md-numeric md-order-by="date">Date</th>
             <th md-column md-numeric md-order-by="time">Time</th>
-            <th md-column md-numeric md-order-by="busLine">Bus Line</th>
+            <th md-column md-numeric>Bus Line</th>
             <th md-column>Transport Company</th>
             <th md-column>Location</th>
             <th md-column>Complaint</th>
@@ -71,7 +128,10 @@
           <tr md-row ng-repeat="report in reports | orderBy: query.order | limitTo: query.limit">
             <!-- Description -->
             <td md-cell>
+
 	            <a ng-class="{'isHighlighted': isHighligthed && search.field == 'description'}" class="description" ng-href="#/report/{{ report._id }}">
+                <i ng-if="report.images.length > 0" class="fa fa-paperclip" aria-hidden="true"></i>
+                <i ng-if="report.note" class="fa fa-paper-plane-o" aria-hidden="true"></i>
 	            	{{ report.description }}
 	            </a>
 	            <p class="sub-description">{{ report.createdAt | relativeDate }}</p>

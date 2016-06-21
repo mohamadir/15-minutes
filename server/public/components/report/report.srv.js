@@ -68,6 +68,14 @@
 					defer.resolve(res);
 				});
 				return defer.promise;
+			},
+			'deleteReport': function(id){
+				var defer = $q.defer();
+				$http.delete('/api/v1/report/' + id).success(function(res){
+					console.log("==> Delete the report");
+					defer.resolve(res);
+				});
+				return defer.promise;
 			}
 		};
 

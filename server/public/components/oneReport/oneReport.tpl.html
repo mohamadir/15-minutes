@@ -6,7 +6,7 @@
 			<h4 class="report-id">#{{ report[0]._id }}</h4>
 		</md-card-title>
 		<md-card-content>
-			<h2>{{ report[0].description }}</h2>
+			<h2 class="right-text">{{ report[0].description }}</h2>
 		</md-card-content>
 	</md-card>
 	
@@ -109,6 +109,25 @@
         </md-button>
       </md-card-actions>
 		</div>
+	</md-card>
+
+	<md-card>
+		<md-card-title>
+      <md-card-title-text>
+        <span class="md-headline title-alert">Danger Zone</span>
+      </md-card-title-text>
+    </md-card-title>
+		<md-card-content>
+			<h3>Delete this report</h3>
+			<div layout="row">
+				<span flex="80">Once you delete a report, there is no going back. Please be certain.
+				</span>
+
+				<!-- Delete report btn -->
+				<md-button ng-click="DeleteConfirm($event, report[0]._id)" class="md-raised btn-alert" flex="20">	Delete
+				</md-button>
+			</div>
+		</md-card-content>
 	</md-card>
 	
 </md-content>

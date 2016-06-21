@@ -58,12 +58,36 @@ module.exports = function(app) {
 
   // Get the Reports with sort limit and skip
 	app.post('/api/v1/getreport/', function(req, res){
-    console.log("Sort: " + req.body.order + ", limit: " + req.body.limit + ", Page Number: " + req.body.page);
+    console.log(">> Sort: " + req.body.order + ", limit: " + req.body.limit + ", Page Number: " + req.body.page);
+    console.log(">> Complaint Filter: " + req.body.filter.complaint);
+    console.log(">> Transport Company Filter: " + req.body.filter.transportCompany);
+
     var perPage = req.body.limit;
     var page = Math.max(0, (req.body.page - 1));
     var sort = req.body.order;
+    var cmpFilter = req.body.filter.complaint;
+    var trsFilter = req.body.filter.transportCompany;
+    var filterQuery = {};
+
+    // filter check
+    if(cmpFilter == 'all' && trsFilter == 'all'){
+      console.log("==> Filter: None Filter");
+    }
+    else if(cmpFilter != 'all' && trsFilter == 'all'){
+      console.log("==> Filter: Complaint");
+      filterQuery = {complaint: cmpFilter};
+    }
+    else if(cmpFilter == 'all' && trsFilter != 'all'){
+      console.log("==> Filter: Transport Company");
+      filterQuery = {transportCompany: trsFilter};
+    }
+    else{
+      console.log("==> Filter: Filter Both");
+      filterQuery = {complaint: cmpFilter, transportCompany: trsFilter};
+    }
+
 		Report
-    .find()
+    .find(filterQuery)
     .sort("-createdAt")
     .skip(perPage * page)
     .limit(perPage)
@@ -234,6 +258,16 @@ module.exports = function(app) {
         });
       }
     });
+  });
+
+  app.delete('/api/v1/report/:id', function(req, res){
+    console.log("Delete Report id: " + req.params.id);
+    Report.findById(req.params.id).remove().exec(function(err, item){
+      if(err){
+        console.log("Can't remove report ", req.params.id);
+      }
+      res.json(item);
+    })
   });
 
   // =====================================

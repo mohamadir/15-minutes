@@ -18,7 +18,11 @@
 	  $scope.query = {
 	    order: '-createdAt',
 	    limit: 15,
-	    page: 1
+	    page: 1,
+      filter: {
+        complaint: "all",
+        transportCompany: "all"
+      }
 	  };
 
     // Search object
@@ -61,6 +65,8 @@
 
     // search 
     $scope.reportSearch = function(searchQuery){
+
+      // Check if search box is dirty then do the work
     	if(searchQuery.length > 0){
 
         console.log("search query: " +  searchQuery + ", length: " + searchQuery.length);
@@ -79,23 +85,43 @@
 
     	}else{
         $scope.isHighligthed = false;
+        $scope.search.query = "";
     		$scope.loadReports($scope.query);
     	}
     }
 
+    // On Select Change
     $scope.reportSelect = function(field){
-      console.log("Field is: ", field);
+      console.log(">> Field is: ", field);
       if($scope.search.query.length > 0){
         console.log("Bigger than zero.");
         $scope.reportSearch($scope.search.query);
       }
     }
 
+    // filter
+    $scope.reprotFilter = function(filter, field){
+      
+      // Set the complaint filter
+      if(field == 'complaint'){
+        $scope.query.filter.complaint = filter;
+      }
+      // Set the transport company filter
+      if(field == 'transportCompany'){
+        $scope.query.filter.transportCompany = filter;
+      }
+
+      $scope.loadReports($scope.query);
+
+      console.log(">> Filter Complaint is: " + $scope.query.filter.complaint);
+      console.log(">> Filter Transport Company is: " + $scope.query.filter.transportCompany);
+
+    }
+
     // Limit Option
 	  $scope.toggleLimitOptions = function () {
       $scope.limitOptions = $scope.limitOptions ? undefined : [5, 10, 15];
     };
-
     $scope.toggleLimitOptions();
 
   	// Export to excel

@@ -127,6 +127,13 @@ figure .hover-box{
 figure:hover .hover-box{
 	opacity: 1;
 }
+.btn-alert{
+	background: #DF3E3E !important;
+	color: #fff !important;
+}
+.title-alert{
+	color: #DF3E3E !important;
+}
 
 /* Map ***************************************************/
 .angular-google-map-container { height: 400px; }
@@ -135,6 +142,9 @@ figure:hover .hover-box{
 .center{
 	text-align: center;
 	margin: auto;
+}
+.right-text{
+	text-align: right;
 }
 .block{
 	display: block;
