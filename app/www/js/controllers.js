@@ -256,36 +256,36 @@ app.controller('ReportCtrl', function(
 // ======================================================//
 // Info Controller ======================================//
 // ======================================================//
-app.controller('InfoCtrl', function($scope, $state){
-
-  $scope.toSuccess = function(){
-    $state.go('success');
-  }
-
-});
+app.controller('InfoCtrl', function(){});
 
 app.controller('SuccessCtrl', function($scope, $ionicSlideBoxDelegate, $state){
 
   // Called to navigate to the main app
-   $scope.startApp = function() {
-     $state.go('tab.info');
-   };
-   $scope.next = function() {
-     $ionicSlideBoxDelegate.next();
-   };
-   $scope.previous = function() {
-     $ionicSlideBoxDelegate.previous();
-   };
+  $scope.startApp = function() {
+    $state.go('tab.more');
+  };
+  $scope.next = function() {
+    $ionicSlideBoxDelegate.next();
+  };
+  $scope.previous = function() {
+    $ionicSlideBoxDelegate.previous();
+  };
 
-   // Called each time the slide changes
-   $scope.slideChanged = function(index) {
+  // Called each time the slide changes
+  $scope.slideChanged = function(index) {
     console.log(index);
     $scope.slideIndex = index;
-   };
+  };
 
 });
 
 // ======================================================//
 // More Controller ======================================//
 // ======================================================//
-app.controller('MoreCtrl', function() {});
+app.controller('MoreCtrl', function($scope, $state) {
+
+  $scope.toSuccess = function(){
+    $state.go('success');
+  }
+
+});
