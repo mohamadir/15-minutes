@@ -1,4 +1,4 @@
-//var serverUrl = 'http://15-minutes-server.azurewebsites.net/';
+//var serverUrl = 'http://server-15min.appspot.com/';
 
 angular.module('starter.services', [])
 
@@ -8,7 +8,7 @@ angular.module('starter.services', [])
         'lon': 0,
         'addReport': function(formData){
             var defer = $q.defer();
-            $http.post('http://localhost:8000/api/v1/report', formData)
+            $http.post('http://server-15min.appspot.com/api/v1/report', formData)
             .success(function(response) {
                 console.log("Post http: ", formData);
                 defer.resolve(response);

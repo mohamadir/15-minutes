@@ -54,7 +54,7 @@ app.controller('ReportCtrl', function(
         lon: Number,
       },
       city: String,
-      address: String
+      address: ""
     },
     complaint: "",
     name: "",
@@ -79,7 +79,7 @@ app.controller('ReportCtrl', function(
           lon: Number,
         },
         city: String,
-        address: String
+        address: ""
       },
       complaint: "",
       name: "",

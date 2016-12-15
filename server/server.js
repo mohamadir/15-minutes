@@ -14,9 +14,6 @@ var config = require('./config/config.js');
 // set database setup
 mongoose.connect(config.url);
 
-// Port
-app.set('port', process.env.PORT || 8000);
-
 app.use(cors());
 
 app.use(express.static(path.join(__dirname + '/public')));
@@ -37,6 +34,14 @@ app.use(bodyParser.json({ extended: true }));
 // load our routes and pass in our app and fully configured passport
 require('./app/routes.js')(app); 
 
-app.listen(app.get('port'), function(){
-	console.log("Server Running on localhost:" + app.get('port'));
-});
+if (module === require.main) {
+  // [START server]
+  // Start the server
+  var server = app.listen(process.env.PORT || 8080, function () {
+    var port = server.address().port;
+    console.log('App listening on port %s', port);
+  });
+  // [END server]
+}
+
+module.exports = app;

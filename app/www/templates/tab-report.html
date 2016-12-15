@@ -48,8 +48,8 @@
               <option>גולן</option>
               <option>גלים</option>
               <option>דן</option>
-              <option>דן שבדרום</option>
-              <option>דן שבצפון</option>
+              <option>דן בדרום</option>
+              <option>דן בצפון (מטרונית)</option>
               <option>מטרופולין</option>
               <option>נזרין טורס</option>
               <option>נתיב אקספרס</option>
@@ -71,8 +71,9 @@
         </button>
         <div class="row">
           <div class="col col-90">
-            <p ng-show="formData.location.address">לחץ על הכפתור לזיהוי מיקום</p>
-            <h2>{{ formData.location.address }}</h2>
+            <p>לחץ על הכפתור לזיהוי מיקום</p>
+            <!-- <h2>{{ formData.location.address }}</h2> -->
+            <input type="text" ng-model="formData.location.address" name="location" value="{{formData.location.address}}" placeholder="או תכתב ידני">
           </div>
         </div>
       </div>
@@ -84,11 +85,11 @@
         </div>
         <select ng-model="formData.complaint">
           <option>אי עמידה בלו"ז</option>
+          <option>בעיות בנתיבי תחבורה ציבורית</option>
+          <option>דילוג על תחנות</option>
+          <option>זיהום וליכלוך</option>
           <option>תלונות על נהגים</option>
           <option>תדירות נמוכה</option>
-          <option>זיהום וליכלוך</option>
-          <option>דילוג על תחנות</option>
-          <option>בעיות בנתיבי תחבורה ציבורית</option>
           <option>תקלות רב-קו</option>
           <option>מידע שגוי (בתחנה או באתר)</option>
           <option>מסלולי קווים</option>
@@ -110,7 +111,7 @@
         <i class="icon ion-email placeholder-icon"></i>
         <span class="input-label">מייל <span class="req-red">*</span></span>
         <input type="email" name="email" 
-        placeholder="כך נוכל לברר איתך פרטים נוספים אודות התלונה - במקרה הצורך" 
+        placeholder="מאפשר לברר פרטים נוספים על התלונה" 
         ng-model="formData.email" required>
       </label>
 
@@ -139,7 +140,7 @@
           <div class="col col-75">
 
             <!-- placeholder -->
-            <p ng-if="formData.images.length == 0">לחץ כדי להצטרף תמונות</p>
+            <p ng-if="formData.images.length == 0">לחץ כדי לצרף תמונות</p>
 
             <!-- Display images -->
             <div class="row" ng-repeat="image in formData.images" ng-if="$index % 2 === 0">

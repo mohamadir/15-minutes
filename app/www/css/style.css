@@ -29,7 +29,7 @@
 .open-text p{
   padding: 15px;
   font-size: 22px;
-  text-align: right;
+  text-align: center;
 }
 .green-line{
   background: #C2DA4E;
@@ -77,6 +77,11 @@
 }
 .text-about{
 	text-align: center;
+}
+#click-btn{
+  color: #eee;
+  font-weight: bold;
+  text-shadow: 1px 1px 4px #222;
 }
 
 /***** Report Page ***************************************/
@@ -187,6 +192,12 @@ p.info {
 }
 .text-red{
   background: #FE6C61;
+}
+.sm-font{
+  font-size: 0.9rem;
+}
+.smx-font{
+  font-size: 0.8rem;
 }
 
 /***** success page **************************************/

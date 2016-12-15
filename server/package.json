@@ -1,12 +1,14 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "15 minutes server",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
+    "deploy": "gcloud app deploy",
     "test": "./node_modules/.bin/mocha --reporter spec"
   },
-  "author": "",
+  "author": "Abdalhadi",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.1",
@@ -22,5 +24,8 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^2.5.3"
+  },
+  "engines": {
+    "node": ">=0.12.7"
   }
 }
