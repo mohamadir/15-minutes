@@ -1,4 +1,4 @@
-<toolbar></toolbar>
+<toolbar style="margin-right:500px !important;"></toolbar>
 <md-content layout-padding>
 	
 	<!-- Admin-Detail -->
@@ -7,9 +7,9 @@
 
 			<md-card-title-media>
 				<div class="md-media-lg card-media" layout-padding>
-					<img ng-src="{{ profile.picture }}" alt="profile.picture">
+					<img src="http://15minutes.co.il/wp-content/uploads/2017/03/15-minutes.jpg" alt="profile.picture">
 				</div>
-				<md-card-actions layout="column" layout-align="end center">
+				<md-card-actions style="display: none !important;" layout="column" layout-align="end center">
 					<md-button ng-click="reset()">
 						<i class="fa fa-repeat" aria-hidden="true"></i> Reset Password
  					</md-button>
@@ -25,16 +25,25 @@
   </md-card>
 
 	<!-- Reports Info -->
-	<div layout="row">
+  <div layout="row">
+      <p style="font-size: 30px; margin: 0 auto !important;text-align: center important!;">10 הקווים הבעיתיים</p>
+  </div>
 
+	<div layout="row">
     <!-- top line -->
-		<div flex="50">
+		<div flex="50" style="margin: auto !important;">
       <md-card>
 
         <!-- title -->
         <md-card-title>
           <md-card-title-text>
-            <span class="md-headline top-lines-title">Top Lines</span>
+            <span class="md-headline top-lines-title">הקווים הבעיתיים</span>
+          </md-card-title-text>
+             <md-card-title-text>
+            <span class="md-headline top-lines-title" style="margin-left: 100px !important;">מספר קו</span>
+          </md-card-title-text> 
+          <md-card-title-text >
+            <span class="md-headline top-lines-title" style="margin-left: 130px !important;">תלונות</span>
           </md-card-title-text>
         </md-card-title>
 
@@ -53,6 +62,7 @@
           </div>
 
           <!-- top line -->
+
           <div ng-show="!loading && line._id != null" class="line" ng-repeat="line in topBusLine">
             <span class="line-box line-box-number">#{{ $index + 1 }}</span>
             <span class="line-box line-box-value">{{ line._id }}</span>

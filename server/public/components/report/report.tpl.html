@@ -1,15 +1,15 @@
   <toolbar></toolbar>
-<md-content layout-padding layout-wrap>
+<md-content layout-padding layout-wrap style="direction: rtl !important;">
 
-  <md-card>
+  <md-card style="direction: rtl !important;">
     <md-card-title>
       <md-card-title-text>
         <div layout="row">
           <div flex="70">
-            <span class="md-headline">Report's</span>
+            <span class="md-headline">תלונות</span>
           </div>
           <div flex="30">
-            <h3>Count: {{ total }}</h3>
+            <h3>סכ"ה: {{ total }}</h3>
           </div>
         </div>
       </md-card-title-text>
@@ -23,7 +23,7 @@
         <!-- search -->
         <i class="fa fa-search" aria-hidden="true" flex="1"></i>
         <md-input-container class="md-block search-bar" flex-gt-sm>
-          <label>Search</label>
+          <label>חיפוש</label>
           <input type="text" 
             ng-change="reportSearch(searchquery)" 
             ng-model="searchquery"
@@ -32,32 +32,32 @@
 
         <!-- Seach field -->
         <md-input-container class="md-block" flex-gt-sm>
-          <label>Field</label>
+          <label>שדה</label>
           <md-select ng-model="search.field" ng-change="reportSelect(search.field)">
             <md-option selected="selected" value="description">
-              Description
+              פרטים
             </md-option>            
             <md-option value="busLine">
-              Bus Line
+              מספר אוטובוס
             </md-option>
             <md-option value="location.address">
-              Address
+              כתובת
             </md-option>
             <md-option value="name">
-              Name
+              שם
             </md-option>
             <md-option value="email">
-              Email
+              אימייל
             </md-option>
             <md-option value="telephone">
-              Telephone
+              טלפון
             </md-option>
           </md-select>
         </md-input-container>
 
         <!-- Transport Company select box -->
         <md-input-container class="md-block" flex-gt-sm>
-          <label>Transport Company</label>
+          <label>חברת תחבורה</label>
           <md-select ng-model="query.filter.transportCompany" ng-change="reprotFilter(query.filter.transportCompany, 'transportCompany')">
             <md-option selected="selected" value="all">הכל</md-option>            
             <md-option value="אגד">אגד</md-option>            
@@ -83,7 +83,7 @@
 
         <!-- Complaint select box -->
         <md-input-container class="md-block" flex-gt-sm>
-          <label>Complaint</label>
+          <label>תלונה</label>
           <md-select ng-model="query.filter.complaint" ng-change="reprotFilter(query.filter.complaint, 'complaint')">
             <md-option selected="selected" value="all">הכל</md-option>  
             <md-option value="אי עמידה בלו"ז">אי עמידה בלו"ז</md-option>
@@ -112,16 +112,16 @@
       <table md-table md-progress="promise">
         <thead md-head md-order="query.order" md-on-reorder="reportReorder">
           <tr md-row>
-            <th md-column md-order-by="createdAt"><span>Description</span></th>
-            <th md-column md-numeric md-order-by="date">Date</th>
-            <th md-column md-numeric md-order-by="time">Time</th>
-            <th md-column md-numeric>Bus Line</th>
-            <th md-column>Transport Company</th>
-            <th md-column>Location</th>
-            <th md-column>Complaint</th>
-            <th md-column>From</th>
-            <th md-column>Email</th>
-            <th md-column md-numeric>Telephone</th>
+            <th md-column md-order-by="createdAt"><span>פרטים</span></th>
+            <th md-column md-numeric md-order-by="date">תאריך</th>
+            <th md-column md-numeric md-order-by="time">זמן</th>
+            <th md-column md-numeric>מספר אוטובוס</th>
+            <th md-column>חברת אוטובוס</th>
+            <th md-column>מקום</th>
+            <th md-column>תלונה</th>
+            <th md-column>מ-</th>
+            <th md-column>אימייל</th>
+            <th md-column md-numeric>טלפון</th>
           </tr>
         </thead>
         <tbody md-body>

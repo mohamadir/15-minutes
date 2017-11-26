@@ -10,7 +10,7 @@
 
 			$scope.loading = true;
 
-			$scope.map = { center: { latitude: 31.768319, longitude: 35.213710 }, zoom: 7 };
+			$scope.map = { center: { latitude: 31.7683, longitude: 35.2137 }, zoom: 6 };
 
 			$scope.options = {icon:'img/busicon.png'};
 
