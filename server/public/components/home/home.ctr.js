@@ -11,23 +11,10 @@
 			$scope.login = login;
 
 			function login(){
-				var options = {
-					connections:['Username-Password-Authentication'],
-					primaryColor: '#252525',
-					dict: 'EN',
-					closable: true,
-					gravatar: false,
-					disableSignupAction: true,
-					disableResetAction: true
-				};
-				auth.signin(options, function(profile, token){
-					store.set('profile', profile);
-					store.set('id_token', token);
-					console.log(profile);
+
+				if($scope.email=='15min@15min.com' && $scope.password=='15min' )
 					$location.path('/dashboard');
-				}, function(err){
-					console.log(err);
-				});
+				console.log($location);
 			}
 		}
 

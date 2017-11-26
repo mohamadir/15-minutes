@@ -38,7 +38,7 @@ angular.module("15min", [
 		});
 		
 		// Auth
-		authProvider.init({
+	/*	authProvider.init({
 			domain: '15min.auth0.com',
 			clientID: 'wMiaGVcupBYebZC5whqoyYAwtz8k04E1'
 		});
@@ -46,7 +46,7 @@ angular.module("15min", [
 		jwtInterceptorProvider.tokenGetter = function(store){
 			return store.get('id_token');
 		}
-
+*/
 		// Route
 		$urlRouterProvider.otherwise("/home");
 
@@ -78,7 +78,7 @@ angular.module("15min", [
 			});
 
 		// check if token expire
-		function redirect($q, $injector, $timeout, store, $location){
+/*		function redirect($q, $injector, $timeout, store, $location){
 
 			var auth;
       $timeout(function() {
@@ -103,7 +103,7 @@ angular.module("15min", [
 		$provide.factory('redirect', redirect);
 
 		$httpProvider.interceptors.push('redirect');
-		$httpProvider.interceptors.push('jwtInterceptor');
+		$httpProvider.interceptors.push('jwtInterceptor');*/
 
 	})
 
@@ -114,7 +114,7 @@ angular.module("15min", [
 			var token = store.get('id_token');
 
 			// if token exist
-			if(token){
+			if(!token){
 				// if token not expired
 				if(!jwtHelper.isTokenExpired(token)){
 					// if token exist and not expired and the admin not Authenticated
